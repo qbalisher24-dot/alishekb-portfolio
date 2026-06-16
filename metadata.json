@@ -1,0 +1,6 @@
+{
+  "name": "Alisherbek Portfolio",
+  "description": "Premium portfolio website of Alisherbek Qurambayev - Fullstack Developer and Pentester",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
