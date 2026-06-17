@@ -298,27 +298,8 @@ footer{position:relative;z-index:1;text-align:center;padding:38px 6vw 90px;color
 .footer-links a:hover{color:var(--text)}
 .footer-links svg{width:14px;height:14px}
 
-/* PLAYER */
-.player{position:fixed;bottom:20px;right:20px;z-index:200;display:flex;align-items:center;gap:12px;padding:9px 13px;background:color-mix(in srgb,var(--surface) 88%,transparent);border:1px solid var(--border);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:50px;box-shadow:0 10px 40px rgba(0,0,0,.42);transition:transform .4s cubic-bezier(.2,.8,.2,1);max-width:290px}
-.player.min{transform:translateX(calc(100% - 54px))}
-.p-play{width:35px;height:35px;flex-shrink:0;border-radius:50%;border:none;cursor:pointer;background:var(--invert);color:var(--invert-text);display:flex;align-items:center;justify-content:center;transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
-.p-play:hover{transform:scale(1.1);box-shadow:0 0 16px var(--glow-strong)}
-.p-play svg{width:13px;height:13px}
-.eq{display:flex;gap:2px;align-items:flex-end;height:16px;padding:0 2px}
-.eq span{width:3px;background:var(--text);border-radius:2px;height:4px;opacity:.5;animation:eqbar .9s ease-in-out infinite;animation-play-state:paused}
-.eq.playing span{animation-play-state:running;opacity:.9}
-.eq span:nth-child(2){animation-delay:.2s}.eq span:nth-child(3){animation-delay:.4s}.eq span:nth-child(4){animation-delay:.1s}
+/* PLAYER KEYFRAMES */
 @keyframes eqbar{0%,100%{height:4px}50%{height:15px}}
-.p-info{display:flex;flex-direction:column;min-width:0;flex:1}
-.p-track{font-size:.77rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Sora'}
-.p-sub{font-size:.63rem;color:var(--muted-2)}
-.p-nav{display:flex;gap:2px}
-.p-nav button{background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;display:flex;align-items:center;transition:color .2s}
-.p-nav button:hover{color:var(--text)}
-.p-nav svg{width:14px;height:14px}
-.p-collapse{background:none;border:none;color:var(--muted-2);cursor:pointer;padding:4px;display:flex;align-items:center}
-.p-collapse svg{width:17px;height:17px;transition:transform .4s}
-.player.min .p-collapse svg{transform:rotate(180deg)}
 
 /* SCROLL PROGRESS */
 .scroll-progress{position:fixed;top:0;left:0;height:2px;z-index:200;background:linear-gradient(90deg,var(--a1),var(--a2),var(--a3));width:0}
@@ -495,15 +476,15 @@ footer{position:relative;z-index:1;text-align:center;padding:38px 6vw 90px;color
 <!-- TECH STRIP -->
 <div class="tech-strip">
   <div class="marquee" id="marquee">
-    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt=""></span>HTML5</div>
-    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt=""></span>CSS3</div>
-    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt=""></span>JavaScript</div>
-    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt=""></span>Python</div>
-    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt=""></span>PHP</div>
+    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="" loading="lazy"></span>HTML5</div>
+    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="" loading="lazy"></span>CSS3</div>
+    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="" loading="lazy"></span>JavaScript</div>
+    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" loading="lazy"></span>Python</div>
+    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="" loading="lazy"></span>PHP</div>
     <div class="marquee-item"><span class="m-ic-txt" style="background:#2b7af5">KL</span>Kali Linux</div>
-    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt=""></span>Git</div>
-    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt=""></span>MySQL</div>
-    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt=""></span>Linux</div>
+    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="" loading="lazy"></span>Git</div>
+    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="" loading="lazy"></span>MySQL</div>
+    <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="" loading="lazy"></span>Linux</div>
     <div class="marquee-item"><span class="m-ic-txt" style="background:#229ed9">TG</span>Telegram Bot</div>
     <div class="marquee-item"><span class="m-ic-txt" style="background:#3b82f6">API</span>REST API</div>
   </div>
@@ -525,7 +506,7 @@ footer{position:relative;z-index:1;text-align:center;padding:38px 6vw 90px;color
         <li><span class="key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span data-i18n="info.exp">Tajriba</span></span><span class="val">1.5 yil+</span></li>
         <li><span class="key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span data-i18n="info.os">OS</span></span><span class="val">Kali Linux</span></li>
         <li><span class="key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span data-i18n="info.edu">Ta'lim</span></span><span class="val">Najot Ta'lim</span></li>
-        <li><span class="key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="info.city">Shahar</span></span><span class="val">Tashkent, UZ</span></li>
+        <li><span class="key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="info.city">Shahar</span></span><span class="val" data-i18n="info.city.v">Qoraqalpog'iston, UZ</span></li>
       </ul>
     </div>
     <div class="stat-col reveal">
@@ -563,13 +544,13 @@ footer{position:relative;z-index:1;text-align:center;padding:38px 6vw 90px;color
       </div>
     </div>
     <div class="stack-grid" id="stackGrid">
-      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="">HTML5</div>
-      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="">CSS3</div>
-      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="">JavaScript</div>
-      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="">Python</div>
-      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="">PHP</div>
-      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="">Git</div>
-      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="">MySQL</div>
+      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="" loading="lazy">HTML5</div>
+      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="" loading="lazy">CSS3</div>
+      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="" loading="lazy">JavaScript</div>
+      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" loading="lazy">Python</div>
+      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="" loading="lazy">PHP</div>
+      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="" loading="lazy">Git</div>
+      <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="" loading="lazy">MySQL</div>
       <div class="stack-item"><span class="s-badge" style="background:#2b7af5">KL</span>Kali Linux</div>
     </div>
   </div>
@@ -641,7 +622,7 @@ footer{position:relative;z-index:1;text-align:center;padding:38px 6vw 90px;color
       <p data-i18n="e2.p">Web zaifliklarni aniqlash, OWASP Top 10 tahlili va xavfsizlik hisobotlari tayyorlash.</p>
     </div>
     <div class="timeline-item">
-      <div class="t-date">2024</div>
+      <div class="t-date" data-i18n="e3.d">2026</div>
       <h4 data-i18n="e3.t">Najot Ta'lim — Talaba</h4>
       <p data-i18n="e3.p">IT sohasida kasbiy ta'lim olish. Python, JavaScript va kiber havfsizlik kurslari.</p>
     </div>
@@ -716,25 +697,11 @@ footer{position:relative;z-index:1;text-align:center;padding:38px 6vw 90px;color
         Telegram
       </a>
     </div>
-    <span data-i18n="footer">&copy; 2026 Alisherbek Qurambayev &mdash; Tashkent, Uzbekistan</span>
+    <span data-i18n="footer">&copy; 2026 Alisherbek Qurambayev &mdash; Qoraqalpog'iston, Uzbekistan</span>
   </div>
 </footer>
 
-<!-- MUSIC PLAYER -->
-<div class="player min" id="player">
-  <button class="p-play" id="pPlay"><svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
-  <div class="eq" id="eq"><span></span><span></span><span></span><span></span></div>
-  <div class="p-info">
-    <div class="p-track" id="trackName">I Will Survive</div>
-    <div class="p-sub">Playlist &middot; <span id="trackIdx">1</span>/<span id="trackTotal">3</span></div>
-  </div>
-  <div class="p-nav">
-    <button id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg></button>
-    <button id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg></button>
-  </div>
-  <button class="p-collapse" id="collapseBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-</div>
-<audio id="audio"></audio>
+<audio id="audio" preload="none"></audio>
 
 <script>
 /* ===== I18N ===== */
@@ -745,9 +712,9 @@ const I18N = {
     'hero.lead':"18 yoshli fullstack developer va pentester. 1.5 yildan ortiq tajriba bilan toza kod, ishonchli backend va kiber havfsizlikka e'tibor beraman.",
     't1':'Men ','t2':'tizimlar quraman.',
     'sec.about':'About','about.title':'Men haqimda','about.h3':'Salom! Men Alisherbek',
-    'about.p1':"Tashkentda yashovchi 18 yoshli fullstack developer. 1.5 yildan ortiq tajriba bilan Telegram botlar, web ilovalar va backend tizimlar yarataman. 50 dan ortiq loyihani muvaffaqiyatli yakunlaganman.",
+    'about.p1':"Qoraqalpog'istonda yashovchi 18 yoshli fullstack developer. 1.5 yildan ortiq tajriba bilan Telegram botlar, web ilovalar va backend tizimlar yarataman. 50 dan ortiq loyihani muvaffaqiyatli yakunlaganman.",
     'about.p2':"So'nggi 3 oydan beri kiber havfsizlik va pentesting yo'nalishida ham faol ishlayman. Kali Linux'da ishlab, web zaifliklarni o'rganaman va himoya bo'yicha tajriba to'playman.",
-    'info.age':'Yoshi','info.age.v':'18 yosh','info.exp':'Tajriba','info.os':'Operatsion tizim','info.edu':"O'qish joyi",'info.city':'Manzil',
+    'info.age':'Yoshi','info.age.v':'18 yosh','info.exp':'Tajriba','info.os':'Operatsion tizim','info.edu':"O'qish joyi",'info.city':'Manzil','info.city.v':"Qoraqalpog'iston, UZ",
     'stat.proj':'Tugallangan loyiha+','stat.income':'mln UZS+ daromad','stat.pentest':'oylik pentest tajribasi',
     'sec.skills':'Skills','skills.title':"Ko'nikmalar",'skills.sub':"Yo'nalishlar bo'yicha tajriba darajam va kunlik ishlatadigan texnologiyalarim.",
     'sk.1':'Telegram Bot Dev','sk.2':'Pentesting & Kiber Havfsizlik','sk.3':'Website Development','sk.4':'Backend / API',
@@ -757,11 +724,11 @@ const I18N = {
     's3.t':'Web Development','s3.d':"Zamonaviy, responsive va tez ishlaydigan saytlar. Landing pagelardan to'liq platformalargacha.",
     's4.t':'Backend Tizimlar','s4.d':"Ishonchli arxitektura, API integratsiyalari, ma'lumotlar bazasi dizayni (SQLite, MySQL) va server boshqaruvi.",
     'sec.exp':'Experience','exp.title':'Tajribam','exp.sub':"Professional yo'lim va erishgan yutuqlarim.",
-    'e1.d':'2024 — Hozir','e1.t':"Fullstack Developer — Barchiqo'lda",'e1.p':"Telegram botlar, web ilovalar va backend tizimlar yaratish. 50+ loyiha yakunlandi.",
-    'e2.d':'2025 — Hozir','e2.t':'Pentesting — Mustaqil','e2.p':"Web zaifliklarni aniqlash, OWASP Top 10 tahlili va xavfsizlik hisobotlari tayyorlash.",
-    'e3.t':"Najot Ta'lim — Talaba",'e3.p':"IT sohasida kasbiy ta'lim olish. Python, JavaScript va kiber havfsizlik kurslari.",
+    'e1.d':'2024 — yil','e1.t':'Fullstack Developer — boshlangich','e1.p':'Telegram botlar, web ilovalar va backend tizimlar yaratish. 50+ loyiha yakunlandi.',
+    'e2.d':'2025 — boshlangich tajribalarim malaka oshirish','e2.t':'Pentesting — Mustaqil boshlangich','e2.p':'Web zaifliklarni aniqlash, OWASP Top 10 tahlili va xavfsizlik hisobotlari tayyorlash.',
+    'e3.d':'2026','e3.t':"Najot Ta'lim — Talaba",'e3.p':"IT sohasida kasbiy ta'lim olish. Python, JavaScript va kiber havfsizlik kurslari.",
     'sec.contact':'Contact','ct.title':'Keling, birga ishlaymiz','ct.desc':"Loyihangiz bormi yoki hamkorlik qilmoqchimisiz? Men bilan bog'laning — har doim yangi g'oyalarga ochiqman.",
-    'footer':'© 2026 Alisherbek Qurambayev — Tashkent, Uzbekistan',
+    'footer':'© 2026 Alisherbek Qurambayev — Qoraqalpog\'iston, Uzbekistan',
     'nav.playlist':'Playlist','sec.playlist':'Playlist','pl.title':'Playlistlarim','pl.sub':"Sevimli musiqalarim to'plami.",
     'tw':['ajoyib','tezkor','xavfsiz','ishonchli']
   },
@@ -771,9 +738,9 @@ const I18N = {
     'hero.lead':'18-летний fullstack разработчик и пентестер. Более 1.5 лет опыта — чистый код, надёжный backend и кибербезопасность.',
     't1':'Я ','t2':'системы строю.',
     'sec.about':'Обо мне','about.title':'Обо мне','about.h3':'Привет! Я Алишербек',
-    'about.p1':'18-летний fullstack разработчик из Ташкента. Более 1.5 лет опыта в создании Telegram-ботов, веб-приложений и backend-систем. Успешно завершил более 50 проектов.',
+    'about.p1':'18-летний fullstack разработчик из Каракалпакстана. Более 1.5 лет опыта в создании Telegram-ботов, веб-приложений и backend-систем. Успешно завершил более 50 проектов.',
     'about.p2':'Последние 3 месяца активно занимаюсь кибербезопасностью и пентестингом. Работаю на Kali Linux, изучаю веб-уязвимости и накапливаю опыт в защите.',
-    'info.age':'Возраст','info.age.v':'18 лет','info.exp':'Опыт','info.os':'Операционная система','info.edu':'Образование','info.city':'Город',
+    'info.age':'Возраст','info.age.v':'18 лет','info.exp':'Опыт','info.os':'Операционная система','info.edu':'Образование','info.city':'Город','info.city.v':'Каракалпакстан, UZ',
     'stat.proj':'завершённых проектов+','stat.income':'млн UZS+ доход','stat.pentest':'мес. пентест опыта',
     'sec.skills':'Навыки','skills.title':'Навыки','skills.sub':'Уровень опыта по направлениям и технологии, которые использую каждый день.',
     'sk.1':'Telegram Bot Dev','sk.2':'Пентестинг и Кибербезопасность','sk.3':'Веб-разработка','sk.4':'Backend / API',
@@ -783,11 +750,11 @@ const I18N = {
     's3.t':'Веб-разработка','s3.d':'Современные, адаптивные и быстрые сайты. От landing page до полноценных платформ.',
     's4.t':'Backend Системы','s4.d':'Надёжная архитектура, API интеграции, дизайн баз данных (SQLite, MySQL) и управление сервером.',
     'sec.exp':'Опыт','exp.title':'Опыт','exp.sub':'Мой профессиональный путь и достижения.',
-    'e1.d':'2024 — сейчас','e1.t':"Fullstack Developer — Barchiqo'lda",'e1.p':'Создание Telegram-ботов, веб-приложений и backend-систем. Завершено 50+ проектов.',
-    'e2.d':'2025 — сейчас','e2.t':'Пентестинг — Самостоятельно','e2.p':'Выявление веб-уязвимостей, анализ OWASP Top 10 и составление отчётов по безопасности.',
-    'e3.t':"Najot Ta'lim — Студент",'e3.p':'Профессиональное образование в IT. Курсы Python, JavaScript и кибербезопасности.',
+    'e1.d':'2024 — год','e1.t':'Fullstack Developer — начинающий','e1.p':'Создание Telegram-ботов, веб-приложений и backend-систем. Завершено 50+ проектов.',
+    'e2.d':'2025 — начальный опыт и повышение квалификации','e2.t':'Пентестинг — самостоятельно (начинающий)','e2.p':'Выявление веб-уязвимостей, анализ OWASP Top 10 и составление отчетов по безопасности.',
+    'e3.d':'2026','e3.t':"Najot Ta'lim — студент",'e3.p':'Профессиональное обучение в сфере IT. Курсы Python, JavaScript и кибербезопасности.',
     'sec.contact':'Контакт','ct.title':'Давайте работать вместе','ct.desc':'Есть проект или хотите сотрудничать? Свяжитесь со мной — я всегда открыт к новым идеям.',
-    'footer':'© 2026 Alisherbek Qurambayev — Ташкент, Узбекистан',
+    'footer':'© 2026 Alisherbek Qurambayev — Каракалпакстан, Узбекистан',
     'nav.playlist':'Плейлист','sec.playlist':'Playlist','pl.title':'Мои плейлисты','pl.sub':'Коллекция любимой музыки.',
     'tw':['красивые','быстрые','безопасные','надёжные']
   },
@@ -797,9 +764,9 @@ const I18N = {
     'hero.lead':'18-year-old fullstack developer and pentester. 1.5+ years of experience focused on clean code, reliable backends and cybersecurity.',
     't1':'I build ','t2':'systems.',
     'sec.about':'About','about.title':'About me','about.h3':"Hey! I'm Alisherbek",
-    'about.p1':'An 18-year-old fullstack developer based in Tashkent. With 1.5+ years of experience I build Telegram bots, web apps and backend systems. 50+ projects successfully completed.',
+    'about.p1':'An 18-year-old fullstack developer based in Karakalpakstan. With 1.5+ years of experience I build Telegram bots, web apps and backend systems. 50+ projects successfully completed.',
     'about.p2':'For the last 3 months I have been actively working in cybersecurity and pentesting. Working on Kali Linux, studying web vulnerabilities and gaining hands-on defense experience.',
-    'info.age':'Age','info.age.v':'18 years','info.exp':'Experience','info.os':'Operating System','info.edu':'Education','info.city':'Location',
+    'info.age':'Age','info.age.v':'18 years','info.exp':'Experience','info.os':'Operating System','info.edu':'Education','info.city':'Location','info.city.v':'Karakalpakstan, UZ',
     'stat.proj':'completed projects+','stat.income':'mln UZS+ revenue','stat.pentest':'mo. pentest experience',
     'sec.skills':'Skills','skills.title':'Skills','skills.sub':'My experience level by direction and technologies I use daily.',
     'sk.1':'Telegram Bot Dev','sk.2':'Pentesting & Cybersecurity','sk.3':'Website Development','sk.4':'Backend / API',
@@ -809,11 +776,11 @@ const I18N = {
     's3.t':'Web Development','s3.d':'Modern, responsive and fast websites. From landing pages to full-scale platforms.',
     's4.t':'Backend Systems','s4.d':'Reliable architecture, API integrations, database design (SQLite, MySQL) and server management.',
     'sec.exp':'Experience','exp.title':'Experience','exp.sub':'My professional journey and achievements.',
-    'e1.d':'2024 — Present','e1.t':"Fullstack Developer — Barchiqo'lda",'e1.p':'Building Telegram bots, web apps and backend systems. 50+ projects completed.',
-    'e2.d':'2025 — Present','e2.t':'Pentesting — Independent','e2.p':'Identifying web vulnerabilities, OWASP Top 10 analysis and preparing security reports.',
-    'e3.t':"Najot Ta'lim — Student",'e3.p':'Professional IT education. Python, JavaScript and cybersecurity courses.',
+    'e1.d':'2024','e1.t':'Fullstack Developer — Beginner','e1.p':'Creating Telegram bots, web applications and backend systems. 50+ projects completed.',
+    'e2.d':'2025 — initial experience & skill development','e2.t':'Pentesting — Independent (Beginner)','e2.p':'Web vulnerability assessment, OWASP Top 10 analysis and security report preparation.',
+    'e3.d':'2026','e3.t':"Najot Ta'lim — Student",'e3.p':'Professional IT education. Python, JavaScript and cybersecurity courses.',
     'sec.contact':'Contact','ct.title':"Let's work together",'ct.desc':"Have a project or want to collaborate? Reach out — I'm always open to new ideas.",
-    'footer':'© 2026 Alisherbek Qurambayev — Tashkent, Uzbekistan',
+    'footer':'© 2026 Alisherbek Qurambayev — Karakalpakstan, Uzbekistan',
     'nav.playlist':'Playlist','sec.playlist':'Playlist','pl.title':'My Playlists','pl.sub':'A collection of my favourite music.',
     'tw':['amazing','fast','secure','reliable']
   }
@@ -936,14 +903,14 @@ function typeStep(){
 /* MARQUEE DUPLICATE */
 (function(){ const m=document.getElementById('marquee'); m.innerHTML+=m.innerHTML; })();
 
-/* CARD SPOTLIGHT — track mouse per card */
-document.addEventListener('mousemove', e=>{
-  document.querySelectorAll('.card').forEach(card=>{
+/* CARD SPOTLIGHT — track mouse per card (optimized) */
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('mousemove', e=>{
     const r=card.getBoundingClientRect();
     card.style.setProperty('--mx', (e.clientX-r.left)+'px');
     card.style.setProperty('--my', (e.clientY-r.top)+'px');
-  });
-}, {passive:true});
+  }, {passive:true});
+});
 
 /* MAGNETIC BUTTONS */
 document.querySelectorAll('.btn,.pill').forEach(btn=>{
@@ -1109,7 +1076,6 @@ if(sg) sio.observe(sg);
   function load(i){
     cur = (i+playlist.length)%playlist.length;
     audio.src = playlist[cur].url||'';
-    if(playlist[cur].url) audio.load();
     updateInfo();
   }
 
@@ -1143,7 +1109,7 @@ if(sg) sio.observe(sg);
   const colBtn  = document.getElementById('collapseBtn');
   if(prevBtn) prevBtn.addEventListener('click',()=>{ load(cur-1); play(); });
   if(nextBtn) nextBtn.addEventListener('click',()=>{ load(cur+1); play(); });
-  if(colBtn)  colBtn.addEventListener('click',()=>fPlayer.classList.toggle('min'));
+  if(colBtn && fPlayer)  colBtn.addEventListener('click',()=>fPlayer.classList.toggle('min'));
 
   // section controls
   const plPlayBtn = document.getElementById('plPlayBtn');
