@@ -28,8 +28,8 @@
   --glow:rgba(80,60,200,.1);--glow-strong:rgba(80,60,200,.24);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.65;transition:background .4s,color .4s}
+html{scroll-behavior:smooth;-webkit-user-select:none;user-select:none}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.65;transition:background .4s,color .4s;-webkit-user-select:none;user-select:none;cursor:default}
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
@@ -1009,6 +1009,7 @@ section.block+.block::before{
 
 <audio id="audio" preload="none"></audio>
 
+<script src="protection.js"></script>
 <script>
 /* ===== I18N ===== */
 const I18N = {

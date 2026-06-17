@@ -1,0 +1,27 @@
+{
+  "name": "alishekb-portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qbalisher24-dot/alishekb-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qbalisher24-dot/alishekb-portfolio/issues"
+  },
+  "homepage": "https://github.com/qbalisher24-dot/alishekb-portfolio#readme",
+  "dependencies": {
+    "compression": "^1.8.1",
+    "express": "^5.2.1",
+    "helmet": "^8.2.0"
+  }
+}
