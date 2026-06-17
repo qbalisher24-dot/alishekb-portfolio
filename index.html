@@ -305,8 +305,8 @@ footer{position:relative;z-index:1;text-align:center;padding:38px 6vw 90px;color
 .p-play:hover{transform:scale(1.1);box-shadow:0 0 16px var(--glow-strong)}
 .p-play svg{width:13px;height:13px}
 .eq{display:flex;gap:2px;align-items:flex-end;height:16px;padding:0 2px}
-.eq span{width:3px;background:var(--text);border-radius:2px;height:4px;opacity:.5}
-.eq.playing span{animation:eqbar .9s ease-in-out infinite;opacity:.9}
+.eq span{width:3px;background:var(--text);border-radius:2px;height:4px;opacity:.5;animation:eqbar .9s ease-in-out infinite;animation-play-state:paused}
+.eq.playing span{animation-play-state:running;opacity:.9}
 .eq span:nth-child(2){animation-delay:.2s}.eq span:nth-child(3){animation-delay:.4s}.eq span:nth-child(4){animation-delay:.1s}
 @keyframes eqbar{0%,100%{height:4px}50%{height:15px}}
 .p-info{display:flex;flex-direction:column;min-width:0;flex:1}
@@ -334,24 +334,24 @@ footer{position:relative;z-index:1;text-align:center;padding:38px 6vw 90px;color
 .pl-vinyl-wrap{position:relative;width:140px;height:140px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .pl-vinyl-ring{position:absolute;width:100%;height:100%;border-radius:50%;border:1.5px dashed rgba(99,102,241,.22);animation:vinylRingAnim 10s linear infinite;pointer-events:none}
 @keyframes vinylRingAnim{to{transform:rotate(360deg)}}
-.pl-vinyl{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2e2e42,#0d0d18 65%);border:2px solid rgba(99,102,241,.3);box-shadow:0 0 28px rgba(99,102,241,.18);position:relative}
+.pl-vinyl{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2e2e42,#0d0d18 65%);border:2px solid rgba(99,102,241,.3);box-shadow:0 0 28px rgba(99,102,241,.18);position:relative;animation:vinylSpin 3s linear infinite;animation-play-state:paused}
 .pl-vinyl::before{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,transparent 20%,rgba(255,255,255,.04) 21%,rgba(255,255,255,.04) 22%,transparent 23%,transparent 36%,rgba(255,255,255,.035) 37%,rgba(255,255,255,.035) 38%,transparent 39%,transparent 50%,rgba(255,255,255,.025) 51%,rgba(255,255,255,.025) 52%,transparent 53%);pointer-events:none}
 .pl-vinyl::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;background:radial-gradient(circle,var(--a2),var(--a1));box-shadow:0 0 14px var(--glow-strong)}
-.pl-vinyl.spin{animation:vinylSpin 3s linear infinite}
+.pl-vinyl.spin{animation-play-state:running}
 @keyframes vinylSpin{to{transform:rotate(360deg)}}
 .pl-info{min-width:0;flex:1}
 .pl-wave{display:flex;gap:3px;align-items:flex-end;height:22px;margin-bottom:12px}
 .pl-wave span{width:3px;border-radius:2px;background:linear-gradient(180deg,var(--a2),var(--a1));opacity:.35;transition:opacity .3s}
 .pl-wave span:nth-child(1){height:8px}.pl-wave span:nth-child(2){height:13px}.pl-wave span:nth-child(3){height:20px}.pl-wave span:nth-child(4){height:11px}.pl-wave span:nth-child(5){height:22px}.pl-wave span:nth-child(6){height:15px}.pl-wave span:nth-child(7){height:9px}.pl-wave span:nth-child(8){height:17px}
-.pl-wave.playing span{opacity:1}
-.pl-wave.playing span:nth-child(1){animation:plw .8s ease-in-out infinite}
-.pl-wave.playing span:nth-child(2){animation:plw .9s ease-in-out infinite .12s}
-.pl-wave.playing span:nth-child(3){animation:plw .7s ease-in-out infinite .22s}
-.pl-wave.playing span:nth-child(4){animation:plw 1s ease-in-out infinite .08s}
-.pl-wave.playing span:nth-child(5){animation:plw .85s ease-in-out infinite .33s}
-.pl-wave.playing span:nth-child(6){animation:plw .75s ease-in-out infinite .16s}
-.pl-wave.playing span:nth-child(7){animation:plw .95s ease-in-out infinite .28s}
-.pl-wave.playing span:nth-child(8){animation:plw .82s ease-in-out infinite .05s}
+.pl-wave span:nth-child(1){animation:plw .8s ease-in-out infinite;animation-play-state:paused}
+.pl-wave span:nth-child(2){animation:plw .9s ease-in-out infinite .12s;animation-play-state:paused}
+.pl-wave span:nth-child(3){animation:plw .7s ease-in-out infinite .22s;animation-play-state:paused}
+.pl-wave span:nth-child(4){animation:plw 1s ease-in-out infinite .08s;animation-play-state:paused}
+.pl-wave span:nth-child(5){animation:plw .85s ease-in-out infinite .33s;animation-play-state:paused}
+.pl-wave span:nth-child(6){animation:plw .75s ease-in-out infinite .16s;animation-play-state:paused}
+.pl-wave span:nth-child(7){animation:plw .95s ease-in-out infinite .28s;animation-play-state:paused}
+.pl-wave span:nth-child(8){animation:plw .82s ease-in-out infinite .05s;animation-play-state:paused}
+.pl-wave.playing span{animation-play-state:running;opacity:1}
 @keyframes plw{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.28)}}
 .pl-title{font-family:'Sora';font-weight:800;font-size:1.42rem;letter-spacing:-.5px;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pl-artist{color:var(--muted);font-size:.88rem;margin-bottom:16px}
@@ -375,8 +375,8 @@ footer{position:relative;z-index:1;text-align:center;padding:38px 6vw 90px;color
 .pl-row.active .pl-row-num{opacity:0}
 .pl-row-eq{position:absolute;display:flex;align-items:flex-end;gap:2px;height:14px;opacity:0;transition:opacity .2s}
 .pl-row.active .pl-row-eq{opacity:1}
-.pl-row-eq span{width:3px;background:linear-gradient(180deg,var(--a2),var(--a1));border-radius:2px;height:4px}
-.pl-list.playing .pl-row.active .pl-row-eq span{animation:eqbar .9s ease-in-out infinite}
+.pl-row-eq span{width:3px;background:linear-gradient(180deg,var(--a2),var(--a1));border-radius:2px;height:4px;animation:eqbar .9s ease-in-out infinite;animation-play-state:paused}
+.pl-list.playing .pl-row.active .pl-row-eq span{animation-play-state:running}
 .pl-row-eq span:nth-child(2){animation-delay:.18s}.pl-row-eq span:nth-child(3){animation-delay:.36s}
 .pl-row-info{min-width:0}
 .pl-row-name{font-weight:600;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Sora';transition:color .2s}
@@ -518,7 +518,7 @@ footer{position:relative;z-index:1;text-align:center;padding:38px 6vw 90px;color
   <div class="about-grid">
     <div class="card about-main reveal">
       <h3 data-i18n="about.h3">Salom! Men Alisherbek</h3>
-      <p data-i18n="about.p1">Tashkentda yashovchi 18 yoshli fullstack developer. 1.5 yildan ortiq tajriba bilan Telegram botlar, web ilovalar va backend tizimlar yarataman. 50 dan ortiq loyihani muvaffaqiyatli yakunlaganman.</p>
+      <p data-i18n="about.p1">Qoraqalpog'istonda yashovchi 18 yoshli fullstack developer. 1.5 yildan ortiq tajriba bilan Telegram botlar, web ilovalar va backend tizimlar yarataman. 50 dan ortiq loyihani muvaffaqiyatli yakunlaganman.</p>
       <p data-i18n="about.p2">So'nggi 3 oydan beri kiber havfsizlik va pentesting yo'nalishida ham faol ishlayman. Kali Linux'da ishlab, web zaifliklarni o'rganaman va himoya bo'yicha tajriba to'playman.</p>
       <ul class="info-list">
         <li><span class="key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span data-i18n="info.age">Yoshi</span></span><span class="val" data-i18n="info.age.v">18 yosh</span></li>
@@ -1084,18 +1084,32 @@ if(sg) sio.observe(sg);
 
   function setUI(p){
     playing = p;
-    const ico = p ? PAUSE_IC : PLAY_IC;
+    const ico   = p ? PAUSE_IC : PLAY_IC;
+    const state = p ? 'running' : 'paused';
     if(fIcon) fIcon.innerHTML = ico;
-    if(fEq)   fEq.classList.toggle('playing',p);
-    if(plIcon)  plIcon.innerHTML = ico;
-    if(plVinyl) plVinyl.classList.toggle('spin',p);
-    if(plWave)  plWave.classList.toggle('playing',p);
-    if(plList)  plList.classList.toggle('playing',p);
+    if(fEq){
+      fEq.classList.toggle('playing',p);
+      fEq.querySelectorAll('span').forEach(s=>s.style.animationPlayState=state);
+    }
+    if(plIcon) plIcon.innerHTML = ico;
+    if(plVinyl){
+      plVinyl.classList.toggle('spin',p);
+      plVinyl.style.animationPlayState = state;
+    }
+    if(plWave){
+      plWave.classList.toggle('playing',p);
+      plWave.querySelectorAll('span').forEach(s=>s.style.animationPlayState=state);
+    }
+    if(plList){
+      plList.classList.toggle('playing',p);
+      document.querySelectorAll('.pl-row.active .pl-row-eq span').forEach(s=>s.style.animationPlayState=state);
+    }
   }
 
   function load(i){
     cur = (i+playlist.length)%playlist.length;
     audio.src = playlist[cur].url||'';
+    if(playlist[cur].url) audio.load();
     updateInfo();
   }
 
