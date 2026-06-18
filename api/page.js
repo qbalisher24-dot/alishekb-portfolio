@@ -31,7 +31,7 @@ module.exports=(req,res)=>{
   const payload=getPayload();
   if(!payload){res.status(500).send('Error');return}
 
-  res.send(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  res.send(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/jpeg" href="fovicon.jpg">
 <title>Loading...</title>
 <style>body{margin:0;background:#000;display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui;color:#fff}
 .ld{width:40px;height:40px;border:3px solid rgba(255,255,255,.1);border-top-color:#6366f1;border-radius:50%;animation:sp .8s linear infinite}
