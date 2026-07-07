@@ -12,7 +12,7 @@ app.use((req,res,next)=>{
   res.setHeader('X-XSS-Protection','1; mode=block');
   res.setHeader('Referrer-Policy','no-referrer');
   res.setHeader('Permissions-Policy','camera=(), microphone=(), geolocation=()');
-  res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self';");
+  res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self';");
   res.removeHeader('X-Powered-By');
   next();
 });
