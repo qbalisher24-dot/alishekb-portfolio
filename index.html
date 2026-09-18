@@ -35,11 +35,11 @@
     /* ── RESET & DESIGN TOKENS ── */
     :root {
       --bg: #070907;
-      --surface: rgba(13, 18, 15, 0.78);
+      --surface: rgba(13, 20, 16, 0.65);
       --surface-solid: #0d120f;
-      --surface-2: #141b16;
-      --border: rgba(62, 207, 124, 0.12);
-      --border-strong: rgba(62, 207, 124, 0.28);
+      --surface-2: rgba(20, 30, 24, 0.55);
+      --border: rgba(62, 207, 124, 0.14);
+      --border-strong: rgba(62, 207, 124, 0.32);
       --text: #eef7f0;
       --muted: #93a89a;
       --muted-2: #5c6e63;
@@ -47,22 +47,24 @@
       --grid: rgba(62, 207, 124, 0.04);
       --invert: #3ecf7c;
       --invert-text: #05140b;
-      --glow: rgba(62, 207, 124, 0.16);
-      --glow-strong: rgba(62, 207, 124, 0.38);
+      --glow: rgba(62, 207, 124, 0.18);
+      --glow-strong: rgba(62, 207, 124, 0.42);
       --a1: #3ecf7c;
       --a2: #7fd9a0;
       --a3: #2ba86a;
-      --card-bg: rgba(13, 18, 15, 0.72);
-      --card-border: rgba(62, 207, 124, 0.14);
-      --card-hover-border: rgba(62, 207, 124, 0.42);
+      --card-bg: rgba(13, 20, 16, 0.62);
+      --card-border: rgba(62, 207, 124, 0.16);
+      --card-hover-border: rgba(62, 207, 124, 0.48);
       --spotlight: rgba(62, 207, 124, 0.09);
+      --glass-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+      --glass-blur: blur(24px) saturate(180%);
     }
 
     [data-theme="light"] {
-      --bg: #f5f8f5;
-      --surface: rgba(255, 255, 255, 0.88);
+      --bg: #f4f8f5;
+      --surface: rgba(255, 255, 255, 0.76);
       --surface-solid: #ffffff;
-      --surface-2: #eaf1ec;
+      --surface-2: rgba(235, 243, 238, 0.75);
       --border: rgba(15, 25, 18, 0.10);
       --border-strong: rgba(15, 25, 18, 0.24);
       --text: #0d140f;
@@ -77,10 +79,12 @@
       --a1: #151d17;
       --a2: #178a4d;
       --a3: #2ba86a;
-      --card-bg: rgba(255, 255, 255, 0.82);
+      --card-bg: rgba(255, 255, 255, 0.8);
       --card-border: rgba(15, 25, 18, 0.10);
       --card-hover-border: rgba(23, 138, 77, 0.38);
       --spotlight: rgba(23, 138, 77, 0.07);
+      --glass-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+      --glass-blur: blur(24px) saturate(180%);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -602,31 +606,34 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s, border-color 0.25s;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s, border-color 0.25s, background 0.25s;
       position: relative;
       overflow: hidden;
       font-family: 'Outfit', sans-serif;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
     }
     .btn-primary {
-      background: var(--invert);
+      background: linear-gradient(135deg, var(--a1), var(--a3));
       color: var(--invert-text);
-      box-shadow: 0 4px 20px var(--glow);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4), 0 6px 24px var(--glow);
     }
     .btn-primary:hover {
       transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 12px 36px var(--glow-strong);
+      box-shadow: inset 0 1px 2px 0 rgba(255, 255, 255, 0.6), 0 14px 40px var(--glow-strong);
     }
     .btn-ghost {
       background: var(--surface);
-      border-color: var(--border);
+      border: 1px solid var(--border);
       color: var(--text);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      box-shadow: var(--glass-specular), 0 4px 16px rgba(0, 0, 0, 0.2);
     }
     .btn-ghost:hover {
       transform: translateY(-4px) scale(1.02);
       border-color: var(--border-strong);
-      box-shadow: 0 10px 30px var(--glow);
+      background: var(--surface-2);
+      box-shadow: var(--glass-specular), 0 12px 32px var(--glow);
     }
 
     .hero-links {
@@ -646,14 +653,16 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s, box-shadow 0.25s;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s, box-shadow 0.25s, background 0.25s;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-specular), 0 4px 14px rgba(0, 0, 0, 0.15);
     }
     .pill:hover {
       transform: translateY(-3px) scale(1.03);
       border-color: var(--border-strong);
-      box-shadow: 0 8px 24px var(--glow);
+      background: var(--surface-2);
+      box-shadow: var(--glass-specular), 0 8px 26px var(--glow);
     }
     .pill svg { width: 16px; height: 16px; }
 
@@ -917,8 +926,9 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 24px;
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-specular), 0 16px 44px rgba(0, 0, 0, 0.25);
       transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
@@ -937,7 +947,7 @@
     .card:hover::after { opacity: 1; }
     .card:hover {
       border-color: var(--card-hover-border);
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35), 0 0 24px var(--glow);
+      box-shadow: var(--glass-specular), 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 28px var(--glow);
     }
 
     /* ── ABOUT ME ── */
@@ -1029,6 +1039,9 @@
       border-radius: 14px;
       background: var(--surface);
       border: 1px solid var(--border);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-specular), 0 4px 14px rgba(0, 0, 0, 0.12);
       display: flex;
       align-items: center;
       gap: 12px;
@@ -1040,7 +1053,8 @@
     .stack-item:hover {
       transform: translateY(-4px) scale(1.03);
       border-color: var(--border-strong);
-      box-shadow: 0 10px 26px var(--glow);
+      background: var(--surface-2);
+      box-shadow: var(--glass-specular), 0 12px 28px var(--glow);
     }
     .s-icon { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
     .s-badge {
@@ -1123,56 +1137,61 @@
       overflow: hidden;
       border: 1px solid var(--card-border);
       background: var(--card-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-specular), 0 20px 50px rgba(0, 0, 0, 0.35);
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+      position: relative;
     }
     .project-card:hover {
       transform: translateY(-8px);
       border-color: var(--card-hover-border);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 35px var(--glow);
+      box-shadow: var(--glass-specular), 0 28px 70px rgba(0, 0, 0, 0.45), 0 0 40px var(--glow);
     }
     
     /* Project Preview Window Mockup */
-    .project-preview {
+    .lp-viewport {
       background: var(--surface-2);
       border-bottom: 1px solid var(--border);
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
     }
-    .browser-bar {
+    .lp-browser-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 18px;
-      background: rgba(0, 0, 0, 0.35);
+      padding: 11px 18px;
+      background: rgba(0, 0, 0, 0.4);
       border-bottom: 1px solid var(--border);
       gap: 12px;
     }
-    [data-theme="light"] .browser-bar {
-      background: rgba(0, 0, 0, 0.04);
+    [data-theme="light"] .lp-browser-bar {
+      background: rgba(0, 0, 0, 0.05);
     }
-    .browser-dots {
+    .lp-browser-dots {
       display: flex;
       gap: 6px;
       align-items: center;
     }
-    .browser-dot {
-      width: 10px;
-      height: 10px;
+    .lp-browser-dot {
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
     }
-    .dot-red { background: #ff5f56; }
-    .dot-yellow { background: #ffbd2e; }
-    .dot-green { background: #27c93f; }
+    .lp-dot-red { background: #ff5f56; }
+    .lp-dot-yellow { background: #ffbd2e; }
+    .lp-dot-green { background: #27c93f; }
 
-    .browser-url {
+    .lp-browser-url {
       flex: 1;
-      max-width: 240px;
+      max-width: 250px;
       background: var(--surface-solid);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 3px 12px;
+      padding: 4px 12px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.72rem;
       color: var(--muted);
@@ -1182,29 +1201,30 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.18);
     }
-    .browser-url svg {
+    .lp-browser-url svg {
       width: 11px;
       height: 11px;
       color: var(--green);
       flex-shrink: 0;
     }
 
-    .project-badge-live {
+    .lp-badge-live {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 20px;
-      background: rgba(62, 207, 124, 0.12);
-      border: 1px solid rgba(62, 207, 124, 0.25);
+      background: rgba(62, 207, 124, 0.14);
+      border: 1px solid rgba(62, 207, 124, 0.3);
       color: var(--green);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.5px;
       text-transform: uppercase;
     }
-    .live-dot {
+    .lp-live-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
@@ -1213,59 +1233,268 @@
       animation: blink 2s infinite ease-in-out;
     }
 
-    /* Mockup Visual Canvas */
-    .project-screen {
-      padding: 32px 26px;
-      min-height: 175px;
+    /* Landing page interior container */
+    .lp-body {
+      padding: 18px 20px 22px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      gap: 14px;
+      min-height: 255px;
       position: relative;
-      background: radial-gradient(circle at 80% 20%, var(--glow), transparent 70%),
-                  linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .mockup-cloud, .mockup-stream {
-      position: relative;
-      z-index: 1;
+    .project-card:hover .lp-body {
+      transform: scale(1.015);
     }
-    .mockup-stat-row {
+
+    /* Cloud Theme (wwwz.uz) */
+    .lp-cloud-theme {
+      background: radial-gradient(circle at 85% 15%, rgba(62, 207, 124, 0.18), transparent 60%),
+                  linear-gradient(180deg, rgba(8, 22, 14, 0.95) 0%, rgba(13, 29, 20, 0.95) 100%);
+    }
+    [data-theme="light"] .lp-cloud-theme {
+      background: radial-gradient(circle at 85% 15%, rgba(23, 138, 77, 0.14), transparent 60%),
+                  linear-gradient(180deg, #f0f8f3 0%, #e3f2e8 100%);
+    }
+
+    /* Gold Theme (gold.wwwz.uz) */
+    .lp-gold-theme {
+      background: radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.22), transparent 60%),
+                  linear-gradient(180deg, rgba(26, 18, 7, 0.95) 0%, rgba(20, 14, 6, 0.95) 100%);
+    }
+    [data-theme="light"] .lp-gold-theme {
+      background: radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.14), transparent 60%),
+                  linear-gradient(180deg, #fff9f0 0%, #fef3e2 100%);
+    }
+
+    /* Mini Navbar inside Mockup */
+    .lp-mini-nav {
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.72rem;
     }
-    .mockup-stat-chip {
-      display: inline-flex;
+    [data-theme="light"] .lp-mini-nav {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+    .lp-mini-brand {
+      display: flex;
       align-items: center;
       gap: 6px;
-      padding: 5px 11px;
-      background: var(--surface-solid);
-      border: 1px solid var(--border-strong);
-      border-radius: 10px;
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: var(--text);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-    .mockup-stat-chip svg {
-      width: 14px;
-      height: 14px;
-      color: var(--green);
-    }
-    .mockup-header-title {
-      font-size: 1.3rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+    }
+    .lp-cloud-brand { color: #3ecf7c; }
+    [data-theme="light"] .lp-cloud-brand { color: #178a4d; }
+    .lp-gold-brand { color: #f59e0b; }
+    [data-theme="light"] .lp-gold-brand { color: #b45309; }
+
+    .lp-mini-menu {
       display: flex;
       align-items: center;
+      gap: 12px;
+      list-style: none;
+    }
+    .lp-mini-menu span {
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 500;
+    }
+    .lp-mini-btn {
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      cursor: default;
+    }
+    .lp-cloud-btn {
+      background: #3ecf7c;
+      color: #05140b;
+      border: none;
+    }
+    [data-theme="light"] .lp-cloud-btn {
+      background: #178a4d;
+      color: #ffffff;
+    }
+    .lp-gold-btn {
+      background: #f59e0b;
+      color: #1a1207;
+      border: none;
+    }
+    [data-theme="light"] .lp-gold-btn {
+      background: #b45309;
+      color: #ffffff;
+    }
+
+    /* Mini Hero inside Mockup */
+    .lp-hero-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .lp-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      width: fit-content;
+    }
+    .lp-cloud-pill {
+      background: rgba(62, 207, 124, 0.15);
+      border: 1px solid rgba(62, 207, 124, 0.3);
+      color: #3ecf7c;
+    }
+    [data-theme="light"] .lp-cloud-pill {
+      color: #178a4d;
+      border-color: rgba(23, 138, 77, 0.3);
+    }
+    .lp-gold-pill {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #f59e0b;
+    }
+    [data-theme="light"] .lp-gold-pill {
+      color: #b45309;
+      border-color: rgba(180, 83, 9, 0.3);
+    }
+    .lp-hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--text);
+    }
+    .lp-hero-desc {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* Cloud Platform Terminal Widget */
+    .lp-terminal-widget {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(62, 207, 124, 0.25);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    [data-theme="light"] .lp-terminal-widget {
+      background: rgba(255, 255, 255, 0.7);
+      border-color: rgba(23, 138, 77, 0.25);
+    }
+    .lp-term-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #3ecf7c;
+      font-weight: 600;
+    }
+    [data-theme="light"] .lp-term-line { color: #178a4d; }
+    .lp-term-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .lp-term-chip {
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.62rem;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    [data-theme="light"] .lp-term-chip {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    /* Gold Media Streaming Cards Showcase */
+    .lp-video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
-    .mockup-header-sub {
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
+    .lp-v-card {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 10px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
     }
+    [data-theme="light"] .lp-v-card {
+      background: rgba(255, 255, 255, 0.75);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+    .lp-v-thumb {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #f59e0b;
+    }
+    [data-theme="light"] .lp-v-thumb { color: #b45309; }
+    .lp-v-tag {
+      font-size: 0.58rem;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(245, 158, 11, 0.2);
+      font-weight: 800;
+    }
+    .lp-v-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lp-v-meta {
+      font-size: 0.6rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lp-v-shield {
+      grid-column: span 2;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px dashed rgba(245, 158, 11, 0.3);
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-size: 0.62rem;
+      color: #f59e0b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+    }
+    [data-theme="light"] .lp-v-shield { color: #b45309; }
 
     /* Project Body */
     .project-body {
@@ -1325,19 +1554,23 @@
       margin-bottom: 24px;
     }
     .tech-pill {
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: var(--surface-2);
+      padding: 5px 12px;
+      border-radius: 8px;
+      background: var(--surface);
       border: 1px solid var(--border);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-specular);
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.74rem;
       color: var(--muted);
       font-weight: 600;
-      transition: color 0.2s, border-color 0.2s;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
     }
     .project-card:hover .tech-pill {
       border-color: var(--border-strong);
       color: var(--text);
+      background: var(--surface-2);
     }
 
     .project-actions {
@@ -1352,10 +1585,10 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 20px;
+      padding: 10px 22px;
       font-size: 0.88rem;
       font-weight: 700;
-      border-radius: 12px;
+      border-radius: 50px;
       text-decoration: none;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -1367,7 +1600,7 @@
     }
     .project-link-raw {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--muted);
       text-decoration: none;
       transition: color 0.2s;
@@ -1595,18 +1828,23 @@
       padding: 12px 18px;
       border-radius: 14px;
       cursor: pointer;
-      border: 1px solid transparent;
+      border: 1px solid var(--border);
       background: var(--surface);
-      transition: background 0.2s, transform 0.25s, border-color 0.2s;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-specular);
+      transition: background 0.2s, transform 0.25s, border-color 0.2s, box-shadow 0.25s;
     }
     .pl-row:hover {
       background: var(--surface-2);
       transform: translateX(6px);
-      border-color: var(--border);
+      border-color: var(--border-strong);
+      box-shadow: var(--glass-specular), 0 6px 20px rgba(0, 0, 0, 0.15);
     }
     .pl-row.active {
-      background: color-mix(in srgb, var(--a1) 12%, var(--surface));
+      background: color-mix(in srgb, var(--a1) 14%, var(--surface));
       border-color: var(--border-strong);
+      box-shadow: var(--glass-specular), 0 0 20px var(--glow);
     }
     .pl-row-num {
       font-family: 'Outfit', sans-serif;
@@ -1748,7 +1986,7 @@
       .hero h1 { max-width: none; }
       .lead { max-width: 52ch; }
       .hero-glyph { display: none; }
-      .about-grid, .skills-wrap { grid-template-columns: 1fr; }
+      .about-grid, .skills-wrap, .projects-grid { grid-template-columns: 1fr; }
       .skills-wrap { gap: 32px; }
 
       .nav-links {
@@ -1869,7 +2107,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#about" data-i18n="nav.about">Men haqimda</a></li>
         <li><a href="#skills" data-i18n="nav.skills">Ko'nikmalar</a></li>
-        <li><a href="#projects" data-i18n="nav.projects">Loyihalar</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Saralangan loyihalar</a></li>
         <li><a href="#services" data-i18n="nav.services">Xizmatlar</a></li>
         <li><a href="#experience" data-i18n="nav.experience">Tajribam</a></li>
         <li><a href="#playlist" data-i18n="nav.playlist">Playlist</a></li>
@@ -2099,50 +2337,65 @@
   <!-- PROJECTS SECTION -->
   <section class="block" id="projects" data-num="04">
     <div class="reveal">
-      <div class="eyebrow" data-i18n="sec.projects">Projects</div>
-      <h2 class="section-h" data-i18n="proj.title">Mening Loyihalarim</h2>
+      <div class="eyebrow" data-i18n="sec.projects">Saralangan loyihalar</div>
+      <h2 class="section-h" data-i18n="proj.title">Saralangan Loyihalarim</h2>
       <p class="section-sub" data-i18n="proj.sub">Men tomonidan ishlab chiqilgan va serverda real faoliyat ko'rsatayotgan yirik platformalar.</p>
     </div>
 
     <div class="projects-grid">
       <!-- Project 1: wwwz.uz -->
       <div class="card project-card reveal">
-        <div class="project-preview">
-          <div class="browser-bar">
-            <div class="browser-dots">
-              <span class="browser-dot dot-red"></span>
-              <span class="browser-dot dot-yellow"></span>
-              <span class="browser-dot dot-green"></span>
+        <div class="lp-viewport">
+          <div class="lp-browser-bar">
+            <div class="lp-browser-dots">
+              <span class="lp-browser-dot lp-dot-red"></span>
+              <span class="lp-browser-dot lp-dot-yellow"></span>
+              <span class="lp-browser-dot lp-dot-green"></span>
             </div>
-            <div class="browser-url">
+            <div class="lp-browser-url">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
               https://wwwz.uz
             </div>
-            <div class="project-badge-live">
-              <span class="live-dot"></span>
+            <div class="lp-badge-live">
+              <span class="lp-live-dot"></span>
               <span>Production</span>
             </div>
           </div>
           
-          <div class="project-screen">
-            <div class="mockup-cloud">
-              <div class="mockup-header-title">
-                <span>⚡ Wildcard Cloud Platform</span>
+          <div class="lp-body lp-cloud-theme">
+            <!-- Mini Landing Page Navbar -->
+            <div class="lp-mini-nav">
+              <div class="lp-mini-brand lp-cloud-brand">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>wwwz.uz</span>
               </div>
-              <div class="mockup-header-sub">&gt; system.status: online [99.98% uptime]</div>
-              <div class="mockup-stat-row">
-                <div class="mockup-stat-chip">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                  <span>Auto Wildcard SSL</span>
-                </div>
-                <div class="mockup-stat-chip">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  <span>Nginx Fast Proxy</span>
-                </div>
-                <div class="mockup-stat-chip">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-                  <span>Telegram Bot Hosting</span>
-                </div>
+              <div class="lp-mini-menu">
+                <span>Xosting</span>
+                <span>Botlar</span>
+                <span>Domenlar</span>
+              </div>
+              <div class="lp-mini-btn lp-cloud-btn">Boshlash</div>
+            </div>
+
+            <!-- Mini Landing Page Hero -->
+            <div class="lp-hero-box">
+              <div class="lp-pill-badge lp-cloud-pill">
+                <span>⚡ 1-Raqamli Bulutli Xosting</span>
+              </div>
+              <div class="lp-hero-title">Wildcard Cloud Platformasi</div>
+              <div class="lp-hero-desc">Telegram botlar va web ilovalar uchun avtomatlashtirilgan xosting ekotizimi</div>
+            </div>
+
+            <!-- Mini Landing Page Terminal / Status Widget -->
+            <div class="lp-terminal-widget">
+              <div class="lp-term-line">
+                <span>$</span>
+                <span>wwwz cluster status: 4 NODES ONLINE (24ms)</span>
+              </div>
+              <div class="lp-term-chips">
+                <span class="lp-term-chip">🟢 PM2: 100% Online</span>
+                <span class="lp-term-chip">🔒 Wildcard SSL</span>
+                <span class="lp-term-chip">🛡️ Anti-DDoS</span>
               </div>
             </div>
           </div>
@@ -2193,42 +2446,74 @@
 
       <!-- Project 2: gold.wwwz.uz -->
       <div class="card project-card reveal">
-        <div class="project-preview">
-          <div class="browser-bar">
-            <div class="browser-dots">
-              <span class="browser-dot dot-red"></span>
-              <span class="browser-dot dot-yellow"></span>
-              <span class="browser-dot dot-green"></span>
+        <div class="lp-viewport">
+          <div class="lp-browser-bar">
+            <div class="lp-browser-dots">
+              <span class="lp-browser-dot lp-dot-red"></span>
+              <span class="lp-browser-dot lp-dot-yellow"></span>
+              <span class="lp-browser-dot lp-dot-green"></span>
             </div>
-            <div class="browser-url">
+            <div class="lp-browser-url">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
               https://gold.wwwz.uz
             </div>
-            <div class="project-badge-live">
-              <span class="live-dot"></span>
+            <div class="lp-badge-live">
+              <span class="lp-live-dot"></span>
               <span>Production</span>
             </div>
           </div>
           
-          <div class="project-screen">
-            <div class="mockup-stream">
-              <div class="mockup-header-title">
-                <span>🎬 Gold Media Platform</span>
+          <div class="lp-body lp-gold-theme">
+            <!-- Mini Landing Page Navbar -->
+            <div class="lp-mini-nav">
+              <div class="lp-mini-brand lp-gold-brand">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span>GoldMedia</span>
               </div>
-              <div class="mockup-header-sub">&gt; ddos.guard: protected [OWASP Top 10]</div>
-              <div class="mockup-stat-row">
-                <div class="mockup-stat-chip">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                  <span>Anti-Bot Shield</span>
+              <div class="lp-mini-menu">
+                <span>Filmlar</span>
+                <span>Seriallar</span>
+                <span>Top-10</span>
+              </div>
+              <div class="lp-mini-btn lp-gold-btn">Qidiruv</div>
+            </div>
+
+            <!-- Mini Landing Page Hero -->
+            <div class="lp-hero-box">
+              <div class="lp-pill-badge lp-gold-pill">
+                <span>👑 Eksklyuziv Media &amp; Video Portal</span>
+              </div>
+              <div class="lp-hero-title">Yuqori Sifatli Oqimli Kontent</div>
+              <div class="lp-hero-desc">Tezkor yuklanish, himoyalangan video oqimi va HD pleer</div>
+            </div>
+
+            <!-- Mini Video Stream Cards Grid -->
+            <div class="lp-video-grid">
+              <div class="lp-v-card">
+                <div class="lp-v-thumb">
+                  <span>🎬 Ultra Stream</span>
+                  <span class="lp-v-tag">4K HDR</span>
                 </div>
-                <div class="mockup-stat-chip">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-                  <span>HLS Streaming Engine</span>
+                <div class="lp-v-title">Premyera Film HD</div>
+                <div class="lp-v-meta">
+                  <span>⏱ 2:14:00</span>
+                  <span>🔥 48.2k</span>
                 </div>
-                <div class="mockup-stat-chip">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                  <span>Fast API &amp; MySQL</span>
+              </div>
+              <div class="lp-v-card">
+                <div class="lp-v-thumb">
+                  <span>⚡ Yangi Serial</span>
+                  <span class="lp-v-tag">TOP 1</span>
                 </div>
+                <div class="lp-v-title">Eksklyuziv Epizod</div>
+                <div class="lp-v-meta">
+                  <span>⭐ 9.8</span>
+                  <span>1080p</span>
+                </div>
+              </div>
+              <div class="lp-v-shield">
+                <span>🛡️ Security Gate: Verified</span>
+                <span>OWASP Top 10 Guard</span>
               </div>
             </div>
           </div>
@@ -2474,7 +2759,7 @@
        ══════════════════════════════════════════════════════════════ */
     const I18N = {
       uz: {
-        'nav.about': 'Men haqimda', 'nav.skills': "Ko'nikmalar", 'nav.projects': 'Loyihalar', 'nav.services': 'Xizmatlar',
+        'nav.about': 'Men haqimda', 'nav.skills': "Ko'nikmalar", 'nav.projects': 'Saralangan loyihalar', 'nav.services': 'Xizmatlar',
         'nav.experience': 'Tajribam', 'nav.playlist': 'Playlist', 'nav.contact': 'Aloqa',
         'hero.badge': 'Ishga tayyor', 'hero.cta1': "Loyihalarni ko'rish", 'hero.cta2': 'Salom yozing',
         'hero.blog': 'Blog kanalim',
@@ -2488,7 +2773,7 @@
         'stat.proj': 'Tugallangan loyihalar+', 'stat.income': 'mln UZS+ daromad', 'stat.pentest': 'oylik pentest tajribasi',
         'sec.skills': 'Skills', 'skills.title': "Ko'nikmalar", 'skills.sub': "Yo'nalishlar bo'yicha tajriba darajam va kunlik ishlatadigan texnologiyalarim.",
         'sk.1': 'Telegram Bot Dev', 'sk.2': 'Pentesting & Kiber Havfsizlik', 'sk.3': 'Website Development', 'sk.4': 'Backend / API',
-        'sec.projects': 'Projects', 'proj.title': 'Mening Loyihalarim', 'proj.sub': "Men tomonidan ishlab chiqilgan va serverda real faoliyat ko'rsatayotgan yirik platformalar.",
+        'sec.projects': 'Saralangan loyihalar', 'proj.title': 'Saralangan Loyihalarim', 'proj.sub': "Men tomonidan ishlab chiqilgan va serverda real faoliyat ko'rsatayotgan yirik platformalar.",
         'p1.cat': 'BULUTLI PLATFORMA & SAAS', 'p1.title': 'wwwz.uz — Wildcard Cloud',
         'p1.desc': "Dasturchilar va Telegram botlar uchun 1-raqamli bulutli xosting va domen boshqaruv platformasi. Nginx reverse proxy, avtomatik SSL sertifikatlari, izolyatsiyalangan server muhiti va yuqori tezlikdagi infratuzilma.",
         'p1.f1': "Telegram bot va WebApp xostingi", 'p1.f2': "Avtomatik Wildcard SSL & Nginx Proxy", 'p1.f3': "24/7 PM2 & Linux server monitoring", 'p1.btn': "Saytga o'tish",
@@ -2510,7 +2795,7 @@
         'tw': ['ishonchli', 'xavfsiz', 'tezkor', 'zamonaviy', 'ajoyib']
       },
       ru: {
-        'nav.about': 'Обо мне', 'nav.skills': 'Навыки', 'nav.projects': 'Проекты', 'nav.services': 'Услуги',
+        'nav.about': 'Обо мне', 'nav.skills': 'Навыки', 'nav.projects': 'Избранные проекты', 'nav.services': 'Услуги',
         'nav.experience': 'Опыт', 'nav.playlist': 'Плейлист', 'nav.contact': 'Контакты',
         'hero.badge': 'Готов к работе', 'hero.cta1': 'Посмотреть проекты', 'hero.cta2': 'Написать',
         'hero.blog': 'Мой блог',
@@ -2524,7 +2809,7 @@
         'stat.proj': 'завершённых проектов+', 'stat.income': 'млн UZS+ доход', 'stat.pentest': 'мес. пентест опыта',
         'sec.skills': 'Навыки', 'skills.title': 'Навыки', 'skills.sub': 'Уровень опыта по направлениям и технологии, которые использую каждый день.',
         'sk.1': 'Telegram Bot Dev', 'sk.2': 'Пентестинг и Кибербезопасность', 'sk.3': 'Веб-разработка', 'sk.4': 'Backend / API',
-        'sec.projects': 'Проекты', 'proj.title': 'Мои Проекты', 'proj.sub': 'Крупные платформы, разработанные мной и успешно работающие в продакшене.',
+        'sec.projects': 'Избранные проекты', 'proj.title': 'Избранные Проекты', 'proj.sub': 'Крупные платформы, разработанные мной и успешно работающие в продакшене.',
         'p1.cat': 'ОБЛАЧНАЯ ПЛАТФОРМА И SAAS', 'p1.title': 'wwwz.uz — Wildcard Cloud',
         'p1.desc': 'Облачный хостинг №1 и платформа управления доменами для разработчиков и Telegram-ботов. Nginx reverse proxy, автоматические SSL-сертификаты, изолированная среда и высокая производительность.',
         'p1.f1': 'Хостинг ботов и WebApp', 'p1.f2': 'Автоматический Wildcard SSL и Nginx', 'p1.f3': '24/7 PM2 и мониторинг серверов', 'p1.btn': 'Перейти на сайт',
@@ -2546,7 +2831,7 @@
         'tw': ['надёжные', 'безопасные', 'быстрые', 'современные', 'красивые']
       },
       en: {
-        'nav.about': 'About', 'nav.skills': 'Skills', 'nav.projects': 'Projects', 'nav.services': 'Services',
+        'nav.about': 'About', 'nav.skills': 'Skills', 'nav.projects': 'Featured Projects', 'nav.services': 'Services',
         'nav.experience': 'Experience', 'nav.playlist': 'Playlist', 'nav.contact': 'Contact',
         'hero.badge': 'Available for work', 'hero.cta1': 'View projects', 'hero.cta2': 'Say hello',
         'hero.blog': 'My blog',
@@ -2560,7 +2845,7 @@
         'stat.proj': 'completed projects+', 'stat.income': 'mln UZS+ revenue', 'stat.pentest': 'mo. pentest experience',
         'sec.skills': 'Skills', 'skills.title': 'Skills', 'skills.sub': 'My experience level by direction and technologies I use daily.',
         'sk.1': 'Telegram Bot Dev', 'sk.2': 'Pentesting & Cybersecurity', 'sk.3': 'Website Development', 'sk.4': 'Backend / API',
-        'sec.projects': 'Projects', 'proj.title': 'Featured Projects', 'proj.sub': 'Major high-performance platforms built by me and running in live production.',
+        'sec.projects': 'Featured Projects', 'proj.title': 'Featured Projects', 'proj.sub': 'Major high-performance platforms built by me and running in live production.',
         'p1.cat': 'CLOUD PLATFORM & SAAS', 'p1.title': 'wwwz.uz — Wildcard Cloud',
         'p1.desc': 'Next-gen cloud hosting and domain routing platform for developers and Telegram bots. Features automated Nginx reverse proxy, instant SSL certificates, and isolated high-performance server environments.',
         'p1.f1': 'Telegram Bot & WebApp Hosting', 'p1.f2': 'Automated Wildcard SSL & Nginx Proxy', 'p1.f3': '24/7 PM2 & Linux Server Monitoring', 'p1.btn': 'Visit Live Site',
