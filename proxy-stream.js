@@ -1,88 +1,116 @@
 const https = require('https');
 
-// Simple in-memory cache for live site streaming (cache for 30s)
+// In-memory cache for live site streaming
 const cache = {
   wwwz: { html: null, timestamp: 0 },
-  gold: { html: null, timestamp: 0 }
+  gold: { html: null, timestamp: 0 },
+  goldCss: { css: null, timestamp: 0 }
 };
 
-const CACHE_TTL = 30 * 1000; // 30 seconds
+const CACHE_TTL = 45 * 1000;
+
+function fetchUrl(url, options = {}) {
+  return new Promise((resolve, reject) => {
+    const req = https.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        ...options.headers
+      },
+      rejectUnauthorized: false
+    }, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => resolve(data));
+    });
+
+    req.on('error', reject);
+    req.setTimeout(8000, () => {
+      req.destroy();
+      reject(new Error('Timeout fetching ' + url));
+    });
+  });
+}
 
 function fetchWwwz() {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     const now = Date.now();
     if (cache.wwwz.html && (now - cache.wwwz.timestamp < CACHE_TTL)) {
       return resolve(cache.wwwz.html);
     }
 
-    const req = https.get('https://wwwz.uz', {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-      },
-      rejectUnauthorized: false
-    }, (res) => {
-      let body = '';
-      res.on('data', chunk => body += chunk);
-      res.on('end', () => {
-        let processed = body;
-        
-        // Inject base tag
-        if (!processed.includes('<base')) {
-          processed = processed.replace('<head>', '<head><base href="https://wwwz.uz/">');
-        }
+    try {
+      let body = await fetchUrl('https://wwwz.uz');
+      let processed = body;
 
-        // Custom live stream styling & disabling frame restrictions
-        const injectStyles = `
-          <style>
-            html, body {
-              overflow: hidden !important;
-              user-select: none !important;
-              background-color: #08080a !important;
-            }
-            body::-webkit-scrollbar { display: none !important; }
-            #sitePreloader { display: none !important; }
-          </style>
-          <script>
+      // Ensure base tag
+      if (!processed.includes('<base')) {
+        processed = processed.replace('<head>', '<head><base href="https://wwwz.uz/">');
+      }
+
+      // Stream iframe styling & optimizations
+      const injectStyles = `
+        <style>
+          html, body {
+            overflow: hidden !important;
+            user-select: none !important;
+            background-color: #08080a !important;
+          }
+          body::-webkit-scrollbar { display: none !important; }
+          #sitePreloader { display: none !important; }
+        </style>
+        <script>
+          try {
             window.top = window.self;
             window.parent = window.self;
-          </script>
-        `;
-        processed = processed.replace('</head>', `${injectStyles}</head>`);
+          } catch(e) {}
+        </script>
+      `;
+      processed = processed.replace('</head>', `${injectStyles}</head>`);
 
-        cache.wwwz.html = processed;
-        cache.wwwz.timestamp = Date.now();
-        resolve(processed);
-      });
-    });
-
-    req.on('error', (err) => {
+      cache.wwwz.html = processed;
+      cache.wwwz.timestamp = Date.now();
+      resolve(processed);
+    } catch (err) {
       if (cache.wwwz.html) return resolve(cache.wwwz.html);
       reject(err);
-    });
+    }
   });
 }
 
+async function fetchGoldCss() {
+  const now = Date.now();
+  if (cache.goldCss.css && (now - cache.goldCss.timestamp < 10 * 60 * 1000)) {
+    return cache.goldCss.css;
+  }
+  try {
+    const css = await fetchUrl('https://gold.wwwz.uz/assets/css/style.css');
+    if (css && css.length > 500) {
+      cache.goldCss.css = css;
+      cache.goldCss.timestamp = Date.now();
+      return css;
+    }
+  } catch (e) {
+    console.error('Error fetching gold style.css:', e);
+  }
+  return cache.goldCss.css || '';
+}
+
 function fetchGold() {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     const now = Date.now();
     if (cache.gold.html && (now - cache.gold.timestamp < CACHE_TTL)) {
       return resolve(cache.gold.html);
     }
 
-    const initialReq = https.get('https://gold.wwwz.uz', {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-      },
-      rejectUnauthorized: false
-    }, (res) => {
-      let body = '';
-      res.on('data', chunk => body += chunk);
-      res.on('end', () => {
-        const match = body.match(/var tok = \"([^\"]+)\"/);
-        const tok = match ? match[1] : '';
+    try {
+      // Step 1: Request initial challenge
+      const initialHtml = await fetchUrl('https://gold.wwwz.uz');
+      const match = initialHtml.match(/var tok = \"([^\"]+)\"/);
+      const tok = match ? match[1] : '';
 
-        const secondReq = https.request({
+      // Step 2: Request full page with challenge cookie
+      const fullHtml = await new Promise((res, rej) => {
+        const req = https.request({
           hostname: 'gold.wwwz.uz',
           port: 443,
           path: '/',
@@ -92,49 +120,63 @@ function fetchGold() {
             'Cookie': '__gold_sec=' + tok
           },
           rejectUnauthorized: false
-        }, (res2) => {
-          let body2 = '';
-          res2.on('data', chunk => body2 += chunk);
-          res2.on('end', () => {
-            let processed = body2;
-            if (!processed.includes('<base')) {
-              processed = processed.replace('<head>', '<head><base href="https://gold.wwwz.uz/">');
-            }
-
-            const injectStyles = `
-              <style>
-                html, body {
-                  overflow: hidden !important;
-                  user-select: none !important;
-                  background-color: #0b0d13 !important;
-                }
-                body::-webkit-scrollbar { display: none !important; }
-              </style>
-              <script>
-                window.top = window.self;
-                window.parent = window.self;
-              </script>
-            `;
-            processed = processed.replace('</head>', `${injectStyles}</head>`);
-
-            cache.gold.html = processed;
-            cache.gold.timestamp = Date.now();
-            resolve(processed);
-          });
+        }, (resp) => {
+          let b = '';
+          resp.on('data', chunk => b += chunk);
+          resp.on('end', () => res(b));
         });
-
-        secondReq.on('error', (err) => {
-          if (cache.gold.html) return resolve(cache.gold.html);
-          reject(err);
+        req.on('error', rej);
+        req.setTimeout(8000, () => {
+          req.destroy();
+          rej(new Error('Timeout fetching gold.wwwz.uz body'));
         });
-        secondReq.end();
+        req.end();
       });
-    });
 
-    initialReq.on('error', (err) => {
+      let processed = fullHtml;
+
+      // Step 3: Fetch and inline the full CSS stylesheet directly
+      const goldCss = await fetchGoldCss();
+
+      if (goldCss) {
+        processed = processed.replace(
+          /<link[^>]*href=["'][^"']*assets\/css\/style\.css[^"']*["'][^>]*>/i,
+          `<style id="gold-inlined-style">\n${goldCss}\n</style>`
+        );
+      }
+
+      // Ensure base tag
+      if (!processed.includes('<base')) {
+        processed = processed.replace('<head>', '<head><base href="https://gold.wwwz.uz/">');
+      }
+
+      // Inject styling for preview iframe
+      const injectStyles = `
+        <style>
+          html, body {
+            overflow: hidden !important;
+            user-select: none !important;
+            background-color: #0b0d13 !important;
+          }
+          body::-webkit-scrollbar { display: none !important; }
+        </style>
+        <script>
+          try {
+            window.top = window.self;
+            window.parent = window.self;
+          } catch(e) {}
+        </script>
+      `;
+      processed = processed.replace('</head>', `${injectStyles}</head>`);
+
+      cache.gold.html = processed;
+      cache.gold.timestamp = Date.now();
+      resolve(processed);
+    } catch (err) {
+      console.error('fetchGold error:', err);
       if (cache.gold.html) return resolve(cache.gold.html);
       reject(err);
-    });
+    }
   });
 }
 

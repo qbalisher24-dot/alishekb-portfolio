@@ -18,7 +18,7 @@ app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; media-src 'self' data: https: blob:; frame-src 'self' https: data:; connect-src 'self' https:;"
+    "default-src * 'self' data: blob: 'unsafe-inline' 'unsafe-eval' https:; img-src * data: blob: https:; media-src * data: blob: https:; font-src * data: https:; style-src * 'unsafe-inline' https:; script-src * 'unsafe-inline' 'unsafe-eval' https:; frame-src 'self' * https: data:; connect-src * https:;"
   );
   res.removeHeader('X-Powered-By');
   next();
@@ -30,6 +30,7 @@ app.get('/api/proxy/wwwz', async (req, res) => {
     const html = await fetchWwwz();
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 'public, max-age=15');
+    res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval' data: blob: https:; img-src * data: blob: https:; media-src * data: blob: https:; font-src * data: https:; style-src * 'unsafe-inline' https:; script-src * 'unsafe-inline' 'unsafe-eval' https:; frame-src *;");
     res.send(html);
   } catch (err) {
     console.error('Error proxying wwwz:', err);
@@ -42,6 +43,7 @@ app.get('/api/proxy/gold', async (req, res) => {
     const html = await fetchGold();
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 'public, max-age=15');
+    res.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval' data: blob: https:; img-src * data: blob: https:; media-src * data: blob: https:; font-src * data: https:; style-src * 'unsafe-inline' https:; script-src * 'unsafe-inline' 'unsafe-eval' https:; frame-src *;");
     res.send(html);
   } catch (err) {
     console.error('Error proxying gold:', err);
