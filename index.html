@@ -834,6 +834,28 @@
       50% { box-shadow: 0 0 30px var(--glow-strong); transform: translateX(-50%) scale(1.15); }
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes glassAuraMorph {
+      0% {
+        border-radius: 48% 52% 56% 44% / 52% 46% 54% 48%;
+        transform: rotate(0deg) scale(1);
+        opacity: 0.60;
+      }
+      33% {
+        border-radius: 54% 46% 42% 58% / 46% 54% 46% 54%;
+        transform: rotate(120deg) scale(1.03);
+        opacity: 0.75;
+      }
+      66% {
+        border-radius: 44% 56% 52% 48% / 56% 44% 58% 42%;
+        transform: rotate(240deg) scale(0.98);
+        opacity: 0.50;
+      }
+      100% {
+        border-radius: 48% 52% 56% 44% / 52% 46% 54% 48%;
+        transform: rotate(360deg) scale(1);
+        opacity: 0.60;
+      }
+    }
 
     .avatar {
       width: 64%;
@@ -2042,9 +2064,10 @@
       .hero-glyph { display: none; }
       .about-grid, .skills-wrap, .projects-grid { grid-template-columns: 1fr; }
       .tech-float { display: none; }
-      /* Mobile Hero: hide 3D JS animation and keep single shining rotating circle line */
+      /* Mobile Hero: soft, hazy, slow organic glass-style aura contour */
       #hero3d { display: none !important; }
       .ring-solid { display: none !important; }
+      .ring-dot { display: none !important; }
       .avatar-wrap {
         width: min(260px, 72vw);
         aspect-ratio: 1;
@@ -2055,39 +2078,43 @@
         height: 72%;
       }
       .ring-dashed {
-        width: 86%;
-        height: 86%;
-        border: 1.5px solid var(--border);
-        border-top: 2.5px solid #ffffff;
-        border-right: 2px solid rgba(255, 255, 255, 0.65);
-        border-radius: 50%;
-        box-shadow: 0 0 20px var(--glow);
-        filter: drop-shadow(0 0 8px var(--glow-strong));
-        animation: spin 4.5s linear infinite;
-        will-change: transform;
+        width: 88%;
+        height: 88%;
+        border: 2px solid rgba(255, 255, 255, 0.40);
+        border-top: 2.5px solid rgba(255, 255, 255, 0.85);
+        border-left: 1.5px solid rgba(255, 255, 255, 0.20);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+        border-radius: 48% 52% 56% 44% / 52% 46% 54% 48%;
+        background: transparent;
+        box-shadow: 0 0 28px var(--glow), inset 0 0 18px var(--glow);
+        filter: blur(4px);
+        opacity: 0.65;
+        animation: glassAuraMorph 16s ease-in-out infinite;
+        will-change: transform, border-radius, opacity;
+        pointer-events: none;
+      }
+      .ring-dashed::after {
+        content: '';
+        position: absolute;
+        inset: -5px;
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        border-radius: inherit;
+        filter: blur(6px);
+        opacity: 0.55;
       }
       [data-theme="light"] .ring-dashed {
-        border: 1.5px solid rgba(25, 24, 22, 0.12);
-        border-top: 2.5px solid #191816;
-        border-right: 2px solid rgba(25, 24, 22, 0.65);
-        box-shadow: 0 0 16px rgba(0, 0, 0, 0.08);
-        filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15));
+        border: 2px solid rgba(25, 24, 22, 0.25);
+        border-top: 2.5px solid rgba(25, 24, 22, 0.55);
+        border-left: 1.5px solid rgba(25, 24, 22, 0.12);
+        border-bottom: 2px solid rgba(25, 24, 22, 0.22);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.08), inset 0 0 12px rgba(0, 0, 0, 0.04);
+        filter: blur(4px);
+        opacity: 0.50;
       }
-      .ring-dot {
-        position: absolute;
-        top: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #ffffff;
-        box-shadow: 0 0 14px 2px #ffffff, 0 0 24px var(--glow-strong);
-        animation: dotPulse 2s ease-in-out infinite;
-      }
-      [data-theme="light"] .ring-dot {
-        background: #191816;
-        box-shadow: 0 0 10px 2px rgba(25, 24, 22, 0.4);
+      [data-theme="light"] .ring-dashed::after {
+        border: 1.5px solid rgba(25, 24, 22, 0.15);
+        filter: blur(6px);
+        opacity: 0.40;
       }
       .pl-now {
         grid-template-columns: 1fr;
