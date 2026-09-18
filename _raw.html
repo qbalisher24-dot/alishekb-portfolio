@@ -3140,28 +3140,28 @@
       resize();
       window.addEventListener('resize', resize, { passive: true });
 
-      const LINES = 15;
-      let cR = 62, cG = 207, cB = 124, cA = 0.25;
-      let tR = 62, tG = 207, tB = 124, tA = 0.25;
-
+      const LINES = 16;
+      let tR = 62, tG = 207, tB = 124, tA = 0.32;
       function syncWaveTheme() {
         const d = root.getAttribute('data-theme') === 'dark';
         tR = d ? 62 : 16;
         tG = d ? 207 : 124;
         tB = d ? 124 : 68;
-        tA = d ? 0.25 : 0.22;
+        tA = d ? 0.32 : 0.28;
       }
       syncWaveTheme();
+      let cR = tR, cG = tG, cB = tB, cA = tA;
       new MutationObserver(syncWaveTheme).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
 
-      let t = 0;
+      // Start with active dynamic time and offset so lines are already wavy and undulating from frame 0
+      let t = (Date.now() * 0.0015) % 10000;
       let waveRaf = null;
 
       function drawWaves() {
-        cR += (tR - cR) * 0.05;
-        cG += (tG - cG) * 0.05;
-        cB += (tB - cB) * 0.05;
-        cA += (tA - cA) * 0.05;
+        cR += (tR - cR) * 0.08;
+        cG += (tG - cG) * 0.08;
+        cB += (tB - cB) * 0.08;
+        cA += (tA - cA) * 0.08;
 
         ctx.clearRect(0, 0, W, H);
         const r = (cR + 0.5) | 0, g = (cG + 0.5) | 0, b = (cB + 0.5) | 0;
@@ -3169,28 +3169,29 @@
         for (let i = 0; i < LINES; i++) {
           ctx.beginPath();
           const ratio = i / (LINES - 1);
-          const baseA = cA * (0.75 + Math.sin(ratio * Math.PI) * 0.35);
-          const lw = 1.4 + ratio * 1.0;
-          // Lowered down and tightly gathered in lower half of screen
-          const by = H * (0.48 + ratio * 0.36);
-          const amp = 24 + ratio * 32;
-          const freq = 0.0018 + ratio * 0.0003;
-          const ph = t * (0.50 + ratio * 0.20);
+          const baseA = cA * (0.80 + Math.sin(ratio * Math.PI) * 0.35);
+          const lw = 1.6 + ratio * 1.1;
+          // Raised slightly higher: spans 28% to 74% of screen height
+          const by = H * (0.28 + ratio * 0.46);
+          const amp = 30 + ratio * 38;
+          const freq = 0.0020 + ratio * 0.00035;
+          // Rich initial phase offset so lines are already dynamically curved at x = 0
+          const ph = t * (0.52 + ratio * 0.22) + ratio * 3.6 + 1.2;
 
           for (let x = 0; x <= W; x += 4) {
             const y = by +
               Math.sin(x * freq + ph) * amp +
-              Math.cos(x * freq * 2.0 + ph * 1.2) * (amp * 0.35) +
-              Math.sin(x * freq * 0.7 + ph * 0.5) * (amp * 0.20);
+              Math.cos(x * freq * 1.9 + ph * 1.25) * (amp * 0.38) +
+              Math.sin(x * freq * 0.7 + ph * 0.55) * (amp * 0.22);
             x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
           }
 
           const grad = ctx.createLinearGradient(0, 0, W, 0);
-          grad.addColorStop(0, `rgba(${r},${g},${b},${baseA * 0.25})`);
-          grad.addColorStop(0.2, `rgba(${r},${g},${b},${baseA * 0.90})`);
+          grad.addColorStop(0, `rgba(${r},${g},${b},${baseA * 0.30})`);
+          grad.addColorStop(0.2, `rgba(${r},${g},${b},${baseA * 0.95})`);
           grad.addColorStop(0.5, `rgba(${r},${g},${b},${baseA})`);
-          grad.addColorStop(0.8, `rgba(${r},${g},${b},${baseA * 0.85})`);
-          grad.addColorStop(1, `rgba(${r},${g},${b},${baseA * 0.25})`);
+          grad.addColorStop(0.8, `rgba(${r},${g},${b},${baseA * 0.90})`);
+          grad.addColorStop(1, `rgba(${r},${g},${b},${baseA * 0.30})`);
           ctx.strokeStyle = grad;
           ctx.lineWidth = lw;
           ctx.stroke();
