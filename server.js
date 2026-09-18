@@ -1,15 +1,16 @@
 const express = require('express');
 const path = require('path');
 const compression = require('compression');
-const { fetchWwwz, fetchGold } = require('./proxy-stream');
+const { fetchWwwz, fetchGold } = require('./src/proxy-stream');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const PUBLIC_DIR = path.join(__dirname, 'public');
 
-// Enable gzip / brotli compression
+// ── Compression (gzip / brotli) ──
 app.use(compression());
 
-// Security Headers Middleware
+// ── Security Headers ──
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'SAMEORIGIN');
@@ -24,7 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Live site stream proxy routes
+// ── Live Proxy Routes ──
 app.get('/api/proxy/wwwz', async (req, res) => {
   try {
     const html = await fetchWwwz();
@@ -51,25 +52,25 @@ app.get('/api/proxy/gold', async (req, res) => {
   }
 });
 
-// Serve static assets with caching
-app.use(express.static(__dirname, {
+// ── Static Assets (public/ folder) with caching ──
+app.use(express.static(PUBLIC_DIR, {
   maxAge: '7d',
   etag: true,
   lastModified: true
 }));
 
-// Route for / and /api/page
+// ── Root & main routes → index.html ──
 app.get(['/', '/index.html', '/api/page'], (req, res) => {
   res.setHeader('Cache-Control', 'no-cache, must-revalidate');
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(PUBLIC_DIR, 'index.html'));
 });
 
-// Fallback for any other route
+// ── Fallback SPA ──
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(PUBLIC_DIR, 'index.html'));
 });
 
-// Start Server
+// ── Start ──
 app.listen(PORT, () => {
-  console.log(`⚡ Alisherbek Portfolio Server running on http://localhost:${PORT}`);
+  console.log(`⚡ Alisherbek Portfolio → http://localhost:${PORT}`);
 });

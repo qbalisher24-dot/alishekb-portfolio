@@ -9,18 +9,31 @@
         { "key": "X-XSS-Protection", "value": "1; mode=block" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' data:; connect-src 'self';" }
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
       ]
     },
     {
-      "source": "/(.*)\\.(jpg|jpeg|png|gif|svg|webp|ico|mp3)",
+      "source": "/assets/(.*)\\.+(jpg|jpeg|png|gif|svg|webp|ico|mp3)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/assets/css/(.*)\\.css",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/assets/js/(.*)\\.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
       ]
     }
   ],
   "rewrites": [
+    { "source": "/api/proxy/wwwz", "destination": "/api/proxy/wwwz" },
+    { "source": "/api/proxy/gold", "destination": "/api/proxy/gold" },
     { "source": "/api/page", "destination": "/api/page" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#070709">
+  <script>
+    document.documentElement.setAttribute('data-theme', 'dark');
+    try { localStorage.removeItem('site_theme'); } catch(e) {}
+  </script>
+  <title>Alisherbek Qurambayev | Fullstack Developer &amp; Pentester</title>
+  <meta name="description" content="Alisherbek Qurambayev — 19 yoshli fullstack developer va pentester. Telegram botlar, web ilovalar, backend tizimlar va kiber xavfsizlik.">
+  <meta name="keywords" content="Alisherbek Qurambayev, alisherkb, kodra_dev, developer, pentester, fullstack, telegram bot, kali linux, uzbekistan">
+  <meta name="author" content="Alisherbek Qurambayev">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alisherkb.uz/">
+  <meta property="og:title" content="Alisherbek Qurambayev | Fullstack Developer & Pentester">
+  <meta property="og:description" content="19 yoshli fullstack developer va pentester. 1.5+ yillik tajriba, toza kod, ishonchli backend va kiber xavfsizlik.">
+  <meta property="og:image" content="/assets/images/avatar.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alisherbek Qurambayev | Fullstack Developer & Pentester">
+  <meta name="twitter:description" content="19 yoshli fullstack developer va pentester.">
+  <meta name="twitter:image" content="/assets/images/avatar.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="/assets/images/favicon.jpg">
+  <link rel="apple-touch-icon" href="/assets/images/favicon.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+
+  <!-- SITE PRELOADER (Minimal, luxury glass loading) -->
+  <div class="site-preloader" id="sitePreloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <div class="preloader-mark-wrap">
+        <div class="preloader-ring"></div>
+        <div class="preloader-ring-glow"></div>
+        <span class="preloader-logo">AQ</span>
+      </div>
+      <div class="preloader-bar-wrap">
+        <div class="preloader-bar" id="preloaderBar"></div>
+      </div>
+      <div class="preloader-meta">
+        <span class="preloader-label">PORTFOLIO</span>
+        <span class="preloader-num" id="preloaderNum">00%</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      const p = document.getElementById('sitePreloader');
+      const b = document.getElementById('preloaderBar');
+      const n = document.getElementById('preloaderNum');
+      if (!p || !b) return;
+
+      let val = 12;
+      let done = false;
+
+      function updateProgress(v) {
+        val = Math.min(100, Math.max(val, v));
+        b.style.width = val + '%';
+        if (n) n.textContent = String(Math.floor(val)).padStart(2, '0') + '%';
+      }
+      updateProgress(val);
+
+      const timer = setInterval(() => {
+        if (done) return;
+        if (val < 85) {
+          const delta = Math.max(2, Math.floor((88 - val) * 0.18));
+          updateProgress(val + delta);
+        }
+      }, 40);
+
+      function hidePreloader() {
+        if (done) return;
+        done = true;
+        clearInterval(timer);
+        updateProgress(100);
+
+        setTimeout(() => {
+          p.classList.add('is-loaded');
+          setTimeout(() => {
+            p.remove();
+          }, 550);
+        }, 180);
+      }
+
+      if (document.readyState === 'complete') {
+        setTimeout(hidePreloader, 350);
+      } else {
+        window.addEventListener('load', () => {
+          setTimeout(hidePreloader, 250);
+        });
+      }
+
+      // Safeguard: never exceed 950ms so user is never blocked
+      setTimeout(hidePreloader, 950);
+    })();
+  </script>
+
+  <!-- SVG Filters for Gooey Text Morphing -->
+  <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+      </filter>
+      <filter id="morph-threshold" color-interpolation-filters="sRGB">
+        <feColorMatrix in="SourceGraphic" type="matrix"
+          values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 18 -8" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Background Animated Waves & Glow -->
+  <canvas id="waveCanvas"></canvas>
+  <div class="cursor-spotlight" id="cursorSpot"></div>
+  <div class="glow-orb" style="width:420px;height:420px;top:10%;left:5%;animation-delay:0s"></div>
+  <div class="glow-orb" style="width:340px;height:340px;top:55%;right:8%;animation-delay:-8s"></div>
+  <div class="glow-orb" style="width:300px;height:300px;bottom:10%;left:35%;animation-delay:-16s"></div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Back To Top Button -->
+  <button class="back-top" id="backTop" aria-label="Top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- NAVBAR -->
+  <nav id="mainNav">
+    <a class="brand" href="#home">
+      <div class="brand-logo">
+        <img src="/assets/images/avatar.jpg" alt="Alisherbek Q." loading="eager" fetchpriority="high">
+      </div>
+      <span class="brand-name">Alisherbek Q.</span>
+    </a>
+
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li class="mobile-drawer-head">
+          <span class="drawer-title">Menyu</span>
+          <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Yopish">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </li>
+        <li><a href="#about" data-i18n="nav.about">Men haqimda</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Ko'nikmalar</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Saralangan loyihalar</a></li>
+        <li><a href="#services" data-i18n="nav.services">Xizmatlar</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Tajribam</a></li>
+        <li><a href="#playlist" data-i18n="nav.playlist">Playlist</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Aloqa</a></li>
+      </ul>
+
+      <!-- Language Selector -->
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn" id="langBtn" aria-label="Change Language">
+          <span id="langCurrent">UZ</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option active" data-lang="uz">🇺🇿 O'zbek</button>
+          <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+          <button class="lang-option" data-lang="en">🇬🇧 English</button>
+        </div>
+      </div>
+
+      <!-- Theme Toggle -->
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle Theme">
+        <div class="theme-knob" id="themeKnob">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </div>
+      </button>
+
+      <!-- Mobile Hamburger -->
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay Backdrop -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- HERO SECTION -->
+  <header class="hero" id="home">
+    <div class="hero-glyph" aria-hidden="true">01</div>
+    
+    <div class="hero-left">
+      <div class="badge">
+        <span class="pulse"></span>
+        <span data-i18n="hero.badge">Ishga tayyor</span>
+      </div>
+
+      <h1>
+        <span id="t1">Men </span><span class="dim"><span id="typewriter"><span id="tw-spacer"></span><span id="tw-t1"></span><span id="tw-t2"></span></span></span><br>
+        <span id="t2">tizimlar quraman.</span>
+      </h1>
+
+      <p class="lead" data-i18n="hero.lead">
+        19 yoshli fullstack developer va pentester. 1.5 yildan ortiq tajriba bilan toza kod, ishonchli backend va kiber xavfsizlikka e'tibor qarataman.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h18M13 5l7 7-7 7"/></svg>
+          <span data-i18n="hero.cta1">Loyihalarni ko'rish</span>
+        </a>
+        <a href="#contact" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          <span data-i18n="hero.cta2">Salom yozing</span>
+        </a>
+      </div>
+
+      <div class="hero-links">
+        <a href="https://github.com/alisherkb" target="_blank" rel="noopener" class="pill">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 016 0C17.3 4.9 18.3 5.2 18.3 5.2c.6 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-109C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub
+        </a>
+        <a href="https://t.me/kodra_dev" target="_blank" rel="noopener" class="pill">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 1024 12 12 12 0 0011.944 0zm5.936 6.934l-2.024 9.538c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 13.81l-2.95-.924c-.64-.203-.652-.64.136-.948l11.533-4.448c.534-.194 1.001.13.681.444z"/></svg>
+          <span data-i18n="hero.blog">Blog kanalim</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Right (Avatar & Luxury Glass Orbit) -->
+    <div class="hero-right" id="heroRight">
+      <div class="avatar-wrap" id="avatarWrap">
+        <div class="avatar-glow-halo"></div>
+        <div class="ring-orbit"></div>
+        <div class="ring ring-dashed"></div>
+        <div class="avatar">
+          <img src="/assets/images/avatar.jpg" alt="Alisherbek Qurambayev" loading="eager" fetchpriority="high">
+        </div>
+        <div class="tech-float tf1"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"></div>
+        <div class="tech-float tf2"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JS"></div>
+        <div class="tech-float tf3"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5"></div>
+        <div class="tech-float tf4"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TECH STRIP (MARQUEE) -->
+  <div class="tech-strip">
+    <div class="marquee" id="marquee">
+      <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5"></span>HTML5</div>
+      <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3"></span>CSS3</div>
+      <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript"></span>JavaScript</div>
+      <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"></span>Python</div>
+      <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"></span>PHP</div>
+      <div class="marquee-item"><span class="m-ic-txt" style="background:#27272a">KL</span>Kali Linux</div>
+      <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"></span>Git</div>
+      <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"></span>MySQL</div>
+      <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux"></span>Linux</div>
+      <div class="marquee-item"><span class="m-ic-txt" style="background:#229ed9">TG</span>Telegram Bot</div>
+      <div class="marquee-item"><span class="m-ic-txt" style="background:#3f3f46">API</span>REST API</div>
+    </div>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <section class="block" id="about" data-num="02">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="sec.about">About</div>
+      <h2 class="section-h" data-i18n="about.title">Men haqimda</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="card about-main reveal">
+        <h3 data-i18n="about.h3">Salom! Men Alisherbek</h3>
+        <p data-i18n="about.p1">
+          Qoraqalpog'istonda yashovchi 19 yoshli fullstack developer. 1.5 yildan ortiq tajriba bilan Telegram botlar, web ilovalar va backend tizimlar yarataman. 50 dan ortiq loyihani muvaffaqiyatli yakunlaganman.
+        </p>
+        <p data-i18n="about.p2">
+          So'nggi 3 oydan beri kiber havfsizlik va pentesting yo'nalishida ham faol ishlayman. Kali Linux'da ishlab, web zaifliklarni o'rganaman va himoya bo'yicha tajriba to'playman.
+        </p>
+        
+        <ul class="info-list">
+          <li>
+            <span class="key">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <span data-i18n="info.age">Yoshi</span>
+            </span>
+            <span class="val" data-i18n="info.age.v">19 yosh</span>
+          </li>
+          <li>
+            <span class="key">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span data-i18n="info.exp">Tajriba</span>
+            </span>
+            <span class="val" data-i18n="info.exp.v">1.5 yil+</span>
+          </li>
+          <li>
+            <span class="key">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <span data-i18n="info.os">Operatsion tizim</span>
+            </span>
+            <span class="val">Kali Linux</span>
+          </li>
+          <li>
+            <span class="key">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <span data-i18n="info.edu">O'qish joyi</span>
+            </span>
+            <span class="val">Najot Ta'lim</span>
+          </li>
+          <li>
+            <span class="key">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span data-i18n="info.city">Manzil</span>
+            </span>
+            <span class="val" data-i18n="info.city.v">Qoraqalpog'iston, UZ</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="stat-col reveal">
+        <div class="card stat-card">
+          <div class="stat-num" data-count="50">0</div>
+          <div class="stat-label" data-i18n="stat.proj">Tugallangan loyihalar+</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-num" data-count="12">0</div>
+          <div class="stat-label" data-i18n="stat.income">mln UZS+ daromad</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-num" data-count="3">0</div>
+          <div class="stat-label" data-i18n="stat.pentest">oylik pentest tajribasi</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section class="block" id="skills" data-num="03">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="sec.skills">Skills</div>
+      <h2 class="section-h" data-i18n="skills.title">Ko'nikmalar</h2>
+      <p class="section-sub" data-i18n="skills.sub">Yo'nalishlar bo'yicha tajriba darajam va kunlik ishlatadigan texnologiyalarim.</p>
+    </div>
+
+    <div class="skills-wrap">
+      <div class="skill-list reveal">
+        <div class="skill-item">
+          <div class="skill-top"><span data-i18n="sk.1">Telegram Bot Dev</span><span class="skill-pct">90%</span></div>
+          <div class="track"><div class="fill" data-w="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span data-i18n="sk.2">Pentesting &amp; Kiber Havfsizlik</span><span class="skill-pct">65%</span></div>
+          <div class="track"><div class="fill" data-w="65"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span data-i18n="sk.3">Website Development</span><span class="skill-pct">72%</span></div>
+          <div class="track"><div class="fill" data-w="72"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span data-i18n="sk.4">Backend / API</span><span class="skill-pct">80%</span></div>
+          <div class="track"><div class="fill" data-w="80"></div></div>
+        </div>
+      </div>
+
+      <div class="stack-grid" id="stackGrid">
+        <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5">HTML5</div>
+        <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3">CSS3</div>
+        <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript">JavaScript</div>
+        <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python">Python</div>
+        <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP">PHP</div>
+        <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git">Git</div>
+        <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL">MySQL</div>
+        <div class="stack-item"><span class="s-badge" style="background:#27272a">KL</span>Kali Linux</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section class="block" id="projects" data-num="04">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="sec.projects">Saralangan loyihalar</div>
+      <h2 class="section-h" data-i18n="proj.title">Saralangan Loyihalarim</h2>
+      <p class="section-sub" data-i18n="proj.sub">Men tomonidan ishlab chiqilgan va serverda real faoliyat ko'rsatayotgan yirik platformalar.</p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1: wwwz.uz (Live Stream) -->
+      <div class="card project-card reveal">
+        <div class="lp-viewport">
+          <div class="lp-browser-bar">
+            <div class="lp-browser-dots">
+              <span class="lp-browser-dot lp-dot-red"></span>
+              <span class="lp-browser-dot lp-dot-yellow"></span>
+              <span class="lp-browser-dot lp-dot-green"></span>
+            </div>
+            <div class="lp-browser-url">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              https://wwwz.uz
+            </div>
+            <div class="lp-badge-live">
+              <span class="lp-live-dot"></span>
+              <span>Jonli</span>
+            </div>
+          </div>
+          
+          <!-- REAL LIVE LANDING PAGE STREAM VIA PROXY -->
+          <div class="lp-stream-wrapper">
+            <div class="lp-stream-loader">
+              <div class="lp-stream-spinner"></div>
+              <span>Jonli translyatsiya yuklanmoqda...</span>
+            </div>
+            <iframe src="/api/proxy/wwwz" class="lp-stream-frame" title="wwwz.uz Live Stream" loading="lazy" onload="this.classList.add('is-loaded'); this.parentElement.querySelector('.lp-stream-loader')?.classList.add('is-hidden');"></iframe>
+            <a href="https://wwwz.uz" target="_blank" rel="noopener" class="lp-stream-overlay" title="Saytni to'liq ochish">
+              <span class="lp-stream-hover-tag">
+                <span>Saytni to'liq ko'rish</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project Card Bottom Bar (Only Project Title & Visit Button) -->
+        <div class="project-card-footer">
+          <div class="project-info-mini">
+            <h3 class="project-footer-title">wwwz.uz</h3>
+            <span class="project-footer-tag">Wildcard Cloud &amp; PaaS Platformasi</span>
+          </div>
+          <a href="https://wwwz.uz" target="_blank" rel="noopener" class="btn btn-primary project-action-btn">
+            <span data-i18n="p1.btn">Saytga o'tish</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2: gold.wwwz.uz (Live Stream) -->
+      <div class="card project-card reveal">
+        <div class="lp-viewport">
+          <div class="lp-browser-bar">
+            <div class="lp-browser-dots">
+              <span class="lp-browser-dot lp-dot-red"></span>
+              <span class="lp-browser-dot lp-dot-yellow"></span>
+              <span class="lp-browser-dot lp-dot-green"></span>
+            </div>
+            <div class="lp-browser-url">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              https://gold.wwwz.uz
+            </div>
+            <div class="lp-badge-live">
+              <span class="lp-live-dot"></span>
+              <span>Jonli</span>
+            </div>
+          </div>
+          
+          <!-- REAL LIVE LANDING PAGE STREAM VIA PROXY -->
+          <div class="lp-stream-wrapper">
+            <div class="lp-stream-loader">
+              <div class="lp-stream-spinner"></div>
+              <span>Jonli translyatsiya yuklanmoqda...</span>
+            </div>
+            <iframe src="/api/proxy/gold" class="lp-stream-frame" title="gold.wwwz.uz Live Stream" loading="lazy" onload="this.classList.add('is-loaded'); this.parentElement.querySelector('.lp-stream-loader')?.classList.add('is-hidden');"></iframe>
+            <a href="https://gold.wwwz.uz" target="_blank" rel="noopener" class="lp-stream-overlay" title="Saytni to'liq ochish">
+              <span class="lp-stream-hover-tag">
+                <span>Saytni to'liq ko'rish</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project Card Bottom Bar (Only Project Title & Visit Button) -->
+        <div class="project-card-footer">
+          <div class="project-info-mini">
+            <h3 class="project-footer-title">gold.wwwz.uz</h3>
+            <span class="project-footer-tag">GoldAnime &amp; Video Media Portali</span>
+          </div>
+          <a href="https://gold.wwwz.uz" target="_blank" rel="noopener" class="btn btn-primary project-action-btn">
+            <span data-i18n="p2.btn">Saytga o'tish</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section class="block" id="services" data-num="05">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="sec.services">Services</div>
+      <h2 class="section-h" data-i18n="srv.title">Xizmatlar</h2>
+      <p class="section-sub" data-i18n="srv.sub">Loyihangizni boshidan oxirigacha sifatli va ishonchli tarzda amalga oshiraman.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="card service reveal">
+        <div class="service-num">01</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="12" cy="10" r="1" fill="currentColor"/><circle cx="15" cy="10" r="1" fill="currentColor"/></svg>
+        </div>
+        <h3 data-i18n="s1.t">Telegram Botlar</h3>
+        <p data-i18n="s1.d">Murakkab botlar, WebApp'lar, to'lov tizimlari va admin panellar. Python (aiogram/Telethon) va PHP webhook asosida.</p>
+        <div class="service-line"></div>
+      </div>
+
+      <div class="card service reveal">
+        <div class="service-num">02</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 data-i18n="s2.t">Pentesting</h3>
+        <p data-i18n="s2.d">Web ilovalar zaifliklarini tekshirish, OWASP Top 10 asosida xavfsizlik tahlili va himoya bo'yicha tavsiyalar.</p>
+        <div class="service-line"></div>
+      </div>
+
+      <div class="card service reveal">
+        <div class="service-num">03</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h3 data-i18n="s3.t">Web Development</h3>
+        <p data-i18n="s3.d">Zamonaviy, responsive va tez ishlaydigan saytlar. Landing pagelardan to'liq platformalargacha.</p>
+        <div class="service-line"></div>
+      </div>
+
+      <div class="card service reveal">
+        <div class="service-num">04</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/></svg>
+        </div>
+        <h3 data-i18n="s4.t">Backend Tizimlar</h3>
+        <p data-i18n="s4.d">Ishonchli arxitektura, API integratsiyalari, ma'lumotlar bazasi dizayni (SQLite, MySQL) va server boshqaruvi.</p>
+        <div class="service-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE SECTION -->
+  <section class="block" id="experience" data-num="06">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="sec.exp">Experience</div>
+      <h2 class="section-h" data-i18n="exp.title">Tajribam</h2>
+      <p class="section-sub" data-i18n="exp.sub">Professional yo'lim va erishgan yutuqlarim.</p>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="t-date" data-i18n="e1.d">2024 — Hozir</div>
+        <h4 data-i18n="e1.t">Fullstack Developer — Erkin Mutaxassis</h4>
+        <p data-i18n="e1.p">Telegram botlar, web ilovalar va backend tizimlar yaratish. 50 dan ortiq loyihalar muvaffaqiyatli topshirildi.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-date" data-i18n="e2.d">2025 — Hozir</div>
+        <h4 data-i18n="e2.t">Pentesting &amp; Security Researcher</h4>
+        <p data-i18n="e2.p">Web zaifliklarni aniqlash, OWASP Top 10 tahlili va amaliy xavfsizlik tavsiyalari ishlab chiqish.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-date" data-i18n="e3.d">2026</div>
+        <h4 data-i18n="e3.t">Najot Ta'lim — Talaba</h4>
+        <p data-i18n="e3.p">IT va dasturlash yo'nalishida professional bilim va malaka oshirish.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAYLIST SECTION -->
+  <section class="block" id="playlist" data-num="07">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="sec.playlist">Playlist</div>
+      <h2 class="section-h" data-i18n="pl.title">Playlistlarim</h2>
+      <p class="section-sub" data-i18n="pl.sub">Sevimli musiqalarim to'plami.</p>
+    </div>
+
+    <div class="card pl-now reveal">
+      <div class="pl-vinyl-wrap">
+        <div class="pl-vinyl-ring"></div>
+        <div class="pl-vinyl" id="plVinyl"></div>
+      </div>
+
+      <div class="pl-info">
+        <div class="pl-wave" id="plWave">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="pl-title" id="plTitle">I Will Survive</div>
+        <div class="pl-artist" id="plArtist">Gloria Gaynor</div>
+
+        <div class="pl-progress-wrap">
+          <div class="pl-time">
+            <span id="plCur">0:00</span>
+            <span id="plDur">3:15</span>
+          </div>
+          <div class="pl-bar" id="plBar">
+            <div class="pl-fill" id="plFill"></div>
+          </div>
+        </div>
+
+        <div class="pl-controls">
+          <button class="pl-btn" id="plPrev" aria-label="Previous Track">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+          </button>
+          <button class="pl-play-btn" id="plPlayBtn" aria-label="Play or Pause Track">
+            <svg id="plPlayIcon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+          <button class="pl-btn" id="plNext" aria-label="Next Track">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pl-list reveal" id="plList"></div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="block" id="contact" data-num="08">
+    <div class="card contact-box reveal">
+      <div class="eyebrow" data-i18n="sec.contact">Contact</div>
+      <h2 data-i18n="ct.title">Keling, birga ishlaymiz</h2>
+      <p data-i18n="ct.desc">
+        Loyihangiz bormi yoki hamkorlik qilmoqchimisiz? Men bilan bog'laning — har doim yangi va qiziqarli g'oyalarga ochiqman.
+      </p>
+
+      <div class="contact-links">
+        <a href="https://t.me/alisherkb" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M11.944 0A12 12 0 1024 12 12 12 0 0011.944 0zm5.936 6.934l-2.024 9.538c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 13.81l-2.95-.924c-.64-.203-.652-.64.136-.948l11.533-4.448c.534-.194 1.001.13.681.444z"/></svg>
+          @alisherkb
+        </a>
+        <a href="https://t.me/kodra_dev" target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M11.944 0A12 12 0 1024 12 12 12 0 0011.944 0zm5.936 6.934l-2.024 9.538c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 13.81l-2.95-.924c-.64-.203-.652-.64.136-.948l11.533-4.448c.534-.194 1.001.13.681.444z"/></svg>
+          @kodra_dev
+        </a>
+        <a href="https://github.com/alisherkb" target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 016 0C17.3 4.9 18.3 5.2 18.3 5.2c.6 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="https://github.com/alisherkb" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 016 0C17.3 4.9 18.3 5.2 18.3 5.2c.6 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub
+        </a>
+        <a href="https://t.me/alisherkb" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 1024 12 12 12 0 0011.944 0zm5.936 6.934l-2.024 9.538c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 13.81l-2.95-.924c-.64-.203-.652-.64.136-.948l11.533-4.448c.534-.194 1.001.13.681.444z"/></svg>
+          Telegram
+        </a>
+        <a href="https://t.me/kodra_dev" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 1024 12 12 12 0 0011.944 0zm5.936 6.934l-2.024 9.538c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 13.81l-2.95-.924c-.64-.203-.652-.64.136-.948l11.533-4.448c.534-.194 1.001.13.681.444z"/></svg>
+          Kodra Dev
+        </a>
+      </div>
+      <div data-i18n="footer">&copy; 2026 Alisherbek Qurambayev &mdash; Qoraqalpog'iston, O'zbekiston</div>
+    </div>
+  </footer>
+
+  <!-- Audio Element -->
+  <audio id="audio" preload="metadata"></audio>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMsg">Nusxalandi!</span>
+  </div>
+
+  <!-- Security & Interactive Helper -->
+  <script src="/assets/js/protection.js"></script>
+
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>
