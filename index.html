@@ -34,12 +34,12 @@
   <style>
     /* ── RESET & DESIGN TOKENS ── */
     :root {
-      --bg: #070907;
-      --surface: rgba(13, 20, 16, 0.65);
-      --surface-solid: #0d120f;
-      --surface-2: rgba(20, 30, 24, 0.55);
-      --border: rgba(62, 207, 124, 0.14);
-      --border-strong: rgba(62, 207, 124, 0.32);
+      --bg: #070908;
+      --surface: rgba(18, 30, 22, 0.42);
+      --surface-solid: #0d1410;
+      --surface-2: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.09);
+      --border-strong: rgba(62, 207, 124, 0.30);
       --text: #eef7f0;
       --muted: #93a89a;
       --muted-2: #5c6e63;
@@ -52,26 +52,26 @@
       --a1: #3ecf7c;
       --a2: #7fd9a0;
       --a3: #2ba86a;
-      --card-bg: rgba(13, 20, 16, 0.62);
-      --card-border: rgba(62, 207, 124, 0.16);
+      --card-bg: rgba(14, 24, 18, 0.42);
+      --card-border: rgba(255, 255, 255, 0.10);
       --card-hover-border: rgba(62, 207, 124, 0.48);
       --spotlight: rgba(62, 207, 124, 0.09);
-      --glass-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
-      --glass-blur: blur(24px) saturate(180%);
+      --glass-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.16);
+      --glass-blur: blur(24px) saturate(190%);
     }
 
     [data-theme="light"] {
-      --bg: #f4f8f5;
-      --surface: rgba(255, 255, 255, 0.76);
+      --bg: #f3f7f4;
+      --surface: rgba(255, 255, 255, 0.60);
       --surface-solid: #ffffff;
-      --surface-2: rgba(235, 243, 238, 0.75);
-      --border: rgba(15, 25, 18, 0.10);
-      --border-strong: rgba(15, 25, 18, 0.24);
+      --surface-2: rgba(235, 243, 238, 0.55);
+      --border: rgba(15, 25, 18, 0.08);
+      --border-strong: rgba(15, 25, 18, 0.20);
       --text: #0d140f;
       --muted: #4a5a50;
       --muted-2: #75867b;
       --green: #178a4d;
-      --grid: rgba(15, 25, 18, 0.05);
+      --grid: rgba(15, 25, 18, 0.04);
       --invert: #111815;
       --invert-text: #ffffff;
       --glow: rgba(23, 138, 77, 0.14);
@@ -79,12 +79,12 @@
       --a1: #151d17;
       --a2: #178a4d;
       --a3: #2ba86a;
-      --card-bg: rgba(255, 255, 255, 0.8);
-      --card-border: rgba(15, 25, 18, 0.10);
+      --card-bg: rgba(255, 255, 255, 0.58);
+      --card-border: rgba(255, 255, 255, 0.70);
       --card-hover-border: rgba(23, 138, 77, 0.38);
       --spotlight: rgba(23, 138, 77, 0.07);
-      --glass-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
-      --glass-blur: blur(24px) saturate(180%);
+      --glass-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+      --glass-blur: blur(24px) saturate(190%);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1158,13 +1158,14 @@
       display: flex;
       flex-direction: column;
       user-select: none;
+      flex: 1;
     }
     .lp-browser-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 11px 18px;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.45);
       border-bottom: 1px solid var(--border);
       gap: 12px;
     }
@@ -1235,11 +1236,11 @@
 
     /* Landing page interior container */
     .lp-body {
-      padding: 18px 20px 22px;
+      padding: 16px 20px 20px;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      min-height: 255px;
+      min-height: 290px;
       position: relative;
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -1250,338 +1251,438 @@
     /* Cloud Theme (wwwz.uz) */
     .lp-cloud-theme {
       background: radial-gradient(circle at 85% 15%, rgba(62, 207, 124, 0.18), transparent 60%),
-                  linear-gradient(180deg, rgba(8, 22, 14, 0.95) 0%, rgba(13, 29, 20, 0.95) 100%);
+                  linear-gradient(180deg, rgba(8, 20, 13, 0.95) 0%, rgba(11, 24, 17, 0.98) 100%);
     }
     [data-theme="light"] .lp-cloud-theme {
       background: radial-gradient(circle at 85% 15%, rgba(23, 138, 77, 0.14), transparent 60%),
-                  linear-gradient(180deg, #f0f8f3 0%, #e3f2e8 100%);
+                  linear-gradient(180deg, #f0f8f3 0%, #e5f3ea 100%);
     }
 
     /* Gold Theme (gold.wwwz.uz) */
     .lp-gold-theme {
       background: radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.22), transparent 60%),
-                  linear-gradient(180deg, rgba(26, 18, 7, 0.95) 0%, rgba(20, 14, 6, 0.95) 100%);
+                  linear-gradient(180deg, rgba(22, 16, 8, 0.95) 0%, rgba(18, 13, 6, 0.98) 100%);
     }
     [data-theme="light"] .lp-gold-theme {
       background: radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.14), transparent 60%),
                   linear-gradient(180deg, #fff9f0 0%, #fef3e2 100%);
     }
 
-    /* Mini Navbar inside Mockup */
-    .lp-mini-nav {
+    /* Authentic Mini Navbar of real websites */
+    .lp-real-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 12px;
+      padding: 7px 12px;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       font-size: 0.72rem;
+      gap: 10px;
     }
-    [data-theme="light"] .lp-mini-nav {
+    [data-theme="light"] .lp-real-nav {
       background: rgba(0, 0, 0, 0.04);
       border-color: rgba(0, 0, 0, 0.08);
     }
-    .lp-mini-brand {
+    .lp-real-brand {
       display: flex;
       align-items: center;
       gap: 6px;
       font-weight: 800;
       font-family: 'Outfit', sans-serif;
       font-size: 0.82rem;
+      color: var(--text);
     }
-    .lp-cloud-brand { color: #3ecf7c; }
-    [data-theme="light"] .lp-cloud-brand { color: #178a4d; }
-    .lp-gold-brand { color: #f59e0b; }
-    [data-theme="light"] .lp-gold-brand { color: #b45309; }
-
-    .lp-mini-menu {
+    .lp-brand-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ef4444;
+      box-shadow: 0 0 8px #ef4444;
+    }
+    .lp-accent-t { color: #3ecf7c; }
+    [data-theme="light"] .lp-accent-t { color: #178a4d; }
+    .lp-brand-gold { color: #fbbf24; }
+    .lp-gold-t { color: #f59e0b; }
+    .lp-play-icon {
+      font-size: 0.65rem;
+      color: #f59e0b;
+      margin-right: 2px;
+    }
+    .lp-real-links {
       display: flex;
       align-items: center;
-      gap: 12px;
-      list-style: none;
-    }
-    .lp-mini-menu span {
+      gap: 10px;
       color: var(--muted);
       font-size: 0.68rem;
       font-weight: 500;
     }
-    .lp-mini-btn {
-      padding: 3px 9px;
-      border-radius: 6px;
-      font-size: 0.65rem;
+    .lp-link-active {
+      color: var(--text);
       font-weight: 700;
-      cursor: default;
     }
-    .lp-cloud-btn {
-      background: #3ecf7c;
-      color: #05140b;
-      border: none;
-    }
-    [data-theme="light"] .lp-cloud-btn {
-      background: #178a4d;
-      color: #ffffff;
-    }
-    .lp-gold-btn {
-      background: #f59e0b;
-      color: #1a1207;
-      border: none;
-    }
-    [data-theme="light"] .lp-gold-btn {
-      background: #b45309;
-      color: #ffffff;
-    }
-
-    /* Mini Hero inside Mockup */
-    .lp-hero-box {
+    .lp-real-actions {
       display: flex;
-      flex-direction: column;
+      align-items: center;
       gap: 6px;
     }
-    .lp-pill-badge {
-      display: inline-flex;
+    .lp-nav-btn-line {
+      padding: 2px 7px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .lp-nav-btn-fill {
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+    }
+    .lp-pill-item {
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.64rem;
+      color: var(--muted);
+    }
+    .lp-pill-item.lp-active {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      font-weight: 700;
+    }
+    .lp-pill-item.lp-shorts { color: #f43f5e; font-weight: 700; }
+    .lp-pill-item.lp-vip { color: #f59e0b; font-weight: 700; }
+    .lp-search-mini {
+      display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       padding: 2px 8px;
       border-radius: 20px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      width: fit-content;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.62rem;
+      color: var(--muted);
     }
-    .lp-cloud-pill {
-      background: rgba(62, 207, 124, 0.15);
-      border: 1px solid rgba(62, 207, 124, 0.3);
-      color: #3ecf7c;
+
+    /* Authentic Hero Section in Mockup */
+    .lp-real-hero {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
-    [data-theme="light"] .lp-cloud-pill {
-      color: #178a4d;
-      border-color: rgba(23, 138, 77, 0.3);
+    .lp-real-eyebrow, .lp-gold-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--muted);
     }
-    .lp-gold-pill {
-      background: rgba(245, 158, 11, 0.15);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      color: #f59e0b;
+    .lp-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ef4444;
+      box-shadow: 0 0 8px #ef4444;
+      animation: blink 1.8s infinite ease-in-out;
     }
-    [data-theme="light"] .lp-gold-pill {
-      color: #b45309;
-      border-color: rgba(180, 83, 9, 0.3);
+    .lp-fire-badge {
+      background: rgba(244, 63, 94, 0.18);
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      color: #f43f5e;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 0.58rem;
     }
-    .lp-hero-title {
+    .lp-real-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.25;
       color: var(--text);
     }
-    .lp-hero-desc {
-      font-size: 0.72rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    /* Cloud Platform Terminal Widget */
-    .lp-terminal-widget {
-      background: rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(62, 207, 124, 0.25);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-    [data-theme="light"] .lp-terminal-widget {
-      background: rgba(255, 255, 255, 0.7);
-      border-color: rgba(23, 138, 77, 0.25);
-    }
-    .lp-term-line {
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    .lp-hl-green {
       color: #3ecf7c;
-      font-weight: 600;
     }
-    [data-theme="light"] .lp-term-line { color: #178a4d; }
-    .lp-term-chips {
+    [data-theme="light"] .lp-hl-green { color: #178a4d; }
+    .lp-hl-gold {
+      color: #fbbf24;
+    }
+    [data-theme="light"] .lp-hl-gold { color: #b45309; }
+    .lp-real-desc {
+      font-size: 0.7rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .lp-media-meta-row {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
+      margin-top: 2px;
     }
-    .lp-term-chip {
+    .lp-meta-chip {
       padding: 2px 7px;
       border-radius: 6px;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 0.62rem;
       color: var(--text);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      font-weight: 600;
     }
-    [data-theme="light"] .lp-term-chip {
+    [data-theme="light"] .lp-meta-chip {
       background: rgba(0, 0, 0, 0.04);
       border-color: rgba(0, 0, 0, 0.08);
     }
 
-    /* Gold Media Streaming Cards Showcase */
-    .lp-video-grid {
+    /* Terminal on wwwz.uz */
+    .lp-real-terminal {
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(62, 207, 124, 0.28);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.66rem;
+    }
+    [data-theme="light"] .lp-real-terminal {
+      background: rgba(255, 255, 255, 0.75);
+      border-color: rgba(23, 138, 77, 0.28);
+    }
+    .lp-term-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      background: rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    [data-theme="light"] .lp-term-topbar {
+      background: rgba(0, 0, 0, 0.04);
+    }
+    .lp-term-left-dots {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .lp-t-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .lp-t-dot.red { background: #ef4444; }
+    .lp-t-dot.yellow { background: #f59e0b; }
+    .lp-t-dot.green { background: #10b981; }
+    .lp-term-tab {
+      font-size: 0.6rem;
+      color: var(--muted);
+      margin-left: 6px;
+    }
+    .lp-term-copy {
+      font-size: 0.58rem;
+      color: var(--muted);
+      padding: 1px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .lp-term-console {
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .lp-term-prompt-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lp-prompt-tag {
+      color: #ef4444;
+      font-weight: 700;
+    }
+    .lp-prompt-text {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .lp-term-status-line {
+      color: var(--muted);
+      font-size: 0.62rem;
+    }
+    .lp-term-ok-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.62rem;
+      color: var(--text);
+    }
+    .lp-ok-badge {
+      color: #3ecf7c;
+      font-weight: 800;
+    }
+    [data-theme="light"] .lp-ok-badge { color: #178a4d; }
+
+    /* Stats of wwwz.uz */
+    .lp-real-stats {
+      display: flex;
+      gap: 8px;
+    }
+    .lp-r-stat {
+      flex: 1;
+      padding: 5px 8px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      font-size: 0.62rem;
+      color: var(--muted);
+    }
+    [data-theme="light"] .lp-r-stat {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.06);
+    }
+    .lp-r-stat b {
+      color: var(--text);
+      font-size: 0.72rem;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Video Cards Grid on GoldAnime */
+    .lp-gold-video-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
-    .lp-v-card {
+    .lp-anime-card {
       background: rgba(0, 0, 0, 0.45);
       border: 1px solid rgba(245, 158, 11, 0.25);
       border-radius: 10px;
-      padding: 8px 10px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      position: relative;
-      overflow: hidden;
     }
-    [data-theme="light"] .lp-v-card {
+    [data-theme="light"] .lp-anime-card {
       background: rgba(255, 255, 255, 0.75);
       border-color: rgba(245, 158, 11, 0.3);
     }
-    .lp-v-thumb {
+    .lp-anime-thumb {
+      height: 54px;
+      position: relative;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: #f59e0b;
+      justify-content: center;
     }
-    [data-theme="light"] .lp-v-thumb { color: #b45309; }
-    .lp-v-tag {
-      font-size: 0.58rem;
+    .lp-thumb-1 {
+      background: linear-gradient(135deg, rgba(30, 20, 10, 0.8), rgba(200, 30, 30, 0.4));
+    }
+    .lp-thumb-2 {
+      background: linear-gradient(135deg, rgba(10, 20, 40, 0.8), rgba(60, 40, 160, 0.5));
+    }
+    .lp-anime-badge {
+      position: absolute;
+      top: 4px;
+      left: 4px;
       padding: 1px 5px;
       border-radius: 4px;
-      background: rgba(245, 158, 11, 0.2);
+      background: rgba(0,0,0,0.7);
+      font-size: 0.55rem;
       font-weight: 800;
+      color: #fbbf24;
     }
-    .lp-v-title {
-      font-size: 0.72rem;
+    .lp-anime-play {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.9);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    }
+    .lp-anime-details {
+      padding: 6px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .lp-anime-name {
+      font-size: 0.68rem;
       font-weight: 700;
       color: var(--text);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .lp-v-meta {
-      font-size: 0.6rem;
+    .lp-anime-sub {
+      font-size: 0.58rem;
       color: var(--muted);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
-    .lp-v-shield {
-      grid-column: span 2;
+    .lp-gold-security-bar {
       background: rgba(245, 158, 11, 0.1);
-      border: 1px dashed rgba(245, 158, 11, 0.3);
+      border: 1px solid rgba(245, 158, 11, 0.25);
       border-radius: 8px;
-      padding: 4px 8px;
-      font-size: 0.62rem;
-      color: #f59e0b;
+      padding: 5px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      font-size: 0.62rem;
+      color: #fbbf24;
       font-weight: 600;
     }
-    [data-theme="light"] .lp-v-shield { color: #b45309; }
+    [data-theme="light"] .lp-gold-security-bar { color: #b45309; }
+    .lp-sec-left { display: flex; align-items: center; gap: 6px; }
+    .lp-sec-verified {
+      font-size: 0.56rem;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(245, 158, 11, 0.2);
+      font-weight: 800;
+    }
 
-    /* Project Body */
-    .project-body {
-      padding: 30px 28px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-    .project-tag-cat {
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: var(--green);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .project-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-    .project-desc {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.7;
-      margin-bottom: 20px;
-      flex: 1;
-    }
-    .project-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 22px;
-    }
-    .project-features li {
+    /* Project Card Minimal Footer */
+    .project-card-footer {
+      padding: 18px 24px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 0.86rem;
-      color: var(--text);
-      font-weight: 500;
-    }
-    .project-features li svg {
-      width: 15px;
-      height: 15px;
-      color: var(--green);
-      flex-shrink: 0;
-    }
-
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-    .tech-pill {
-      padding: 5px 12px;
-      border-radius: 8px;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      justify-content: space-between;
+      gap: 16px;
+      background: rgba(0, 0, 0, 0.28);
+      border-top: 1px solid var(--border);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
-      box-shadow: var(--glass-specular);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.74rem;
-      color: var(--muted);
-      font-weight: 600;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
     }
-    .project-card:hover .tech-pill {
-      border-color: var(--border-strong);
-      color: var(--text);
-      background: var(--surface-2);
+    [data-theme="light"] .project-card-footer {
+      background: rgba(255, 255, 255, 0.4);
     }
-
-    .project-actions {
+    .project-info-mini {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding-top: 18px;
-      border-top: 1px solid var(--border);
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
     }
-    .project-btn {
+    .project-footer-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.12rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .project-footer-tag {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .project-action-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -1590,24 +1691,14 @@
       font-weight: 700;
       border-radius: 50px;
       text-decoration: none;
+      flex-shrink: 0;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .project-btn svg {
+    .project-action-btn svg {
       transition: transform 0.3s ease;
     }
-    .project-btn:hover svg {
+    .project-action-btn:hover svg {
       transform: translateX(4px) translateY(-2px);
-    }
-    .project-link-raw {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .project-link-raw:hover {
-      color: var(--green);
-      text-decoration: underline;
     }
 
     /* ── TIMELINE (EXPERIENCE) ── */
@@ -2056,6 +2147,9 @@
       .btn { padding: 12px 22px; font-size: 0.88rem; width: 100%; justify-content: center; }
       .hero-cta { width: 100%; }
       .pill { width: 100%; justify-content: center; }
+      .project-card-footer { flex-direction: column; align-items: stretch; gap: 12px; text-align: center; }
+      .project-action-btn { width: 100%; justify-content: center; }
+      .lp-real-links, .lp-real-actions { display: none; }
     }
   </style>
 </head>
@@ -2358,89 +2452,87 @@
             </div>
             <div class="lp-badge-live">
               <span class="lp-live-dot"></span>
-              <span>Production</span>
+              <span>Online</span>
             </div>
           </div>
           
+          <!-- REAL LANDING PAGE OF WWWZ.UZ -->
           <div class="lp-body lp-cloud-theme">
-            <!-- Mini Landing Page Navbar -->
-            <div class="lp-mini-nav">
-              <div class="lp-mini-brand lp-cloud-brand">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <span>wwwz.uz</span>
+            <!-- Header of wwwz.uz -->
+            <div class="lp-real-nav">
+              <div class="lp-real-brand">
+                <span class="lp-brand-dot"></span>
+                <span>wwwz<span class="lp-accent-t">.uz</span></span>
               </div>
-              <div class="lp-mini-menu">
-                <span>Xosting</span>
-                <span>Botlar</span>
-                <span>Domenlar</span>
+              <div class="lp-real-links">
+                <span>Tariflar</span>
+                <span>Imkoniyatlar</span>
+                <span>FAQ</span>
+                <span class="lp-link-active">Docs</span>
               </div>
-              <div class="lp-mini-btn lp-cloud-btn">Boshlash</div>
+              <div class="lp-real-actions">
+                <span class="lp-nav-btn-line">Kirish</span>
+                <span class="lp-nav-btn-fill">Ro'yxatdan o'tish</span>
+              </div>
             </div>
 
-            <!-- Mini Landing Page Hero -->
-            <div class="lp-hero-box">
-              <div class="lp-pill-badge lp-cloud-pill">
-                <span>⚡ 1-Raqamli Bulutli Xosting</span>
+            <!-- Hero of wwwz.uz -->
+            <div class="lp-real-hero">
+              <div class="lp-real-eyebrow">
+                <span class="lp-pulse-dot"></span>
+                <span>WILDCARD CLOUD ENGINE — DOCKER VIRTUALIZATION</span>
               </div>
-              <div class="lp-hero-title">Wildcard Cloud Platformasi</div>
-              <div class="lp-hero-desc">Telegram botlar va web ilovalar uchun avtomatlashtirilgan xosting ekotizimi</div>
+              <h4 class="lp-real-title">
+                Subdomen oling.<br>
+                <span>Saytingizni</span> <span class="lp-hl-green">1 soniyada</span> ishga tushiring.
+              </h4>
+              <p class="lp-real-desc">
+                Dasturchilar uchun ultra-tezkor bulutli platforma: Docker pod, Linux terminal, 10 ta ochiq port va avtomatik SSL.
+              </p>
             </div>
 
-            <!-- Mini Landing Page Terminal / Status Widget -->
-            <div class="lp-terminal-widget">
-              <div class="lp-term-line">
-                <span>$</span>
-                <span>wwwz cluster status: 4 NODES ONLINE (24ms)</span>
+            <!-- Terminal of wwwz.uz -->
+            <div class="lp-real-terminal">
+              <div class="lp-term-topbar">
+                <div class="lp-term-left-dots">
+                  <span class="lp-t-dot red"></span>
+                  <span class="lp-t-dot yellow"></span>
+                  <span class="lp-t-dot green"></span>
+                  <span class="lp-term-tab">bash — user@wwwz.uz-pod</span>
+                </div>
+                <span class="lp-term-copy">Nusxa olish</span>
               </div>
-              <div class="lp-term-chips">
-                <span class="lp-term-chip">🟢 PM2: 100% Online</span>
-                <span class="lp-term-chip">🔒 Wildcard SSL</span>
-                <span class="lp-term-chip">🛡️ Anti-DDoS</span>
+              <div class="lp-term-console">
+                <div class="lp-term-prompt-line">
+                  <span class="lp-prompt-tag">cloud:~$</span>
+                  <span class="lp-prompt-text">deploy --subdomain app.wwwz.uz --stack "node20 + express"</span>
+                </div>
+                <div class="lp-term-status-line">&gt; Tekshirilmoqda: DNS va Wildcard SSL...</div>
+                <div class="lp-term-ok-line"><span class="lp-ok-badge">[OK]</span> Wildcard HTTPS / TLS 1.3 shifrlash yoqildi</div>
+                <div class="lp-term-ok-line"><span class="lp-ok-badge">[OK]</span> Docker pod izolyatsiyasi faollashdi (Ubuntu 24.04)</div>
+                <div class="lp-term-ok-line"><span class="lp-ok-badge">[OK]</span> Port :3000 -&gt; Tashqi HTTPS marshrutlandi</div>
               </div>
+            </div>
+
+            <!-- Stats of wwwz.uz -->
+            <div class="lp-real-stats">
+              <div class="lp-r-stat"><b>10 ta</b> <span>ochiq port</span></div>
+              <div class="lp-r-stat"><b>24/7</b> <span>PM2 monitoring</span></div>
+              <div class="lp-r-stat"><b>99.9%</b> <span>uptime</span></div>
             </div>
           </div>
         </div>
 
-        <div class="project-body">
-          <div class="project-tag-cat" data-i18n="p1.cat">BULUTLI PLATFORMA &amp; SAAS</div>
-          <h3 class="project-title" data-i18n="p1.title">wwwz.uz &mdash; Wildcard Cloud</h3>
-          <p class="project-desc" data-i18n="p1.desc">
-            Dasturchilar va Telegram botlar uchun 1-raqamli bulutli xosting va domen boshqaruv platformasi. Nginx reverse proxy, avtomatik SSL sertifikatlari, izolyatsiyalangan server muhiti va yuqori tezlikdagi infratuzilma.
-          </p>
-
-          <ul class="project-features">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-i18n="p1.f1">Telegram bot va WebApp xostingi</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-i18n="p1.f2">Avtomatik Wildcard SSL &amp; Nginx Proxy</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-i18n="p1.f3">24/7 PM2 &amp; Linux server monitoring</span>
-            </li>
-          </ul>
-
-          <div class="project-tech">
-            <span class="tech-pill">Node.js</span>
-            <span class="tech-pill">Nginx</span>
-            <span class="tech-pill">Express</span>
-            <span class="tech-pill">Linux / Ubuntu</span>
-            <span class="tech-pill">Cloudflare</span>
-            <span class="tech-pill">Reverse Proxy</span>
+        <!-- Project Card Bottom Bar (Only Project Title & Visit Button) -->
+        <div class="project-card-footer">
+          <div class="project-info-mini">
+            <h3 class="project-footer-title">wwwz.uz &mdash; Wildcard Cloud</h3>
+            <span class="project-footer-tag">Bulutli Hosting &amp; PaaS Platformasi</span>
           </div>
-
-          <div class="project-actions">
-            <a href="https://wwwz.uz" target="_blank" rel="noopener" class="btn btn-primary project-btn">
-              <span data-i18n="p1.btn">Saytga o'tish</span>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-            </a>
-            <a href="https://wwwz.uz" target="_blank" rel="noopener" class="project-link-raw">
-              wwwz.uz &rarr;
-            </a>
-          </div>
+          <a href="https://wwwz.uz" target="_blank" rel="noopener" class="btn btn-primary project-action-btn">
+            <span data-i18n="p1.btn">Saytga o'tish</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
         </div>
       </div>
 
@@ -2459,106 +2551,94 @@
             </div>
             <div class="lp-badge-live">
               <span class="lp-live-dot"></span>
-              <span>Production</span>
+              <span>Online</span>
             </div>
           </div>
           
+          <!-- REAL LANDING PAGE OF GOLDANIME -->
           <div class="lp-body lp-gold-theme">
-            <!-- Mini Landing Page Navbar -->
-            <div class="lp-mini-nav">
-              <div class="lp-mini-brand lp-gold-brand">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <span>GoldMedia</span>
+            <!-- Header of GoldAnime -->
+            <div class="lp-real-nav">
+              <div class="lp-real-brand lp-brand-gold">
+                <span class="lp-play-icon">▶</span>
+                <span>GOLD<span class="lp-gold-t">ANIME</span></span>
               </div>
-              <div class="lp-mini-menu">
-                <span>Filmlar</span>
-                <span>Seriallar</span>
-                <span>Top-10</span>
+              <div class="lp-real-links">
+                <span class="lp-pill-item lp-active">Barchasi</span>
+                <span class="lp-pill-item lp-shorts">⚡ Shorts</span>
+                <span class="lp-pill-item">Anime</span>
+                <span class="lp-pill-item">Kinolar</span>
+                <span class="lp-pill-item lp-vip">👑 VIP</span>
               </div>
-              <div class="lp-mini-btn lp-gold-btn">Qidiruv</div>
+              <div class="lp-search-mini">
+                <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                <span>Anime qidirish...</span>
+              </div>
             </div>
 
-            <!-- Mini Landing Page Hero -->
-            <div class="lp-hero-box">
-              <div class="lp-pill-badge lp-gold-pill">
-                <span>👑 Eksklyuziv Media &amp; Video Portal</span>
+            <!-- Hero of GoldAnime -->
+            <div class="lp-real-hero">
+              <div class="lp-gold-eyebrow">
+                <span class="lp-fire-badge">🔥 TOP PREMYERA</span>
+                <span>ENG SARA ANIMELAR O'ZBEK TILIDA</span>
               </div>
-              <div class="lp-hero-title">Yuqori Sifatli Oqimli Kontent</div>
-              <div class="lp-hero-desc">Tezkor yuklanish, himoyalangan video oqimi va HD pleer</div>
+              <h4 class="lp-real-title">
+                Solo Leveling: Arise<br>
+                <span class="lp-hl-gold">Yuqori Sifatli HD Video Portal</span>
+              </h4>
+              <div class="lp-media-meta-row">
+                <span class="lp-meta-chip">🎬 1080p Full HD</span>
+                <span class="lp-meta-chip">⭐ 9.9 Reyting</span>
+                <span class="lp-meta-chip">🇺🇿 O'zbekcha Dublyaj</span>
+                <span class="lp-meta-chip">⚡ HLS Fast Stream</span>
+              </div>
             </div>
 
-            <!-- Mini Video Stream Cards Grid -->
-            <div class="lp-video-grid">
-              <div class="lp-v-card">
-                <div class="lp-v-thumb">
-                  <span>🎬 Ultra Stream</span>
-                  <span class="lp-v-tag">4K HDR</span>
+            <!-- Video Cards Grid of GoldAnime -->
+            <div class="lp-gold-video-grid">
+              <div class="lp-anime-card">
+                <div class="lp-anime-thumb lp-thumb-1">
+                  <span class="lp-anime-badge">4K HDR</span>
+                  <span class="lp-anime-play">▶</span>
                 </div>
-                <div class="lp-v-title">Premyera Film HD</div>
-                <div class="lp-v-meta">
-                  <span>⏱ 2:14:00</span>
-                  <span>🔥 48.2k</span>
-                </div>
-              </div>
-              <div class="lp-v-card">
-                <div class="lp-v-thumb">
-                  <span>⚡ Yangi Serial</span>
-                  <span class="lp-v-tag">TOP 1</span>
-                </div>
-                <div class="lp-v-title">Eksklyuziv Epizod</div>
-                <div class="lp-v-meta">
-                  <span>⭐ 9.8</span>
-                  <span>1080p</span>
+                <div class="lp-anime-details">
+                  <div class="lp-anime-name">Demon Slayer: Hashira Arc</div>
+                  <div class="lp-anime-sub">⭐ 9.8 &bull; 🔥 48.2k tomosha</div>
                 </div>
               </div>
-              <div class="lp-v-shield">
-                <span>🛡️ Security Gate: Verified</span>
-                <span>OWASP Top 10 Guard</span>
+              <div class="lp-anime-card">
+                <div class="lp-anime-thumb lp-thumb-2">
+                  <span class="lp-anime-badge">TOP 1</span>
+                  <span class="lp-anime-play">▶</span>
+                </div>
+                <div class="lp-anime-details">
+                  <div class="lp-anime-name">Jujutsu Kaisen: Shibuya</div>
+                  <div class="lp-anime-sub">⭐ 9.9 &bull; 🔥 62.4k tomosha</div>
+                </div>
               </div>
+            </div>
+
+            <!-- Security Bar of GoldAnime -->
+            <div class="lp-gold-security-bar">
+              <div class="lp-sec-left">
+                <span class="lp-sec-shield">🛡️</span>
+                <span>Security Gateway &amp; Anti-Bot Protection Active</span>
+              </div>
+              <span class="lp-sec-verified">VERIFIED &bull; 0.2ms</span>
             </div>
           </div>
         </div>
 
-        <div class="project-body">
-          <div class="project-tag-cat" data-i18n="p2.cat">MEDIA VA WEB ILOVA</div>
-          <h3 class="project-title" data-i18n="p2.title">gold.wwwz.uz &mdash; Gold Media Platform</h3>
-          <p class="project-desc" data-i18n="p2.desc">
-            Yuqori yuklamalarga moslashtirilgan zamonaviy media va oqimli kontent platformasi. OWASP xavfsizlik standartlari, botlardan himoyalovchi xavfsizlik shlyuzi, moslashuvchan video pleer va tezkor backend tizimi.
-          </p>
-
-          <ul class="project-features">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-i18n="p2.f1">Kiber xavfsizlik &amp; Anti-Bot tekshiruvi</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-i18n="p2.f2">Tezkor video oqimi &amp; Responsive UI</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-i18n="p2.f3">Optimizatsiya qilingan PHP &amp; MySQL backend</span>
-            </li>
-          </ul>
-
-          <div class="project-tech">
-            <span class="tech-pill">PHP 8</span>
-            <span class="tech-pill">MySQL</span>
-            <span class="tech-pill">JavaScript</span>
-            <span class="tech-pill">Cybersecurity</span>
-            <span class="tech-pill">Anti-Bot Gateway</span>
-            <span class="tech-pill">Video Player Engine</span>
+        <!-- Project Card Bottom Bar (Only Project Title & Visit Button) -->
+        <div class="project-card-footer">
+          <div class="project-info-mini">
+            <h3 class="project-footer-title">gold.wwwz.uz &mdash; GoldAnime</h3>
+            <span class="project-footer-tag">Media &amp; Video Streaming Portali</span>
           </div>
-
-          <div class="project-actions">
-            <a href="https://gold.wwwz.uz" target="_blank" rel="noopener" class="btn btn-primary project-btn">
-              <span data-i18n="p2.btn">Saytga o'tish</span>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-            </a>
-            <a href="https://gold.wwwz.uz" target="_blank" rel="noopener" class="project-link-raw">
-              gold.wwwz.uz &rarr;
-            </a>
-          </div>
+          <a href="https://gold.wwwz.uz" target="_blank" rel="noopener" class="btn btn-primary project-action-btn">
+            <span data-i18n="p2.btn">Saytga o'tish</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
         </div>
       </div>
     </div>
