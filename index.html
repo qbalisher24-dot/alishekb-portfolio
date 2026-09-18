@@ -491,7 +491,7 @@
     .hero h1 {
       font-weight: 800;
       font-size: clamp(2.5rem, 6.5vw, 5.2rem);
-      line-height: 1.05;
+      line-height: 1.1;
       letter-spacing: -0.03em;
       margin-bottom: 26px;
       max-width: 18ch;
@@ -500,41 +500,56 @@
     .dim {
       display: inline-block;
       vertical-align: baseline;
+      margin: 0;
+      padding: 0;
+      line-height: inherit;
     }
     #typewriter {
       display: inline-block;
       position: relative;
       vertical-align: baseline;
-      filter: url(#morph-threshold) blur(0.6px);
+      margin: 0;
+      padding: 0;
+      line-height: inherit;
       min-width: 3ch;
     }
     #tw-t1, #tw-t2 {
       position: absolute;
       left: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 0;
       white-space: nowrap;
       display: inline-block;
       width: max-content;
       color: #3ecf7c;
-      background: none;
       -webkit-text-fill-color: #3ecf7c;
       font-family: inherit;
+      font-size: inherit;
       font-weight: 800;
+      line-height: inherit;
+      letter-spacing: inherit;
       user-select: none;
-      transition: none;
+      transition: color 0.3s ease;
+      text-shadow: 0 0 24px rgba(62, 207, 124, 0.22);
     }
     [data-theme="light"] #tw-t1,
     [data-theme="light"] #tw-t2 {
-      -webkit-text-fill-color: #178a4d;
-      color: #178a4d;
+      color: #0b130e;
+      -webkit-text-fill-color: #0b130e;
+      text-shadow: none;
     }
     #tw-spacer {
       display: inline-block;
       visibility: hidden;
       white-space: nowrap;
+      pointer-events: none;
       font-family: inherit;
+      font-size: inherit;
       font-weight: 800;
+      line-height: inherit;
+      letter-spacing: inherit;
+      margin: 0;
+      padding: 0;
+      vertical-align: baseline;
     }
 
     .lead {
@@ -1499,12 +1514,12 @@
         <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
         <feComposite in="SourceGraphic" in2="goo" operator="atop" />
       </filter>
-      <filter id="morph-threshold">
+      <filter id="morph-threshold" color-interpolation-filters="sRGB">
         <feColorMatrix in="SourceGraphic" type="matrix"
           values="1 0 0 0 0
                   0 1 0 0 0
                   0 0 1 0 0
-                  0 0 0 255 -140" />
+                  0 0 0 18 -8" />
       </filter>
     </defs>
   </svg>
@@ -1581,14 +1596,7 @@
       </div>
 
       <h1>
-        <span id="t1">Men </span>
-        <span class="dim">
-          <span id="typewriter">
-            <span id="tw-spacer"></span>
-            <span id="tw-t1"></span>
-            <span id="tw-t2"></span>
-          </span>
-        </span><br>
+        <span id="t1">Men </span><span class="dim"><span id="typewriter"><span id="tw-spacer"></span><span id="tw-t1"></span><span id="tw-t2"></span></span></span><br>
         <span id="t2">tizimlar quraman.</span>
       </h1>
 
@@ -2057,7 +2065,7 @@
     let morphRAF = null;
 
     /* ══════════════════════════════════════════════════════════════
-       GOOEY THRESHOLD MORPHING ANIMATION (blur+threshold inside h1)
+       HIGH-CLARITY GOOEY THRESHOLD MORPHING ANIMATION
        ══════════════════════════════════════════════════════════════ */
     function startGooeyCycle() {
       if (morphRAF) cancelAnimationFrame(morphRAF);
@@ -2068,8 +2076,8 @@
       const spacer = document.getElementById('tw-spacer');
       if (!twEl || !el1 || !el2 || !spacer) return;
 
-      const MORPH_TIME    = 1.0;
-      const COOLDOWN_TIME = 1.4;
+      const MORPH_TIME    = 0.75; // 750ms snappy liquid morph transition
+      const COOLDOWN_TIME = 2.0;  // 2.0s hold time for crystal-clear readability
 
       let idx      = twIdx;
       let morph_   = 0;
@@ -2082,52 +2090,61 @@
           spacer.textContent = w;
           maxW = Math.max(maxW, spacer.offsetWidth);
         });
-        spacer.textContent = '';
+        spacer.textContent = twWords[idx % twWords.length];
         twEl.style.minWidth = (maxW + 4) + 'px';
       }
       updateSpacerWidth();
 
-      el1.textContent = twWords[idx % twWords.length];
-      el2.textContent = twWords[(idx + 1) % twWords.length];
-
       function setFrac(frac) {
         const f2 = 1 - frac;
+        twEl.style.filter = 'url(#morph-threshold)';
         el1.textContent   = twWords[idx % twWords.length];
         el2.textContent   = twWords[(idx + 1) % twWords.length];
-        el1.style.filter  = `blur(${Math.min(8 / Math.max(f2, 1e-6) - 8, 40)}px)`;
+        
+        const blur1 = Math.min(8 / Math.max(f2, 1e-4) - 8, 30);
+        const blur2 = Math.min(8 / Math.max(frac, 1e-4) - 8, 30);
+        
+        el1.style.filter  = `blur(${blur1}px)`;
         el1.style.opacity = Math.pow(f2, 0.4);
-        el2.style.filter  = `blur(${Math.min(8 / Math.max(frac, 1e-6) - 8, 40)}px)`;
+        el2.style.filter  = `blur(${blur2}px)`;
         el2.style.opacity = Math.pow(frac, 0.4);
       }
 
       function cooldown() {
-        morph_ = 0;
-        el1.textContent   = twWords[idx % twWords.length];
-        el2.textContent   = twWords[(idx + 1) % twWords.length];
-        el1.style.filter  = 'blur(0px)';
+        // Remove SVG filter completely during static display for 100% crystal-clear font
+        twEl.style.filter = 'none';
+        el1.textContent   = '';
+        el1.style.filter  = 'none';
         el1.style.opacity = '0';
-        el2.style.filter  = 'blur(0px)';
+        el2.textContent   = twWords[idx % twWords.length];
+        el2.style.filter  = 'none';
         el2.style.opacity = '1';
+        spacer.textContent = twWords[idx % twWords.length];
       }
 
       function loop(now) {
         morphRAF = requestAnimationFrame(loop);
         const dt = Math.min((now - prevTime) / 1000, 0.1);
         prevTime = now;
-        const wasCool = cool_ > 0;
         cool_ -= dt;
         if (cool_ <= 0) {
-          if (wasCool) idx++;
-          morph_ -= cool_;
-          cool_ = 0;
+          morph_ += dt;
           let frac = morph_ / MORPH_TIME;
-          if (frac > 1) { cool_ = COOLDOWN_TIME; frac = 1; }
+          if (frac >= 1) {
+            cool_ = COOLDOWN_TIME;
+            morph_ = 0;
+            idx = (idx + 1) % twWords.length;
+            twIdx = idx;
+            cooldown();
+            return;
+          }
           setFrac(Math.max(frac, 1e-6));
         } else {
           cooldown();
         }
       }
 
+      cooldown();
       morphRAF = requestAnimationFrame(loop);
     }
 
