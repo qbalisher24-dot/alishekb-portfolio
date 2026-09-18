@@ -35,10 +35,10 @@
     /* ── RESET & DESIGN TOKENS ── */
     :root {
       --bg: #070908;
-      --surface: rgba(255, 255, 255, 0.05);
+      --surface: rgba(255, 255, 255, 0.035);
       --surface-solid: #0d1410;
-      --surface-2: rgba(255, 255, 255, 0.08);
-      --border: rgba(255, 255, 255, 0.12);
+      --surface-2: rgba(255, 255, 255, 0.065);
+      --border: rgba(255, 255, 255, 0.14);
       --border-strong: rgba(62, 207, 124, 0.40);
       --text: #eef7f0;
       --muted: #93a89a;
@@ -52,24 +52,24 @@
       --a1: #3ecf7c;
       --a2: #7fd9a0;
       --a3: #2ba86a;
-      --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-      --card-border: rgba(255, 255, 255, 0.18);
+      --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.010) 100%);
+      --card-border: rgba(255, 255, 255, 0.20);
       --card-hover-border: rgba(62, 207, 124, 0.65);
       --spotlight: rgba(62, 207, 124, 0.12);
-      --glass-specular: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.32), inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 14px 40px -10px rgba(0, 0, 0, 0.45);
-      --glass-blur: blur(24px) saturate(190%);
-      --nav-bg: rgba(8, 14, 10, 0.68);
+      --glass-specular: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 14px 40px -10px rgba(0, 0, 0, 0.40);
+      --glass-blur: blur(18px) saturate(190%);
+      --nav-bg: rgba(6, 12, 8, 0.38);
       --nav-border: rgba(255, 255, 255, 0.16);
-      --drawer-bg: linear-gradient(145deg, rgba(14, 24, 18, 0.88) 0%, rgba(8, 14, 10, 0.75) 100%);
+      --drawer-bg: linear-gradient(145deg, rgba(12, 20, 15, 0.60) 0%, rgba(6, 11, 8, 0.45) 100%);
     }
 
     [data-theme="light"] {
       --bg: #e3ede6;
-      --surface: rgba(255, 255, 255, 0.60);
+      --surface: rgba(255, 255, 255, 0.35);
       --surface-solid: #ffffff;
-      --surface-2: rgba(255, 255, 255, 0.82);
-      --border: rgba(0, 0, 0, 0.09);
-      --border-strong: rgba(18, 124, 68, 0.38);
+      --surface-2: rgba(255, 255, 255, 0.50);
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(18, 124, 68, 0.35);
       --text: #0b140e;
       --muted: #435549;
       --muted-2: #677b6e;
@@ -82,15 +82,15 @@
       --a1: #111a13;
       --a2: #127c44;
       --a3: #229959;
-      --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.45) 100%);
-      --card-border: rgba(255, 255, 255, 0.95);
+      --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 100%);
+      --card-border: rgba(255, 255, 255, 0.75);
       --card-hover-border: rgba(18, 124, 68, 0.55);
       --spotlight: rgba(18, 124, 68, 0.10);
-      --glass-specular: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.98), inset 0 0 0 1px rgba(255, 255, 255, 0.60), 0 14px 38px -8px rgba(18, 50, 32, 0.12);
-      --glass-blur: blur(24px) saturate(190%);
-      --nav-bg: rgba(227, 237, 230, 0.72);
-      --nav-border: rgba(255, 255, 255, 0.92);
-      --drawer-bg: linear-gradient(145deg, rgba(240, 248, 243, 0.92) 0%, rgba(226, 238, 230, 0.80) 100%);
+      --glass-specular: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.95), inset 0 0 0 1px rgba(255, 255, 255, 0.50), 0 14px 38px -8px rgba(18, 50, 32, 0.10);
+      --glass-blur: blur(18px) saturate(190%);
+      --nav-bg: rgba(230, 240, 233, 0.40);
+      --nav-border: rgba(255, 255, 255, 0.85);
+      --drawer-bg: linear-gradient(145deg, rgba(240, 248, 243, 0.65) 0%, rgba(226, 238, 230, 0.48) 100%);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1221,13 +1221,13 @@
       align-items: center;
       justify-content: space-between;
       padding: 11px 18px;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.22);
       border-bottom: 1px solid var(--border);
       gap: 12px;
       z-index: 5;
     }
     [data-theme="light"] .lp-browser-bar {
-      background: rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.25);
     }
     .lp-browser-dots {
       display: flex;
@@ -1399,13 +1399,13 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      background: rgba(0, 0, 0, 0.28);
+      background: rgba(0, 0, 0, 0.15);
       border-top: 1px solid var(--border);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
     }
     [data-theme="light"] .project-card-footer {
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.20);
     }
     .project-info-mini {
       display: flex;
