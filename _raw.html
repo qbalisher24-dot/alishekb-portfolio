@@ -1110,6 +1110,273 @@
     }
     .service:hover .service-line { transform: scaleX(1); }
 
+    /* ── PROJECTS SECTION & CARDS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--card-hover-border);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 35px var(--glow);
+    }
+    
+    /* Project Preview Window Mockup */
+    .project-preview {
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: rgba(0, 0, 0, 0.35);
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+    }
+    [data-theme="light"] .browser-bar {
+      background: rgba(0, 0, 0, 0.04);
+    }
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .browser-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .browser-url {
+      flex: 1;
+      max-width: 240px;
+      background: var(--surface-solid);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .browser-url svg {
+      width: 11px;
+      height: 11px;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .project-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(62, 207, 124, 0.12);
+      border: 1px solid rgba(62, 207, 124, 0.25);
+      color: var(--green);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: blink 2s infinite ease-in-out;
+    }
+
+    /* Mockup Visual Canvas */
+    .project-screen {
+      padding: 32px 26px;
+      min-height: 175px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      background: radial-gradient(circle at 80% 20%, var(--glow), transparent 70%),
+                  linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+    }
+    .mockup-cloud, .mockup-stream {
+      position: relative;
+      z-index: 1;
+    }
+    .mockup-stat-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .mockup-stat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      background: var(--surface-solid);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .mockup-stat-chip svg {
+      width: 14px;
+      height: 14px;
+      color: var(--green);
+    }
+    .mockup-header-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mockup-header-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Project Body */
+    .project-body {
+      padding: 30px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .project-tag-cat {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .project-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    .project-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    .project-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.86rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .project-features li svg {
+      width: 15px;
+      height: 15px;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .tech-pill {
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--muted);
+      font-weight: 600;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .project-card:hover .tech-pill {
+      border-color: var(--border-strong);
+      color: var(--text);
+    }
+
+    .project-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+    .project-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .project-btn svg {
+      transition: transform 0.3s ease;
+    }
+    .project-btn:hover svg {
+      transform: translateX(4px) translateY(-2px);
+    }
+    .project-link-raw {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .project-link-raw:hover {
+      color: var(--green);
+      text-decoration: underline;
+    }
+
     /* ── TIMELINE (EXPERIENCE) ── */
     .timeline { position: relative; padding-left: 32px; margin-top: 40px; }
     .timeline::before {
@@ -1602,6 +1869,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#about" data-i18n="nav.about">Men haqimda</a></li>
         <li><a href="#skills" data-i18n="nav.skills">Ko'nikmalar</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Loyihalar</a></li>
         <li><a href="#services" data-i18n="nav.services">Xizmatlar</a></li>
         <li><a href="#experience" data-i18n="nav.experience">Tajribam</a></li>
         <li><a href="#playlist" data-i18n="nav.playlist">Playlist</a></li>
@@ -1658,7 +1926,7 @@
       </p>
 
       <div class="hero-cta">
-        <a href="#services" class="btn btn-primary">
+        <a href="#projects" class="btn btn-primary">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h18M13 5l7 7-7 7"/></svg>
           <span data-i18n="hero.cta1">Loyihalarni ko'rish</span>
         </a>
@@ -1828,8 +2096,191 @@
     </div>
   </section>
 
+  <!-- PROJECTS SECTION -->
+  <section class="block" id="projects" data-num="04">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="sec.projects">Projects</div>
+      <h2 class="section-h" data-i18n="proj.title">Mening Loyihalarim</h2>
+      <p class="section-sub" data-i18n="proj.sub">Men tomonidan ishlab chiqilgan va serverda real faoliyat ko'rsatayotgan yirik platformalar.</p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1: wwwz.uz -->
+      <div class="card project-card reveal">
+        <div class="project-preview">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <span class="browser-dot dot-red"></span>
+              <span class="browser-dot dot-yellow"></span>
+              <span class="browser-dot dot-green"></span>
+            </div>
+            <div class="browser-url">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              https://wwwz.uz
+            </div>
+            <div class="project-badge-live">
+              <span class="live-dot"></span>
+              <span>Production</span>
+            </div>
+          </div>
+          
+          <div class="project-screen">
+            <div class="mockup-cloud">
+              <div class="mockup-header-title">
+                <span>⚡ Wildcard Cloud Platform</span>
+              </div>
+              <div class="mockup-header-sub">&gt; system.status: online [99.98% uptime]</div>
+              <div class="mockup-stat-row">
+                <div class="mockup-stat-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>Auto Wildcard SSL</span>
+                </div>
+                <div class="mockup-stat-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span>Nginx Fast Proxy</span>
+                </div>
+                <div class="mockup-stat-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                  <span>Telegram Bot Hosting</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <div class="project-tag-cat" data-i18n="p1.cat">BULUTLI PLATFORMA &amp; SAAS</div>
+          <h3 class="project-title" data-i18n="p1.title">wwwz.uz &mdash; Wildcard Cloud</h3>
+          <p class="project-desc" data-i18n="p1.desc">
+            Dasturchilar va Telegram botlar uchun 1-raqamli bulutli xosting va domen boshqaruv platformasi. Nginx reverse proxy, avtomatik SSL sertifikatlari, izolyatsiyalangan server muhiti va yuqori tezlikdagi infratuzilma.
+          </p>
+
+          <ul class="project-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="p1.f1">Telegram bot va WebApp xostingi</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="p1.f2">Avtomatik Wildcard SSL &amp; Nginx Proxy</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="p1.f3">24/7 PM2 &amp; Linux server monitoring</span>
+            </li>
+          </ul>
+
+          <div class="project-tech">
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">Nginx</span>
+            <span class="tech-pill">Express</span>
+            <span class="tech-pill">Linux / Ubuntu</span>
+            <span class="tech-pill">Cloudflare</span>
+            <span class="tech-pill">Reverse Proxy</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="https://wwwz.uz" target="_blank" rel="noopener" class="btn btn-primary project-btn">
+              <span data-i18n="p1.btn">Saytga o'tish</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
+            <a href="https://wwwz.uz" target="_blank" rel="noopener" class="project-link-raw">
+              wwwz.uz &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: gold.wwwz.uz -->
+      <div class="card project-card reveal">
+        <div class="project-preview">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <span class="browser-dot dot-red"></span>
+              <span class="browser-dot dot-yellow"></span>
+              <span class="browser-dot dot-green"></span>
+            </div>
+            <div class="browser-url">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              https://gold.wwwz.uz
+            </div>
+            <div class="project-badge-live">
+              <span class="live-dot"></span>
+              <span>Production</span>
+            </div>
+          </div>
+          
+          <div class="project-screen">
+            <div class="mockup-stream">
+              <div class="mockup-header-title">
+                <span>🎬 Gold Media Platform</span>
+              </div>
+              <div class="mockup-header-sub">&gt; ddos.guard: protected [OWASP Top 10]</div>
+              <div class="mockup-stat-row">
+                <div class="mockup-stat-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>Anti-Bot Shield</span>
+                </div>
+                <div class="mockup-stat-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                  <span>HLS Streaming Engine</span>
+                </div>
+                <div class="mockup-stat-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <span>Fast API &amp; MySQL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <div class="project-tag-cat" data-i18n="p2.cat">MEDIA VA WEB ILOVA</div>
+          <h3 class="project-title" data-i18n="p2.title">gold.wwwz.uz &mdash; Gold Media Platform</h3>
+          <p class="project-desc" data-i18n="p2.desc">
+            Yuqori yuklamalarga moslashtirilgan zamonaviy media va oqimli kontent platformasi. OWASP xavfsizlik standartlari, botlardan himoyalovchi xavfsizlik shlyuzi, moslashuvchan video pleer va tezkor backend tizimi.
+          </p>
+
+          <ul class="project-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="p2.f1">Kiber xavfsizlik &amp; Anti-Bot tekshiruvi</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="p2.f2">Tezkor video oqimi &amp; Responsive UI</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="p2.f3">Optimizatsiya qilingan PHP &amp; MySQL backend</span>
+            </li>
+          </ul>
+
+          <div class="project-tech">
+            <span class="tech-pill">PHP 8</span>
+            <span class="tech-pill">MySQL</span>
+            <span class="tech-pill">JavaScript</span>
+            <span class="tech-pill">Cybersecurity</span>
+            <span class="tech-pill">Anti-Bot Gateway</span>
+            <span class="tech-pill">Video Player Engine</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="https://gold.wwwz.uz" target="_blank" rel="noopener" class="btn btn-primary project-btn">
+              <span data-i18n="p2.btn">Saytga o'tish</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
+            <a href="https://gold.wwwz.uz" target="_blank" rel="noopener" class="project-link-raw">
+              gold.wwwz.uz &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SERVICES SECTION -->
-  <section class="block" id="services" data-num="04">
+  <section class="block" id="services" data-num="05">
     <div class="reveal">
       <div class="eyebrow" data-i18n="sec.services">Services</div>
       <h2 class="section-h" data-i18n="srv.title">Xizmatlar</h2>
@@ -1880,7 +2331,7 @@
   </section>
 
   <!-- EXPERIENCE SECTION -->
-  <section class="block" id="experience" data-num="05">
+  <section class="block" id="experience" data-num="06">
     <div class="reveal">
       <div class="eyebrow" data-i18n="sec.exp">Experience</div>
       <h2 class="section-h" data-i18n="exp.title">Tajribam</h2>
@@ -1907,7 +2358,7 @@
   </section>
 
   <!-- PLAYLIST SECTION -->
-  <section class="block" id="playlist" data-num="06">
+  <section class="block" id="playlist" data-num="07">
     <div class="reveal">
       <div class="eyebrow" data-i18n="sec.playlist">Playlist</div>
       <h2 class="section-h" data-i18n="pl.title">Playlistlarim</h2>
@@ -1956,7 +2407,7 @@
   </section>
 
   <!-- CONTACT SECTION -->
-  <section class="block" id="contact" data-num="07">
+  <section class="block" id="contact" data-num="08">
     <div class="card contact-box reveal">
       <div class="eyebrow" data-i18n="sec.contact">Contact</div>
       <h2 data-i18n="ct.title">Keling, birga ishlaymiz</h2>
@@ -2023,7 +2474,7 @@
        ══════════════════════════════════════════════════════════════ */
     const I18N = {
       uz: {
-        'nav.about': 'Men haqimda', 'nav.skills': "Ko'nikmalar", 'nav.services': 'Xizmatlar',
+        'nav.about': 'Men haqimda', 'nav.skills': "Ko'nikmalar", 'nav.projects': 'Loyihalar', 'nav.services': 'Xizmatlar',
         'nav.experience': 'Tajribam', 'nav.playlist': 'Playlist', 'nav.contact': 'Aloqa',
         'hero.badge': 'Ishga tayyor', 'hero.cta1': "Loyihalarni ko'rish", 'hero.cta2': 'Salom yozing',
         'hero.blog': 'Blog kanalim',
@@ -2037,6 +2488,13 @@
         'stat.proj': 'Tugallangan loyihalar+', 'stat.income': 'mln UZS+ daromad', 'stat.pentest': 'oylik pentest tajribasi',
         'sec.skills': 'Skills', 'skills.title': "Ko'nikmalar", 'skills.sub': "Yo'nalishlar bo'yicha tajriba darajam va kunlik ishlatadigan texnologiyalarim.",
         'sk.1': 'Telegram Bot Dev', 'sk.2': 'Pentesting & Kiber Havfsizlik', 'sk.3': 'Website Development', 'sk.4': 'Backend / API',
+        'sec.projects': 'Projects', 'proj.title': 'Mening Loyihalarim', 'proj.sub': "Men tomonidan ishlab chiqilgan va serverda real faoliyat ko'rsatayotgan yirik platformalar.",
+        'p1.cat': 'BULUTLI PLATFORMA & SAAS', 'p1.title': 'wwwz.uz — Wildcard Cloud',
+        'p1.desc': "Dasturchilar va Telegram botlar uchun 1-raqamli bulutli xosting va domen boshqaruv platformasi. Nginx reverse proxy, avtomatik SSL sertifikatlari, izolyatsiyalangan server muhiti va yuqori tezlikdagi infratuzilma.",
+        'p1.f1': "Telegram bot va WebApp xostingi", 'p1.f2': "Avtomatik Wildcard SSL & Nginx Proxy", 'p1.f3': "24/7 PM2 & Linux server monitoring", 'p1.btn': "Saytga o'tish",
+        'p2.cat': 'MEDIA VA WEB ILOVA', 'p2.title': 'gold.wwwz.uz — Gold Media Platform',
+        'p2.desc': "Yuqori yuklamalarga moslashtirilgan zamonaviy media va oqimli kontent platformasi. OWASP xavfsizlik standartlari, botlardan himoyalovchi xavfsizlik shlyuzi, moslashuvchan video pleer va tezkor backend tizimi.",
+        'p2.f1': "Kiber xavfsizlik & Anti-Bot tekshiruvi", 'p2.f2': "Tezkor video oqimi & Responsive UI", 'p2.f3': "Optimizatsiya qilingan PHP & MySQL backend", 'p2.btn': "Saytga o'tish",
         'sec.services': 'Services', 'srv.title': 'Xizmatlar', 'srv.sub': "Loyihangizni boshidan oxirigacha sifatli va ishonchli tarzda amalga oshiraman.",
         's1.t': 'Telegram Botlar', 's1.d': "Murakkab botlar, WebApp'lar, to'lov tizimlari va admin panellar. Python (aiogram/Telethon) va PHP webhook asosida.",
         's2.t': 'Pentesting', 's2.d': "Web ilovalar zaifliklarini tekshirish, OWASP Top 10 asosida xavfsizlik tahlili va himoya bo'yicha tavsiyalar.",
@@ -2052,7 +2510,7 @@
         'tw': ['ishonchli', 'xavfsiz', 'tezkor', 'zamonaviy', 'ajoyib']
       },
       ru: {
-        'nav.about': 'Обо мне', 'nav.skills': 'Навыки', 'nav.services': 'Услуги',
+        'nav.about': 'Обо мне', 'nav.skills': 'Навыки', 'nav.projects': 'Проекты', 'nav.services': 'Услуги',
         'nav.experience': 'Опыт', 'nav.playlist': 'Плейлист', 'nav.contact': 'Контакты',
         'hero.badge': 'Готов к работе', 'hero.cta1': 'Посмотреть проекты', 'hero.cta2': 'Написать',
         'hero.blog': 'Мой блог',
@@ -2066,6 +2524,13 @@
         'stat.proj': 'завершённых проектов+', 'stat.income': 'млн UZS+ доход', 'stat.pentest': 'мес. пентест опыта',
         'sec.skills': 'Навыки', 'skills.title': 'Навыки', 'skills.sub': 'Уровень опыта по направлениям и технологии, которые использую каждый день.',
         'sk.1': 'Telegram Bot Dev', 'sk.2': 'Пентестинг и Кибербезопасность', 'sk.3': 'Веб-разработка', 'sk.4': 'Backend / API',
+        'sec.projects': 'Проекты', 'proj.title': 'Мои Проекты', 'proj.sub': 'Крупные платформы, разработанные мной и успешно работающие в продакшене.',
+        'p1.cat': 'ОБЛАЧНАЯ ПЛАТФОРМА И SAAS', 'p1.title': 'wwwz.uz — Wildcard Cloud',
+        'p1.desc': 'Облачный хостинг №1 и платформа управления доменами для разработчиков и Telegram-ботов. Nginx reverse proxy, автоматические SSL-сертификаты, изолированная среда и высокая производительность.',
+        'p1.f1': 'Хостинг ботов и WebApp', 'p1.f2': 'Автоматический Wildcard SSL и Nginx', 'p1.f3': '24/7 PM2 и мониторинг серверов', 'p1.btn': 'Перейти на сайт',
+        'p2.cat': 'МЕДИА И ВЕБ-ПЛАТФОРМА', 'p2.title': 'gold.wwwz.uz — Gold Media Platform',
+        'p2.desc': 'Высоконагруженная медиа-платформа и стриминг. Стандарты безопасности OWASP, шлюз защиты от ботов, адаптивный видеоплеер и быстрый backend.',
+        'p2.f1': 'Кибербезопасность и защита от ботов', 'p2.f2': 'Быстрый стриминг и адаптивный UI', 'p2.f3': 'Оптимизированный PHP & MySQL backend', 'p2.btn': 'Перейти на сайт',
         'sec.services': 'Услуги', 'srv.title': 'Услуги', 'srv.sub': 'Реализую ваш проект качественно и надёжно от начала до конца.',
         's1.t': 'Telegram Боты', 's1.d': 'Сложные боты, WebApp, платёжные системы и панели администратора. Python (aiogram/Telethon) и PHP webhook.',
         's2.t': 'Пентестинг', 's2.d': 'Анализ уязвимостей веб-приложений, проверка по OWASP Top 10 и рекомендации по защите.',
@@ -2081,7 +2546,7 @@
         'tw': ['надёжные', 'безопасные', 'быстрые', 'современные', 'красивые']
       },
       en: {
-        'nav.about': 'About', 'nav.skills': 'Skills', 'nav.services': 'Services',
+        'nav.about': 'About', 'nav.skills': 'Skills', 'nav.projects': 'Projects', 'nav.services': 'Services',
         'nav.experience': 'Experience', 'nav.playlist': 'Playlist', 'nav.contact': 'Contact',
         'hero.badge': 'Available for work', 'hero.cta1': 'View projects', 'hero.cta2': 'Say hello',
         'hero.blog': 'My blog',
@@ -2095,6 +2560,13 @@
         'stat.proj': 'completed projects+', 'stat.income': 'mln UZS+ revenue', 'stat.pentest': 'mo. pentest experience',
         'sec.skills': 'Skills', 'skills.title': 'Skills', 'skills.sub': 'My experience level by direction and technologies I use daily.',
         'sk.1': 'Telegram Bot Dev', 'sk.2': 'Pentesting & Cybersecurity', 'sk.3': 'Website Development', 'sk.4': 'Backend / API',
+        'sec.projects': 'Projects', 'proj.title': 'Featured Projects', 'proj.sub': 'Major high-performance platforms built by me and running in live production.',
+        'p1.cat': 'CLOUD PLATFORM & SAAS', 'p1.title': 'wwwz.uz — Wildcard Cloud',
+        'p1.desc': 'Next-gen cloud hosting and domain routing platform for developers and Telegram bots. Features automated Nginx reverse proxy, instant SSL certificates, and isolated high-performance server environments.',
+        'p1.f1': 'Telegram Bot & WebApp Hosting', 'p1.f2': 'Automated Wildcard SSL & Nginx Proxy', 'p1.f3': '24/7 PM2 & Linux Server Monitoring', 'p1.btn': 'Visit Live Site',
+        'p2.cat': 'MEDIA & WEB PLATFORM', 'p2.title': 'gold.wwwz.uz — Gold Media Platform',
+        'p2.desc': 'High-throughput modern media and streaming web platform. Engineered with OWASP security standards, anti-bot protective gateway, responsive media engine, and optimized backend.',
+        'p2.f1': 'Cybersecurity & Anti-Bot Protection', 'p2.f2': 'Ultra-fast Streaming & Responsive UI', 'p2.f3': 'Optimized PHP & Database Architecture', 'p2.btn': 'Visit Live Site',
         'sec.services': 'Services', 'srv.title': 'Services', 'srv.sub': 'I deliver your project quality-first, reliably from start to finish.',
         's1.t': 'Telegram Bots', 's1.d': 'Complex bots, WebApps, payment systems and admin panels. Python (aiogram/Telethon) and PHP webhook.',
         's2.t': 'Pentesting', 's2.d': 'Web application vulnerability assessment, OWASP Top 10 analysis and security recommendations.',
