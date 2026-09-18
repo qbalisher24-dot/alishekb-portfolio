@@ -34,34 +34,34 @@
   <style>
     /* ── RESET & DESIGN TOKENS ── */
     :root {
-      --bg: #070908;
+      --bg: #070709;
       --surface: rgba(255, 255, 255, 0.025);
-      --surface-solid: #0d1410;
+      --surface-solid: #111114;
       --surface-2: rgba(255, 255, 255, 0.05);
       --border: rgba(255, 255, 255, 0.16);
-      --border-strong: rgba(62, 207, 124, 0.40);
-      --text: #eef7f0;
-      --muted: #93a89a;
-      --muted-2: #5c6e63;
-      --green: #3ecf7c;
-      --grid: rgba(62, 207, 124, 0.10);
-      --invert: #3ecf7c;
-      --invert-text: #05140b;
-      --glow: rgba(62, 207, 124, 0.26);
-      --glow-strong: rgba(62, 207, 124, 0.50);
-      --a1: #3ecf7c;
-      --a2: #7fd9a0;
-      --a3: #2ba86a;
+      --border-strong: rgba(255, 255, 255, 0.45);
+      --text: #f4f4f6;
+      --muted: #9ca3af;
+      --muted-2: #71717a;
+      --green: #ffffff;
+      --grid: rgba(255, 255, 255, 0.035);
+      --invert: #ffffff;
+      --invert-text: #09090b;
+      --glow: rgba(255, 255, 255, 0.16);
+      --glow-strong: rgba(255, 255, 255, 0.38);
+      --a1: #ffffff;
+      --a2: #e4e4e7;
+      --a3: #d4d4d8;
       --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.005) 100%);
       --card-border: rgba(255, 255, 255, 0.22);
-      --card-hover-border: rgba(62, 207, 124, 0.65);
-      --spotlight: rgba(62, 207, 124, 0.12);
+      --card-hover-border: rgba(255, 255, 255, 0.55);
+      --spotlight: rgba(255, 255, 255, 0.08);
       --glass-specular: inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 14px 40px -10px rgba(0, 0, 0, 0.35);
       --glass-blur: blur(1px);
       --nav-blur: blur(16px) saturate(180%);
-      --nav-bg: rgba(7, 12, 9, 0.55);
+      --nav-bg: rgba(10, 10, 12, 0.65);
       --nav-border: rgba(255, 255, 255, 0.18);
-      --drawer-bg: linear-gradient(145deg, rgba(14, 22, 16, 0.75) 0%, rgba(8, 14, 10, 0.60) 100%);
+      --drawer-bg: linear-gradient(145deg, rgba(16, 16, 18, 0.85) 0%, rgba(10, 10, 12, 0.75) 100%);
     }
 
     [data-theme="light"] {
@@ -70,22 +70,22 @@
       --surface-solid: #ffffff;
       --surface-2: rgba(255, 255, 255, 0.65);
       --border: rgba(0, 0, 0, 0.06);
-      --border-strong: rgba(21, 128, 67, 0.28);
+      --border-strong: rgba(25, 24, 22, 0.25);
       --text: #191816;
       --muted: #5e5a52;
       --muted-2: #8a857b;
-      --green: #158043;
+      --green: #191816;
       --grid: rgba(60, 50, 40, 0.045);
-      --invert: #111815;
+      --invert: #191816;
       --invert-text: #ffffff;
       --glow: rgba(255, 255, 255, 0.65);
       --glow-strong: rgba(255, 255, 255, 0.90);
-      --a1: #111a13;
-      --a2: #158043;
-      --a3: #229959;
+      --a1: #191816;
+      --a2: #3a3833;
+      --a3: #5e5a52;
       --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.18) 100%);
       --card-border: rgba(255, 255, 255, 0.90);
-      --card-hover-border: rgba(21, 128, 67, 0.45);
+      --card-hover-border: rgba(25, 24, 22, 0.40);
       --spotlight: rgba(255, 255, 255, 0.40);
       --glass-specular: inset 0 1.5px 2px 0 rgba(255, 255, 255, 1), inset 0 0 0 1px rgba(255, 255, 255, 0.65), 0 12px 32px -8px rgba(35, 30, 24, 0.05);
       --glass-blur: blur(0.5px);
@@ -184,8 +184,13 @@
       pointer-events: none;
       z-index: 0;
       filter: blur(95px);
-      opacity: 0.35;
+      opacity: 0.12;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, transparent 70%) !important;
       animation: orbFloat 24s ease-in-out infinite alternate;
+    }
+    [data-theme="light"] .glow-orb {
+      opacity: 0.30;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.80) 0%, transparent 70%) !important;
     }
     @keyframes orbFloat {
       0% { transform: translate(0, 0) scale(1); }
@@ -602,8 +607,8 @@
       white-space: nowrap;
       display: inline-block;
       width: max-content;
-      color: #3ecf7c;
-      -webkit-text-fill-color: #3ecf7c;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
       font-family: inherit;
       font-size: inherit;
       font-weight: 800;
@@ -611,12 +616,12 @@
       letter-spacing: inherit;
       user-select: none;
       transition: color 0.3s ease;
-      text-shadow: 0 0 24px rgba(62, 207, 124, 0.22);
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.40);
     }
     [data-theme="light"] #tw-t1,
     [data-theme="light"] #tw-t2 {
-      color: #0b130e;
-      -webkit-text-fill-color: #0b130e;
+      color: #191816;
+      -webkit-text-fill-color: #191816;
       text-shadow: none;
     }
     #tw-spacer {
@@ -824,7 +829,7 @@
       border-radius: 50%;
       overflow: hidden;
       border: 2.5px solid var(--border-strong);
-      background: linear-gradient(140deg, #0a2417, #05140b);
+      background: linear-gradient(140deg, #18181b, #09090b);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -833,7 +838,7 @@
       animation: avatarBreath 5s ease-in-out infinite;
     }
     @keyframes avatarBreath {
-      0%, 100% { box-shadow: 0 0 0 0 var(--glow), 0 0 50px rgba(62,207,124,0.12); }
+      0%, 100% { box-shadow: 0 0 0 0 var(--glow), 0 0 50px var(--glow); }
       50% { box-shadow: 0 0 0 10px transparent, 0 0 70px var(--glow-strong); }
     }
     .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -1972,10 +1977,10 @@
         display: none;
       }
       .nav-links a:hover, .nav-links a:active {
-        color: var(--green);
-        background: rgba(62, 207, 124, 0.15);
-        border-color: rgba(62, 207, 124, 0.45);
-        box-shadow: var(--glass-specular), 0 0 20px rgba(62, 207, 124, 0.2);
+        color: var(--text);
+        background: var(--surface-2);
+        border-color: var(--border-strong);
+        box-shadow: var(--glass-specular), 0 0 20px var(--glow);
         transform: translateX(5px);
       }
       .menu-btn { display: flex; z-index: 260; }
@@ -2166,9 +2171,9 @@
   <!-- Background Animated Waves & Glow -->
   <canvas id="waveCanvas"></canvas>
   <div class="cursor-spotlight" id="cursorSpot"></div>
-  <div class="glow-orb" style="width:420px;height:420px;background:rgba(62,207,124,.12);top:10%;left:5%;animation-delay:0s"></div>
-  <div class="glow-orb" style="width:340px;height:340px;background:rgba(127,217,160,.08);top:55%;right:8%;animation-delay:-8s"></div>
-  <div class="glow-orb" style="width:300px;height:300px;background:rgba(43,168,106,.09);bottom:10%;left:35%;animation-delay:-16s"></div>
+  <div class="glow-orb" style="width:420px;height:420px;top:10%;left:5%;animation-delay:0s"></div>
+  <div class="glow-orb" style="width:340px;height:340px;top:55%;right:8%;animation-delay:-8s"></div>
+  <div class="glow-orb" style="width:300px;height:300px;bottom:10%;left:35%;animation-delay:-16s"></div>
 
   <!-- Scroll Progress -->
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -2301,12 +2306,12 @@
       <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript"></span>JavaScript</div>
       <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"></span>Python</div>
       <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"></span>PHP</div>
-      <div class="marquee-item"><span class="m-ic-txt" style="background:#3ecf7c">KL</span>Kali Linux</div>
+      <div class="marquee-item"><span class="m-ic-txt" style="background:#27272a">KL</span>Kali Linux</div>
       <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"></span>Git</div>
       <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"></span>MySQL</div>
       <div class="marquee-item"><span class="m-ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux"></span>Linux</div>
       <div class="marquee-item"><span class="m-ic-txt" style="background:#229ed9">TG</span>Telegram Bot</div>
-      <div class="marquee-item"><span class="m-ic-txt" style="background:#2ba86a">API</span>REST API</div>
+      <div class="marquee-item"><span class="m-ic-txt" style="background:#3f3f46">API</span>REST API</div>
     </div>
   </div>
 
@@ -2419,7 +2424,7 @@
         <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP">PHP</div>
         <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git">Git</div>
         <div class="stack-item"><img class="s-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL">MySQL</div>
-        <div class="stack-item"><span class="s-badge" style="background:#3ecf7c">KL</span>Kali Linux</div>
+        <div class="stack-item"><span class="s-badge" style="background:#27272a">KL</span>Kali Linux</div>
       </div>
     </div>
   </section>
@@ -3181,13 +3186,13 @@
       window.addEventListener('resize', resize, { passive: true });
 
       const LINES = 16;
-      let tR = 62, tG = 207, tB = 124, tA = 0.32;
+      let tR = 255, tG = 255, tB = 255, tA = 0.24;
       function syncWaveTheme() {
         const d = root.getAttribute('data-theme') === 'dark';
-        tR = d ? 62 : 45;
-        tG = d ? 207 : 115;
-        tB = d ? 124 : 80;
-        tA = d ? 0.32 : 0.14;
+        tR = d ? 255 : 175;
+        tG = d ? 255 : 168;
+        tB = d ? 255 : 158;
+        tA = d ? 0.24 : 0.14;
       }
       syncWaveTheme();
       let cR = tR, cG = tG, cB = tB, cA = tA;
@@ -3278,13 +3283,13 @@
 
       const wire = new THREE.LineSegments(
         new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.8, 1)),
-        new THREE.LineBasicMaterial({ color: 0x3ecf7c, transparent: true, opacity: 0.65 })
+        new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.70 })
       );
       group.add(wire);
 
       const core = new THREE.Mesh(
         new THREE.IcosahedronGeometry(0.95, 0),
-        new THREE.MeshBasicMaterial({ color: 0x2ba86a, wireframe: true, transparent: true, opacity: 0.25 })
+        new THREE.MeshBasicMaterial({ color: 0xcccccc, wireframe: true, transparent: true, opacity: 0.28 })
       );
       group.add(core);
 
@@ -3301,14 +3306,14 @@
       }
       const pGeo = new THREE.BufferGeometry();
       pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-      const points = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x7fd9a0, size: 0.045, transparent: true, opacity: 0.85 }));
+      const points = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.045, transparent: true, opacity: 0.85 }));
       group.add(points);
 
       function sync3dTheme() {
         const isDark = root.getAttribute('data-theme') === 'dark';
-        wire.material.color.setHex(isDark ? 0x3ecf7c : 0x178a4d);
-        core.material.color.setHex(isDark ? 0x2ba86a : 0x151d17);
-        points.material.color.setHex(isDark ? 0x7fd9a0 : 0x2ba86a);
+        wire.material.color.setHex(isDark ? 0xffffff : 0x1f2421);
+        core.material.color.setHex(isDark ? 0xcccccc : 0x4a524d);
+        points.material.color.setHex(isDark ? 0xffffff : 0x191816);
       }
       sync3dTheme();
       new MutationObserver(sync3dTheme).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
