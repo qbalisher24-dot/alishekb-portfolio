@@ -2064,7 +2064,7 @@
       .hero-glyph { display: none; }
       .about-grid, .skills-wrap, .projects-grid { grid-template-columns: 1fr; }
       .tech-float { display: none; }
-      /* Mobile Hero: soft, hazy, slow organic glass-style aura contour */
+      /* Mobile Hero: slow rotating line with defined top/bottom and hazy blurred sides */
       #hero3d { display: none !important; }
       .ring-solid { display: none !important; }
       .ring-dot { display: none !important; }
@@ -2078,43 +2078,62 @@
         height: 72%;
       }
       .ring-dashed {
-        width: 88%;
-        height: 88%;
-        border: 2px solid rgba(255, 255, 255, 0.40);
-        border-top: 2.5px solid rgba(255, 255, 255, 0.85);
-        border-left: 1.5px solid rgba(255, 255, 255, 0.20);
-        border-bottom: 2px solid rgba(255, 255, 255, 0.35);
-        border-radius: 48% 52% 56% 44% / 52% 46% 54% 48%;
-        background: transparent;
-        box-shadow: 0 0 28px var(--glow), inset 0 0 18px var(--glow);
-        filter: blur(4px);
-        opacity: 0.65;
-        animation: glassAuraMorph 16s ease-in-out infinite;
-        will-change: transform, border-radius, opacity;
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 86%;
+        height: 86%;
+        border-radius: 50%;
+        border: none;
+        border-top: 2.2px solid rgba(255, 255, 255, 0.70);
+        border-bottom: 1.5px solid rgba(255, 255, 255, 0.40);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.06);
+        animation: spin 18s linear infinite;
+        will-change: transform;
         pointer-events: none;
+      }
+      .ring-dashed::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border-radius: 50%;
+        border: none;
+        border-left: 2px solid rgba(255, 255, 255, 0.25);
+        border-right: 2px solid rgba(255, 255, 255, 0.25);
+        filter: blur(3.5px);
+        opacity: 0.85;
       }
       .ring-dashed::after {
         content: '';
         position: absolute;
-        inset: -5px;
-        border: 1.5px solid rgba(255, 255, 255, 0.25);
-        border-radius: inherit;
+        inset: -3px;
+        border-radius: 50%;
+        border: none;
+        border-left: 1.5px solid rgba(255, 255, 255, 0.15);
+        border-right: 1.5px solid rgba(255, 255, 255, 0.15);
         filter: blur(6px);
-        opacity: 0.55;
+        opacity: 0.70;
       }
       [data-theme="light"] .ring-dashed {
-        border: 2px solid rgba(25, 24, 22, 0.25);
-        border-top: 2.5px solid rgba(25, 24, 22, 0.55);
-        border-left: 1.5px solid rgba(25, 24, 22, 0.12);
-        border-bottom: 2px solid rgba(25, 24, 22, 0.22);
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.08), inset 0 0 12px rgba(0, 0, 0, 0.04);
-        filter: blur(4px);
-        opacity: 0.50;
+        border: none;
+        border-top: 2.4px solid #000000;
+        border-bottom: 1.6px solid rgba(0, 0, 0, 0.65);
+        box-shadow: 0 0 14px rgba(0, 0, 0, 0.06);
+        filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.12));
+      }
+      [data-theme="light"] .ring-dashed::before {
+        border: none;
+        border-left: 2px solid rgba(0, 0, 0, 0.32);
+        border-right: 2px solid rgba(0, 0, 0, 0.32);
+        filter: blur(3.5px);
+        opacity: 0.85;
       }
       [data-theme="light"] .ring-dashed::after {
-        border: 1.5px solid rgba(25, 24, 22, 0.15);
+        border: none;
+        border-left: 1.5px solid rgba(0, 0, 0, 0.20);
+        border-right: 1.5px solid rgba(0, 0, 0, 0.20);
         filter: blur(6px);
-        opacity: 0.40;
+        opacity: 0.65;
       }
       .pl-now {
         grid-template-columns: 1fr;
