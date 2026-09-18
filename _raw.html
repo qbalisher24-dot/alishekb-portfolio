@@ -496,38 +496,45 @@
       margin-bottom: 26px;
       max-width: 18ch;
     }
-    .gradient-text {
-      background: linear-gradient(135deg, var(--a1), var(--a2), var(--a3));
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradShift 4s ease-in-out infinite;
+    /* ── INLINE MORPHING TEXT (BLUR + THRESHOLD) ── */
+    .dim {
       display: inline-block;
+      vertical-align: baseline;
     }
-    @keyframes gradShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .morph-word-wrap {
+    #typewriter {
       display: inline-block;
       position: relative;
-      min-width: 3ch;
       vertical-align: baseline;
-      transition: min-width 0.3s ease;
+      filter: url(#morph-threshold) blur(0.6px);
+      min-width: 3ch;
     }
-    .morph-word {
+    #tw-t1, #tw-t2 {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
       display: inline-block;
-      transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      width: max-content;
+      color: #3ecf7c;
+      background: none;
+      -webkit-text-fill-color: #3ecf7c;
+      font-family: inherit;
+      font-weight: 800;
+      user-select: none;
+      transition: none;
     }
-    .morph-word.out {
-      opacity: 0;
-      transform: translateY(-12px);
+    [data-theme="light"] #tw-t1,
+    [data-theme="light"] #tw-t2 {
+      -webkit-text-fill-color: #178a4d;
+      color: #178a4d;
     }
-    .morph-word.in {
-      opacity: 1;
-      transform: translateY(0);
+    #tw-spacer {
+      display: inline-block;
+      visibility: hidden;
+      white-space: nowrap;
+      font-family: inherit;
+      font-weight: 800;
     }
 
     .lead {
@@ -1484,6 +1491,24 @@
 </head>
 <body>
 
+  <!-- SVG Filters for Gooey Text Morphing -->
+  <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+      </filter>
+      <filter id="morph-threshold">
+        <feColorMatrix in="SourceGraphic" type="matrix"
+          values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 255 -140" />
+      </filter>
+    </defs>
+  </svg>
+
   <!-- Background Animated Waves & Glow -->
   <canvas id="waveCanvas"></canvas>
   <div class="cursor-spotlight" id="cursorSpot"></div>
@@ -1557,9 +1582,11 @@
 
       <h1>
         <span id="t1">Men </span>
-        <span class="gradient-text">
-          <span class="morph-word-wrap" id="morphWrap">
-            <span class="morph-word in" id="morphWord">ajoyib</span>
+        <span class="dim">
+          <span id="typewriter">
+            <span id="tw-spacer"></span>
+            <span id="tw-t1"></span>
+            <span id="tw-t2"></span>
           </span>
         </span><br>
         <span id="t2">tizimlar quraman.</span>
@@ -1961,7 +1988,7 @@
         'sec.playlist': 'Playlist', 'pl.title': 'Playlistlarim', 'pl.sub': "Sevimli musiqalarim to'plami.",
         'sec.contact': 'Contact', 'ct.title': 'Keling, birga ishlaymiz', 'ct.desc': "Loyihangiz bormi yoki hamkorlik qilmoqchimisiz? Men bilan bog'laning — har doim yangi va qiziqarli g'oyalarga ochiqman.",
         'footer': "© 2026 Alisherbek Qurambayev — Qoraqalpog'iston, O'zbekiston",
-        'words': ['ajoyib', 'tezkor', 'xavfsiz', 'ishonchli']
+        'tw': ['ishonchli', 'xavfsiz', 'tezkor', 'zamonaviy', 'ajoyib']
       },
       ru: {
         'nav.about': 'Обо мне', 'nav.skills': 'Навыки', 'nav.services': 'Услуги',
@@ -1969,7 +1996,7 @@
         'hero.badge': 'Готов к работе', 'hero.cta1': 'Посмотреть проекты', 'hero.cta2': 'Написать',
         'hero.blog': 'Мой блог',
         'hero.lead': '18-летний fullstack разработчик и пентестер. Более 1.5 лет опыта — чистый код, надёжный backend и кибербезопасность.',
-        't1': 'Я создаю ', 't2': 'системы.',
+        't1': 'Я ', 't2': 'системы строю.',
         'sec.about': 'Обо мне', 'about.title': 'Обо мне', 'about.h3': 'Привет! Я Алишербек',
         'about.p1': '18-летний fullstack разработчик из Каракалпакстана. Более 1.5 лет опыта в создании Telegram-ботов, веб-приложений и backend-систем. Успешно завершил более 50 проектов.',
         'about.p2': 'Последние 3 месяца активно занимаюсь кибербезопасностью и пентестингом. Работаю на Kali Linux, изучаю веб-уязвимости и накапливаю опыт в защите.',
@@ -1990,7 +2017,7 @@
         'sec.playlist': 'Плейлист', 'pl.title': 'Мои плейлисты', 'pl.sub': 'Коллекция любимой музыки.',
         'sec.contact': 'Контакты', 'ct.title': 'Давайте работать вместе', 'ct.desc': 'Есть проект или хотите сотрудничать? Свяжитесь со мной — я всегда открыт к новым идеям.',
         'footer': '© 2026 Алишербек Курамбаев — Каракалпакстан, Узбекистан',
-        'words': ['красивые', 'быстрые', 'безопасные', 'надёжные']
+        'tw': ['надёжные', 'безопасные', 'быстрые', 'современные', 'красивые']
       },
       en: {
         'nav.about': 'About', 'nav.skills': 'Skills', 'nav.services': 'Services',
@@ -2019,15 +2046,94 @@
         'sec.playlist': 'Playlist', 'pl.title': 'My Playlists', 'pl.sub': 'A collection of my favourite tracks.',
         'sec.contact': 'Contact', 'ct.title': "Let's work together", 'ct.desc': "Have a project or want to collaborate? Reach out — I'm always open to new ideas.",
         'footer': '© 2026 Alisherbek Qurambayev — Karakalpakstan, Uzbekistan',
-        'words': ['amazing', 'fast', 'secure', 'reliable']
+        'tw': ['reliable', 'secure', 'fast', 'modern', 'amazing']
       }
     };
 
     let currentLang = localStorage.getItem('site_lang') || 'uz';
     if (!I18N[currentLang]) currentLang = 'uz';
+    let twWords = I18N[currentLang].tw;
+    let twIdx = 0;
+    let morphRAF = null;
+
+    /* ══════════════════════════════════════════════════════════════
+       GOOEY THRESHOLD MORPHING ANIMATION (blur+threshold inside h1)
+       ══════════════════════════════════════════════════════════════ */
+    function startGooeyCycle() {
+      if (morphRAF) cancelAnimationFrame(morphRAF);
+
+      const twEl   = document.getElementById('typewriter');
+      const el1    = document.getElementById('tw-t1');
+      const el2    = document.getElementById('tw-t2');
+      const spacer = document.getElementById('tw-spacer');
+      if (!twEl || !el1 || !el2 || !spacer) return;
+
+      const MORPH_TIME    = 1.0;
+      const COOLDOWN_TIME = 1.4;
+
+      let idx      = twIdx;
+      let morph_   = 0;
+      let cool_    = COOLDOWN_TIME;
+      let prevTime = performance.now();
+
+      function updateSpacerWidth() {
+        let maxW = 0;
+        twWords.forEach(w => {
+          spacer.textContent = w;
+          maxW = Math.max(maxW, spacer.offsetWidth);
+        });
+        spacer.textContent = '';
+        twEl.style.minWidth = (maxW + 4) + 'px';
+      }
+      updateSpacerWidth();
+
+      el1.textContent = twWords[idx % twWords.length];
+      el2.textContent = twWords[(idx + 1) % twWords.length];
+
+      function setFrac(frac) {
+        const f2 = 1 - frac;
+        el1.textContent   = twWords[idx % twWords.length];
+        el2.textContent   = twWords[(idx + 1) % twWords.length];
+        el1.style.filter  = `blur(${Math.min(8 / Math.max(f2, 1e-6) - 8, 40)}px)`;
+        el1.style.opacity = Math.pow(f2, 0.4);
+        el2.style.filter  = `blur(${Math.min(8 / Math.max(frac, 1e-6) - 8, 40)}px)`;
+        el2.style.opacity = Math.pow(frac, 0.4);
+      }
+
+      function cooldown() {
+        morph_ = 0;
+        el1.textContent   = twWords[idx % twWords.length];
+        el2.textContent   = twWords[(idx + 1) % twWords.length];
+        el1.style.filter  = 'blur(0px)';
+        el1.style.opacity = '0';
+        el2.style.filter  = 'blur(0px)';
+        el2.style.opacity = '1';
+      }
+
+      function loop(now) {
+        morphRAF = requestAnimationFrame(loop);
+        const dt = Math.min((now - prevTime) / 1000, 0.1);
+        prevTime = now;
+        const wasCool = cool_ > 0;
+        cool_ -= dt;
+        if (cool_ <= 0) {
+          if (wasCool) idx++;
+          morph_ -= cool_;
+          cool_ = 0;
+          let frac = morph_ / MORPH_TIME;
+          if (frac > 1) { cool_ = COOLDOWN_TIME; frac = 1; }
+          setFrac(Math.max(frac, 1e-6));
+        } else {
+          cooldown();
+        }
+      }
+
+      morphRAF = requestAnimationFrame(loop);
+    }
 
     function applyLang(lang) {
       currentLang = lang;
+      twWords = I18N[lang].tw;
       localStorage.setItem('site_lang', lang);
       document.documentElement.lang = lang;
 
@@ -2049,7 +2155,8 @@
         btn.classList.toggle('active', btn.dataset.lang === lang);
       });
 
-      restartMorphing();
+      twIdx = 0;
+      startGooeyCycle();
     }
 
     // Language Dropdown Events
@@ -2068,31 +2175,6 @@
           langSwitcher.classList.remove('open');
         });
       });
-    }
-
-    /* ══════════════════════════════════════════════════════════════
-       MORPHING HEADLINE TEXT
-       ══════════════════════════════════════════════════════════════ */
-    let morphTimer = null;
-    let wordIdx = 0;
-
-    function restartMorphing() {
-      if (morphTimer) clearInterval(morphTimer);
-      const words = I18N[currentLang].words;
-      const el = document.getElementById('morphWord');
-      if (!el) return;
-      wordIdx = 0;
-      el.textContent = words[0];
-      el.className = 'morph-word in';
-
-      morphTimer = setInterval(() => {
-        el.className = 'morph-word out';
-        setTimeout(() => {
-          wordIdx = (wordIdx + 1) % words.length;
-          el.textContent = words[wordIdx];
-          el.className = 'morph-word in';
-        }, 400);
-      }, 3200);
     }
 
     /* ══════════════════════════════════════════════════════════════
