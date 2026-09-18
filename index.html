@@ -57,10 +57,11 @@
       --card-hover-border: rgba(62, 207, 124, 0.65);
       --spotlight: rgba(62, 207, 124, 0.12);
       --glass-specular: inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 14px 40px -10px rgba(0, 0, 0, 0.35);
-      --glass-blur: blur(16px) saturate(190%);
-      --nav-bg: rgba(255, 255, 255, 0.025);
+      --glass-blur: blur(1px);
+      --nav-blur: blur(16px) saturate(180%);
+      --nav-bg: rgba(7, 12, 9, 0.55);
       --nav-border: rgba(255, 255, 255, 0.18);
-      --drawer-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.015) 100%);
+      --drawer-bg: linear-gradient(145deg, rgba(14, 22, 16, 0.75) 0%, rgba(8, 14, 10, 0.60) 100%);
     }
 
     [data-theme="light"] {
@@ -87,10 +88,11 @@
       --card-hover-border: rgba(18, 124, 68, 0.55);
       --spotlight: rgba(18, 124, 68, 0.10);
       --glass-specular: inset 0 1.5px 2px 0 rgba(255, 255, 255, 1), inset 0 0 0 1px rgba(255, 255, 255, 0.60), 0 12px 32px -8px rgba(18, 50, 32, 0.05);
-      --glass-blur: blur(16px) saturate(190%);
-      --nav-bg: rgba(255, 255, 255, 0.20);
+      --glass-blur: blur(1px);
+      --nav-blur: blur(16px) saturate(180%);
+      --nav-bg: rgba(227, 237, 230, 0.60);
       --nav-border: rgba(255, 255, 255, 0.85);
-      --drawer-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 100%);
+      --drawer-bg: linear-gradient(145deg, rgba(240, 248, 243, 0.82) 0%, rgba(226, 238, 230, 0.65) 100%);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -240,8 +242,8 @@
       justify-content: space-between;
       padding: 14px 6vw;
       background: var(--nav-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
+      backdrop-filter: var(--nav-blur);
+      -webkit-backdrop-filter: var(--nav-blur);
       border-bottom: 1px solid var(--nav-border);
       box-shadow: var(--glass-specular), 0 8px 32px rgba(0, 0, 0, 0.18);
       transition: box-shadow 0.3s ease, background 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
