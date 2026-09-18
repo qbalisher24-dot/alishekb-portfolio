@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const compression = require('compression');
+const { fetchWwwz, fetchGold } = require('./proxy-stream');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,10 +18,35 @@ app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' data:; connect-src 'self';"
+    "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; media-src 'self' data: https: blob:; frame-src 'self' https: data:; connect-src 'self' https:;"
   );
   res.removeHeader('X-Powered-By');
   next();
+});
+
+// Live site stream proxy routes
+app.get('/api/proxy/wwwz', async (req, res) => {
+  try {
+    const html = await fetchWwwz();
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=15');
+    res.send(html);
+  } catch (err) {
+    console.error('Error proxying wwwz:', err);
+    res.status(500).send('Error streaming live page');
+  }
+});
+
+app.get('/api/proxy/gold', async (req, res) => {
+  try {
+    const html = await fetchGold();
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=15');
+    res.send(html);
+  } catch (err) {
+    console.error('Error proxying gold:', err);
+    res.status(500).send('Error streaming live page');
+  }
 });
 
 // Serve static assets with caching

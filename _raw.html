@@ -1124,7 +1124,7 @@
     }
     .service:hover .service-line { transform: scaleX(1); }
 
-    /* ── PROJECTS SECTION & CARDS ── */
+    /* ── PROJECTS SECTION & LIVE STREAM CARDS ── */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1148,8 +1148,8 @@
       border-color: var(--card-hover-border);
       box-shadow: var(--glass-specular), 0 28px 70px rgba(0, 0, 0, 0.45), 0 0 40px var(--glow);
     }
-    
-    /* Project Preview Window Mockup */
+
+    /* Live Stream Browser Viewport Mockup */
     .lp-viewport {
       background: var(--surface-2);
       border-bottom: 1px solid var(--border);
@@ -1168,6 +1168,7 @@
       background: rgba(0, 0, 0, 0.45);
       border-bottom: 1px solid var(--border);
       gap: 12px;
+      z-index: 5;
     }
     [data-theme="light"] .lp-browser-bar {
       background: rgba(0, 0, 0, 0.05);
@@ -1188,7 +1189,7 @@
 
     .lp-browser-url {
       flex: 1;
-      max-width: 250px;
+      max-width: 260px;
       background: var(--surface-solid);
       border: 1px solid var(--border);
       border-radius: 20px;
@@ -1217,430 +1218,122 @@
       gap: 6px;
       padding: 3px 9px;
       border-radius: 20px;
-      background: rgba(62, 207, 124, 0.14);
-      border: 1px solid rgba(62, 207, 124, 0.3);
-      color: var(--green);
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #ef4444;
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.5px;
       text-transform: uppercase;
     }
-    .lp-live-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 8px var(--green);
-      animation: blink 2s infinite ease-in-out;
-    }
-
-    /* Landing page interior container */
-    .lp-body {
-      padding: 16px 20px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      min-height: 290px;
-      position: relative;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .project-card:hover .lp-body {
-      transform: scale(1.015);
-    }
-
-    /* Cloud Theme (wwwz.uz) */
-    .lp-cloud-theme {
-      background: radial-gradient(circle at 85% 15%, rgba(62, 207, 124, 0.18), transparent 60%),
-                  linear-gradient(180deg, rgba(8, 20, 13, 0.95) 0%, rgba(11, 24, 17, 0.98) 100%);
-    }
-    [data-theme="light"] .lp-cloud-theme {
-      background: radial-gradient(circle at 85% 15%, rgba(23, 138, 77, 0.14), transparent 60%),
-                  linear-gradient(180deg, #f0f8f3 0%, #e5f3ea 100%);
-    }
-
-    /* Gold Theme (gold.wwwz.uz) */
-    .lp-gold-theme {
-      background: radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.22), transparent 60%),
-                  linear-gradient(180deg, rgba(22, 16, 8, 0.95) 0%, rgba(18, 13, 6, 0.98) 100%);
-    }
-    [data-theme="light"] .lp-gold-theme {
-      background: radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.14), transparent 60%),
-                  linear-gradient(180deg, #fff9f0 0%, #fef3e2 100%);
-    }
-
-    /* Authentic Mini Navbar of real websites */
-    .lp-real-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 7px 12px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.72rem;
-      gap: 10px;
-    }
-    [data-theme="light"] .lp-real-nav {
-      background: rgba(0, 0, 0, 0.04);
-      border-color: rgba(0, 0, 0, 0.08);
-    }
-    .lp-real-brand {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.82rem;
-      color: var(--text);
-    }
-    .lp-brand-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #ef4444;
-      box-shadow: 0 0 8px #ef4444;
-    }
-    .lp-accent-t { color: #3ecf7c; }
-    [data-theme="light"] .lp-accent-t { color: #178a4d; }
-    .lp-brand-gold { color: #fbbf24; }
-    .lp-gold-t { color: #f59e0b; }
-    .lp-play-icon {
-      font-size: 0.65rem;
-      color: #f59e0b;
-      margin-right: 2px;
-    }
-    .lp-real-links {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 0.68rem;
-      font-weight: 500;
-    }
-    .lp-link-active {
-      color: var(--text);
-      font-weight: 700;
-    }
-    .lp-real-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .lp-nav-btn-line {
-      padding: 2px 7px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      font-size: 0.62rem;
-      font-weight: 600;
-      color: var(--muted);
-    }
-    .lp-nav-btn-fill {
-      padding: 2px 8px;
-      border-radius: 6px;
-      background: linear-gradient(135deg, #ef4444, #dc2626);
-      color: #fff;
-      font-size: 0.62rem;
-      font-weight: 700;
-    }
-    .lp-pill-item {
-      padding: 2px 6px;
-      border-radius: 6px;
-      font-size: 0.64rem;
-      color: var(--muted);
-    }
-    .lp-pill-item.lp-active {
-      background: rgba(245, 158, 11, 0.2);
-      color: #fbbf24;
-      font-weight: 700;
-    }
-    .lp-pill-item.lp-shorts { color: #f43f5e; font-weight: 700; }
-    .lp-pill-item.lp-vip { color: #f59e0b; font-weight: 700; }
-    .lp-search-mini {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 2px 8px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.62rem;
-      color: var(--muted);
-    }
-
-    /* Authentic Hero Section in Mockup */
-    .lp-real-hero {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .lp-real-eyebrow, .lp-gold-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.62rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      color: var(--muted);
-    }
-    .lp-pulse-dot {
+    .lp-badge-live .lp-live-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
       background: #ef4444;
       box-shadow: 0 0 8px #ef4444;
-      animation: blink 1.8s infinite ease-in-out;
-    }
-    .lp-fire-badge {
-      background: rgba(244, 63, 94, 0.18);
-      border: 1px solid rgba(244, 63, 94, 0.35);
-      color: #f43f5e;
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-size: 0.58rem;
-    }
-    .lp-real-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.02rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      color: var(--text);
-    }
-    .lp-hl-green {
-      color: #3ecf7c;
-    }
-    [data-theme="light"] .lp-hl-green { color: #178a4d; }
-    .lp-hl-gold {
-      color: #fbbf24;
-    }
-    [data-theme="light"] .lp-hl-gold { color: #b45309; }
-    .lp-real-desc {
-      font-size: 0.7rem;
-      color: var(--muted);
-      line-height: 1.35;
-    }
-    .lp-media-meta-row {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 2px;
-    }
-    .lp-meta-chip {
-      padding: 2px 7px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.62rem;
-      color: var(--text);
-      font-weight: 600;
-    }
-    [data-theme="light"] .lp-meta-chip {
-      background: rgba(0, 0, 0, 0.04);
-      border-color: rgba(0, 0, 0, 0.08);
+      animation: blink 1.5s infinite ease-in-out;
     }
 
-    /* Terminal on wwwz.uz */
-    .lp-real-terminal {
-      background: rgba(0, 0, 0, 0.55);
-      border: 1px solid rgba(62, 207, 124, 0.28);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.66rem;
-    }
-    [data-theme="light"] .lp-real-terminal {
-      background: rgba(255, 255, 255, 0.75);
-      border-color: rgba(23, 138, 77, 0.28);
-    }
-    .lp-term-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 6px 10px;
-      background: rgba(0, 0, 0, 0.4);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    [data-theme="light"] .lp-term-topbar {
-      background: rgba(0, 0, 0, 0.04);
-    }
-    .lp-term-left-dots {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .lp-t-dot { width: 7px; height: 7px; border-radius: 50%; }
-    .lp-t-dot.red { background: #ef4444; }
-    .lp-t-dot.yellow { background: #f59e0b; }
-    .lp-t-dot.green { background: #10b981; }
-    .lp-term-tab {
-      font-size: 0.6rem;
-      color: var(--muted);
-      margin-left: 6px;
-    }
-    .lp-term-copy {
-      font-size: 0.58rem;
-      color: var(--muted);
-      padding: 1px 5px;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-    }
-    .lp-term-console {
-      padding: 8px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .lp-term-prompt-line {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .lp-prompt-tag {
-      color: #ef4444;
-      font-weight: 700;
-    }
-    .lp-prompt-text {
-      color: var(--text);
-      font-weight: 600;
-    }
-    .lp-term-status-line {
-      color: var(--muted);
-      font-size: 0.62rem;
-    }
-    .lp-term-ok-line {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.62rem;
-      color: var(--text);
-    }
-    .lp-ok-badge {
-      color: #3ecf7c;
-      font-weight: 800;
-    }
-    [data-theme="light"] .lp-ok-badge { color: #178a4d; }
-
-    /* Stats of wwwz.uz */
-    .lp-real-stats {
-      display: flex;
-      gap: 8px;
-    }
-    .lp-r-stat {
-      flex: 1;
-      padding: 5px 8px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      flex-direction: column;
-      font-size: 0.62rem;
-      color: var(--muted);
-    }
-    [data-theme="light"] .lp-r-stat {
-      background: rgba(0, 0, 0, 0.03);
-      border-color: rgba(0, 0, 0, 0.06);
-    }
-    .lp-r-stat b {
-      color: var(--text);
-      font-size: 0.72rem;
-      font-family: 'Outfit', sans-serif;
-    }
-
-    /* Video Cards Grid on GoldAnime */
-    .lp-gold-video-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-    .lp-anime-card {
-      background: rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(245, 158, 11, 0.25);
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    [data-theme="light"] .lp-anime-card {
-      background: rgba(255, 255, 255, 0.75);
-      border-color: rgba(245, 158, 11, 0.3);
-    }
-    .lp-anime-thumb {
-      height: 54px;
+    /* Live Stream Wrapper & Iframe */
+    .lp-stream-wrapper {
       position: relative;
+      width: 100%;
+      height: 380px;
+      background: #080c09;
+      overflow: hidden;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      justify-content: flex-start;
     }
-    .lp-thumb-1 {
-      background: linear-gradient(135deg, rgba(30, 20, 10, 0.8), rgba(200, 30, 30, 0.4));
+    [data-theme="light"] .lp-stream-wrapper {
+      background: #eaf1ec;
     }
-    .lp-thumb-2 {
-      background: linear-gradient(135deg, rgba(10, 20, 40, 0.8), rgba(60, 40, 160, 0.5));
-    }
-    .lp-anime-badge {
+    .lp-stream-frame {
+      width: 1280px;
+      height: 900px;
+      border: none;
       position: absolute;
-      top: 4px;
-      left: 4px;
-      padding: 1px 5px;
-      border-radius: 4px;
-      background: rgba(0,0,0,0.7);
-      font-size: 0.55rem;
-      font-weight: 800;
-      color: #fbbf24;
+      top: 0;
+      left: 0;
+      transform-origin: 0 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      background: transparent;
     }
-    .lp-anime-play {
-      width: 22px;
-      height: 22px;
+    .lp-stream-frame.is-loaded {
+      opacity: 1;
+    }
+    .lp-stream-loader {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--surface-2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 2;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .lp-stream-loader.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .lp-stream-spinner {
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background: rgba(245, 158, 11, 0.9);
-      color: #000;
+      border: 2.5px solid var(--border);
+      border-top-color: var(--green);
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* Overlay Click & Hover link */
+    .lp-stream-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.6rem;
-      box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+      background: rgba(0, 0, 0, 0);
+      transition: background 0.35s ease;
+      cursor: pointer;
     }
-    .lp-anime-details {
-      padding: 6px 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .lp-stream-overlay:hover {
+      background: rgba(0, 0, 0, 0.22);
     }
-    .lp-anime-name {
-      font-size: 0.68rem;
-      font-weight: 700;
+    .lp-stream-hover-tag {
+      padding: 9px 18px;
+      border-radius: 50px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-specular), 0 10px 30px rgba(0, 0, 0, 0.4);
       color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .lp-anime-sub {
-      font-size: 0.58rem;
-      color: var(--muted);
-    }
-    .lp-gold-security-bar {
-      background: rgba(245, 158, 11, 0.1);
-      border: 1px solid rgba(245, 158, 11, 0.25);
-      border-radius: 8px;
-      padding: 5px 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      font-size: 0.62rem;
-      color: #fbbf24;
-      font-weight: 600;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(8px) scale(0.95);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
     }
-    [data-theme="light"] .lp-gold-security-bar { color: #b45309; }
-    .lp-sec-left { display: flex; align-items: center; gap: 6px; }
-    .lp-sec-verified {
-      font-size: 0.56rem;
-      padding: 1px 5px;
-      border-radius: 4px;
-      background: rgba(245, 158, 11, 0.2);
-      font-weight: 800;
+    .project-card:hover .lp-stream-hover-tag {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     /* Project Card Minimal Footer */
@@ -1666,7 +1359,7 @@
     }
     .project-footer-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.12rem;
+      font-size: 1.15rem;
       font-weight: 800;
       letter-spacing: -0.01em;
       color: var(--text);
@@ -1675,7 +1368,7 @@
       text-overflow: ellipsis;
     }
     .project-footer-tag {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--muted);
       font-weight: 500;
       white-space: nowrap;
@@ -1686,7 +1379,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 22px;
+      padding: 11px 22px;
       font-size: 0.88rem;
       font-weight: 700;
       border-radius: 50px;
@@ -2437,7 +2130,7 @@
     </div>
 
     <div class="projects-grid">
-      <!-- Project 1: wwwz.uz -->
+      <!-- Project 1: wwwz.uz (Live Stream) -->
       <div class="card project-card reveal">
         <div class="lp-viewport">
           <div class="lp-browser-bar">
@@ -2452,82 +2145,31 @@
             </div>
             <div class="lp-badge-live">
               <span class="lp-live-dot"></span>
-              <span>Online</span>
+              <span>Jonli</span>
             </div>
           </div>
           
-          <!-- REAL LANDING PAGE OF WWWZ.UZ -->
-          <div class="lp-body lp-cloud-theme">
-            <!-- Header of wwwz.uz -->
-            <div class="lp-real-nav">
-              <div class="lp-real-brand">
-                <span class="lp-brand-dot"></span>
-                <span>wwwz<span class="lp-accent-t">.uz</span></span>
-              </div>
-              <div class="lp-real-links">
-                <span>Tariflar</span>
-                <span>Imkoniyatlar</span>
-                <span>FAQ</span>
-                <span class="lp-link-active">Docs</span>
-              </div>
-              <div class="lp-real-actions">
-                <span class="lp-nav-btn-line">Kirish</span>
-                <span class="lp-nav-btn-fill">Ro'yxatdan o'tish</span>
-              </div>
+          <!-- REAL LIVE LANDING PAGE STREAM VIA PROXY -->
+          <div class="lp-stream-wrapper">
+            <div class="lp-stream-loader">
+              <div class="lp-stream-spinner"></div>
+              <span>Jonli translyatsiya yuklanmoqda...</span>
             </div>
-
-            <!-- Hero of wwwz.uz -->
-            <div class="lp-real-hero">
-              <div class="lp-real-eyebrow">
-                <span class="lp-pulse-dot"></span>
-                <span>WILDCARD CLOUD ENGINE — DOCKER VIRTUALIZATION</span>
-              </div>
-              <h4 class="lp-real-title">
-                Subdomen oling.<br>
-                <span>Saytingizni</span> <span class="lp-hl-green">1 soniyada</span> ishga tushiring.
-              </h4>
-              <p class="lp-real-desc">
-                Dasturchilar uchun ultra-tezkor bulutli platforma: Docker pod, Linux terminal, 10 ta ochiq port va avtomatik SSL.
-              </p>
-            </div>
-
-            <!-- Terminal of wwwz.uz -->
-            <div class="lp-real-terminal">
-              <div class="lp-term-topbar">
-                <div class="lp-term-left-dots">
-                  <span class="lp-t-dot red"></span>
-                  <span class="lp-t-dot yellow"></span>
-                  <span class="lp-t-dot green"></span>
-                  <span class="lp-term-tab">bash — user@wwwz.uz-pod</span>
-                </div>
-                <span class="lp-term-copy">Nusxa olish</span>
-              </div>
-              <div class="lp-term-console">
-                <div class="lp-term-prompt-line">
-                  <span class="lp-prompt-tag">cloud:~$</span>
-                  <span class="lp-prompt-text">deploy --subdomain app.wwwz.uz --stack "node20 + express"</span>
-                </div>
-                <div class="lp-term-status-line">&gt; Tekshirilmoqda: DNS va Wildcard SSL...</div>
-                <div class="lp-term-ok-line"><span class="lp-ok-badge">[OK]</span> Wildcard HTTPS / TLS 1.3 shifrlash yoqildi</div>
-                <div class="lp-term-ok-line"><span class="lp-ok-badge">[OK]</span> Docker pod izolyatsiyasi faollashdi (Ubuntu 24.04)</div>
-                <div class="lp-term-ok-line"><span class="lp-ok-badge">[OK]</span> Port :3000 -&gt; Tashqi HTTPS marshrutlandi</div>
-              </div>
-            </div>
-
-            <!-- Stats of wwwz.uz -->
-            <div class="lp-real-stats">
-              <div class="lp-r-stat"><b>10 ta</b> <span>ochiq port</span></div>
-              <div class="lp-r-stat"><b>24/7</b> <span>PM2 monitoring</span></div>
-              <div class="lp-r-stat"><b>99.9%</b> <span>uptime</span></div>
-            </div>
+            <iframe src="/api/proxy/wwwz" class="lp-stream-frame" title="wwwz.uz Live Stream" loading="lazy" onload="this.classList.add('is-loaded'); this.parentElement.querySelector('.lp-stream-loader')?.classList.add('is-hidden');"></iframe>
+            <a href="https://wwwz.uz" target="_blank" rel="noopener" class="lp-stream-overlay" title="Saytni to'liq ochish">
+              <span class="lp-stream-hover-tag">
+                <span>Saytni to'liq ko'rish</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              </span>
+            </a>
           </div>
         </div>
 
         <!-- Project Card Bottom Bar (Only Project Title & Visit Button) -->
         <div class="project-card-footer">
           <div class="project-info-mini">
-            <h3 class="project-footer-title">wwwz.uz &mdash; Wildcard Cloud</h3>
-            <span class="project-footer-tag">Bulutli Hosting &amp; PaaS Platformasi</span>
+            <h3 class="project-footer-title">wwwz.uz</h3>
+            <span class="project-footer-tag">Wildcard Cloud &amp; PaaS Platformasi</span>
           </div>
           <a href="https://wwwz.uz" target="_blank" rel="noopener" class="btn btn-primary project-action-btn">
             <span data-i18n="p1.btn">Saytga o'tish</span>
@@ -2536,7 +2178,7 @@
         </div>
       </div>
 
-      <!-- Project 2: gold.wwwz.uz -->
+      <!-- Project 2: gold.wwwz.uz (Live Stream) -->
       <div class="card project-card reveal">
         <div class="lp-viewport">
           <div class="lp-browser-bar">
@@ -2551,89 +2193,31 @@
             </div>
             <div class="lp-badge-live">
               <span class="lp-live-dot"></span>
-              <span>Online</span>
+              <span>Jonli</span>
             </div>
           </div>
           
-          <!-- REAL LANDING PAGE OF GOLDANIME -->
-          <div class="lp-body lp-gold-theme">
-            <!-- Header of GoldAnime -->
-            <div class="lp-real-nav">
-              <div class="lp-real-brand lp-brand-gold">
-                <span class="lp-play-icon">▶</span>
-                <span>GOLD<span class="lp-gold-t">ANIME</span></span>
-              </div>
-              <div class="lp-real-links">
-                <span class="lp-pill-item lp-active">Barchasi</span>
-                <span class="lp-pill-item lp-shorts">⚡ Shorts</span>
-                <span class="lp-pill-item">Anime</span>
-                <span class="lp-pill-item">Kinolar</span>
-                <span class="lp-pill-item lp-vip">👑 VIP</span>
-              </div>
-              <div class="lp-search-mini">
-                <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                <span>Anime qidirish...</span>
-              </div>
+          <!-- REAL LIVE LANDING PAGE STREAM VIA PROXY -->
+          <div class="lp-stream-wrapper">
+            <div class="lp-stream-loader">
+              <div class="lp-stream-spinner"></div>
+              <span>Jonli translyatsiya yuklanmoqda...</span>
             </div>
-
-            <!-- Hero of GoldAnime -->
-            <div class="lp-real-hero">
-              <div class="lp-gold-eyebrow">
-                <span class="lp-fire-badge">🔥 TOP PREMYERA</span>
-                <span>ENG SARA ANIMELAR O'ZBEK TILIDA</span>
-              </div>
-              <h4 class="lp-real-title">
-                Solo Leveling: Arise<br>
-                <span class="lp-hl-gold">Yuqori Sifatli HD Video Portal</span>
-              </h4>
-              <div class="lp-media-meta-row">
-                <span class="lp-meta-chip">🎬 1080p Full HD</span>
-                <span class="lp-meta-chip">⭐ 9.9 Reyting</span>
-                <span class="lp-meta-chip">🇺🇿 O'zbekcha Dublyaj</span>
-                <span class="lp-meta-chip">⚡ HLS Fast Stream</span>
-              </div>
-            </div>
-
-            <!-- Video Cards Grid of GoldAnime -->
-            <div class="lp-gold-video-grid">
-              <div class="lp-anime-card">
-                <div class="lp-anime-thumb lp-thumb-1">
-                  <span class="lp-anime-badge">4K HDR</span>
-                  <span class="lp-anime-play">▶</span>
-                </div>
-                <div class="lp-anime-details">
-                  <div class="lp-anime-name">Demon Slayer: Hashira Arc</div>
-                  <div class="lp-anime-sub">⭐ 9.8 &bull; 🔥 48.2k tomosha</div>
-                </div>
-              </div>
-              <div class="lp-anime-card">
-                <div class="lp-anime-thumb lp-thumb-2">
-                  <span class="lp-anime-badge">TOP 1</span>
-                  <span class="lp-anime-play">▶</span>
-                </div>
-                <div class="lp-anime-details">
-                  <div class="lp-anime-name">Jujutsu Kaisen: Shibuya</div>
-                  <div class="lp-anime-sub">⭐ 9.9 &bull; 🔥 62.4k tomosha</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Security Bar of GoldAnime -->
-            <div class="lp-gold-security-bar">
-              <div class="lp-sec-left">
-                <span class="lp-sec-shield">🛡️</span>
-                <span>Security Gateway &amp; Anti-Bot Protection Active</span>
-              </div>
-              <span class="lp-sec-verified">VERIFIED &bull; 0.2ms</span>
-            </div>
+            <iframe src="/api/proxy/gold" class="lp-stream-frame" title="gold.wwwz.uz Live Stream" loading="lazy" onload="this.classList.add('is-loaded'); this.parentElement.querySelector('.lp-stream-loader')?.classList.add('is-hidden');"></iframe>
+            <a href="https://gold.wwwz.uz" target="_blank" rel="noopener" class="lp-stream-overlay" title="Saytni to'liq ochish">
+              <span class="lp-stream-hover-tag">
+                <span>Saytni to'liq ko'rish</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              </span>
+            </a>
           </div>
         </div>
 
         <!-- Project Card Bottom Bar (Only Project Title & Visit Button) -->
         <div class="project-card-footer">
           <div class="project-info-mini">
-            <h3 class="project-footer-title">gold.wwwz.uz &mdash; GoldAnime</h3>
-            <span class="project-footer-tag">Media &amp; Video Streaming Portali</span>
+            <h3 class="project-footer-title">gold.wwwz.uz</h3>
+            <span class="project-footer-tag">GoldAnime &amp; Video Media Portali</span>
           </div>
           <a href="https://gold.wwwz.uz" target="_blank" rel="noopener" class="btn btn-primary project-action-btn">
             <span data-i18n="p2.btn">Saytga o'tish</span>
@@ -3594,6 +3178,33 @@
       t.classList.add('show');
       setTimeout(() => t.classList.remove('show'), 2500);
     }
+
+    /* ══════════════════════════════════════════════════════════════
+       PROJECT LIVE STREAMS AUTO-SCALER
+       ══════════════════════════════════════════════════════════════ */
+    function scaleProjectStreams() {
+      const wrappers = document.querySelectorAll('.lp-stream-wrapper');
+      wrappers.forEach(wrapper => {
+        const frame = wrapper.querySelector('.lp-stream-frame');
+        if (!frame) return;
+        const w = wrapper.clientWidth;
+        if (w > 0) {
+          const baseW = 1280;
+          const scale = w / baseW;
+          frame.style.transform = `scale(${scale})`;
+          const desiredHeight = Math.max(280, Math.min(420, Math.round(w * 0.65)));
+          wrapper.style.height = `${desiredHeight}px`;
+        }
+      });
+    }
+
+    if (typeof ResizeObserver !== 'undefined') {
+      const ro = new ResizeObserver(() => scaleProjectStreams());
+      document.querySelectorAll('.lp-stream-wrapper').forEach(w => ro.observe(w));
+    }
+    window.addEventListener('resize', scaleProjectStreams);
+    window.addEventListener('load', scaleProjectStreams);
+    setTimeout(scaleProjectStreams, 80);
 
     // Initialize Language
     applyLang(currentLang);
