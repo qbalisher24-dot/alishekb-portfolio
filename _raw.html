@@ -2041,8 +2041,54 @@
       .lead { max-width: 52ch; }
       .hero-glyph { display: none; }
       .about-grid, .skills-wrap, .projects-grid { grid-template-columns: 1fr; }
-      .skills-wrap { gap: 32px; }
       .tech-float { display: none; }
+      /* Mobile Hero: hide 3D JS animation and keep single shining rotating circle line */
+      #hero3d { display: none !important; }
+      .ring-solid { display: none !important; }
+      .avatar-wrap {
+        width: min(260px, 72vw);
+        aspect-ratio: 1;
+        margin: 0 auto;
+      }
+      .avatar {
+        width: 72%;
+        height: 72%;
+      }
+      .ring-dashed {
+        width: 86%;
+        height: 86%;
+        border: 1.5px solid var(--border);
+        border-top: 2.5px solid #ffffff;
+        border-right: 2px solid rgba(255, 255, 255, 0.65);
+        border-radius: 50%;
+        box-shadow: 0 0 20px var(--glow);
+        filter: drop-shadow(0 0 8px var(--glow-strong));
+        animation: spin 4.5s linear infinite;
+        will-change: transform;
+      }
+      [data-theme="light"] .ring-dashed {
+        border: 1.5px solid rgba(25, 24, 22, 0.12);
+        border-top: 2.5px solid #191816;
+        border-right: 2px solid rgba(25, 24, 22, 0.65);
+        box-shadow: 0 0 16px rgba(0, 0, 0, 0.08);
+        filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15));
+      }
+      .ring-dot {
+        position: absolute;
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 0 14px 2px #ffffff, 0 0 24px var(--glow-strong);
+        animation: dotPulse 2s ease-in-out infinite;
+      }
+      [data-theme="light"] .ring-dot {
+        background: #191816;
+        box-shadow: 0 0 10px 2px rgba(25, 24, 22, 0.4);
+      }
       .pl-now {
         grid-template-columns: 1fr;
         text-align: center;
@@ -3386,7 +3432,7 @@
       let prev3d = performance.now();
       function animate3d(now) {
         t3dRaf = requestAnimationFrame(animate3d);
-        if (!inView) return;
+        if (!inView || window.innerWidth <= 860) return;
         const dt = Math.min((now - prev3d) * 0.001, 0.05) || 0.016;
         prev3d = now;
 
