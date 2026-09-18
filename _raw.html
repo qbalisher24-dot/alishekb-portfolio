@@ -65,34 +65,34 @@
     }
 
     [data-theme="light"] {
-      --bg: #e3ede6;
-      --surface: rgba(255, 255, 255, 0.20);
+      --bg: #f7f5f0;
+      --surface: rgba(255, 255, 255, 0.40);
       --surface-solid: #ffffff;
-      --surface-2: rgba(255, 255, 255, 0.32);
-      --border: rgba(255, 255, 255, 0.65);
-      --border-strong: rgba(18, 124, 68, 0.35);
-      --text: #0b140e;
-      --muted: #435549;
-      --muted-2: #677b6e;
-      --green: #127c44;
-      --grid: rgba(18, 124, 68, 0.13);
+      --surface-2: rgba(255, 255, 255, 0.65);
+      --border: rgba(0, 0, 0, 0.06);
+      --border-strong: rgba(21, 128, 67, 0.28);
+      --text: #191816;
+      --muted: #5e5a52;
+      --muted-2: #8a857b;
+      --green: #158043;
+      --grid: rgba(60, 50, 40, 0.045);
       --invert: #111815;
       --invert-text: #ffffff;
-      --glow: rgba(18, 124, 68, 0.22);
-      --glow-strong: rgba(18, 124, 68, 0.42);
+      --glow: rgba(255, 255, 255, 0.65);
+      --glow-strong: rgba(255, 255, 255, 0.90);
       --a1: #111a13;
-      --a2: #127c44;
+      --a2: #158043;
       --a3: #229959;
-      --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.06) 100%);
-      --card-border: rgba(255, 255, 255, 0.85);
-      --card-hover-border: rgba(18, 124, 68, 0.55);
-      --spotlight: rgba(18, 124, 68, 0.10);
-      --glass-specular: inset 0 1.5px 2px 0 rgba(255, 255, 255, 1), inset 0 0 0 1px rgba(255, 255, 255, 0.60), 0 12px 32px -8px rgba(18, 50, 32, 0.05);
-      --glass-blur: blur(1px);
-      --nav-blur: blur(16px) saturate(180%);
-      --nav-bg: rgba(227, 237, 230, 0.60);
-      --nav-border: rgba(255, 255, 255, 0.85);
-      --drawer-bg: linear-gradient(145deg, rgba(240, 248, 243, 0.82) 0%, rgba(226, 238, 230, 0.65) 100%);
+      --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.18) 100%);
+      --card-border: rgba(255, 255, 255, 0.90);
+      --card-hover-border: rgba(21, 128, 67, 0.45);
+      --spotlight: rgba(255, 255, 255, 0.40);
+      --glass-specular: inset 0 1.5px 2px 0 rgba(255, 255, 255, 1), inset 0 0 0 1px rgba(255, 255, 255, 0.65), 0 12px 32px -8px rgba(35, 30, 24, 0.05);
+      --glass-blur: blur(0.5px);
+      --nav-blur: blur(14px) saturate(180%);
+      --nav-bg: rgba(248, 246, 242, 0.70);
+      --nav-border: rgba(255, 255, 255, 0.95);
+      --drawer-bg: linear-gradient(145deg, rgba(252, 251, 248, 0.90) 0%, rgba(246, 245, 241, 0.80) 100%);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -3184,10 +3184,10 @@
       let tR = 62, tG = 207, tB = 124, tA = 0.32;
       function syncWaveTheme() {
         const d = root.getAttribute('data-theme') === 'dark';
-        tR = d ? 62 : 16;
-        tG = d ? 207 : 124;
-        tB = d ? 124 : 68;
-        tA = d ? 0.32 : 0.28;
+        tR = d ? 62 : 45;
+        tG = d ? 207 : 115;
+        tB = d ? 124 : 80;
+        tA = d ? 0.32 : 0.14;
       }
       syncWaveTheme();
       let cR = tR, cG = tG, cB = tB, cA = tA;
