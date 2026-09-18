@@ -13,19 +13,25 @@
       ]
     },
     {
-      "source": "/assets/(.*)\\.+(jpg|jpeg|png|gif|svg|webp|ico|mp3)",
+      "source": "/assets/images/:file",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     },
     {
-      "source": "/assets/css/(.*)\\.css",
+      "source": "/assets/audio/:file",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/assets/css/:file",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=604800" }
       ]
     },
     {
-      "source": "/assets/js/(.*)\\.js",
+      "source": "/assets/js/:file",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=604800" }
       ]
