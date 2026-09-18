@@ -151,6 +151,115 @@
       letter-spacing: -0.02em;
     }
 
+    /* ── SITE PRELOADER (Minimalist, luxury glass aesthetic) ── */
+    .site-preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #070709;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .site-preloader.is-loaded {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.03);
+      pointer-events: none;
+    }
+    .preloader-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      position: relative;
+    }
+    .preloader-mark-wrap {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .preloader-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.08);
+      border-top: 2px solid #ffffff;
+      border-right: 1.5px solid rgba(255, 255, 255, 0.45);
+      animation: preloaderSpin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    .preloader-ring-glow {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+      animation: preloaderPulse 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .preloader-logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: #f4f4f6;
+      margin-left: 0.16em;
+      text-shadow: 0 0 24px rgba(255, 255, 255, 0.4);
+    }
+    .preloader-bar-wrap {
+      width: 130px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 99px;
+      overflow: hidden;
+      position: relative;
+    }
+    .preloader-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), #ffffff);
+      border-radius: 99px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+      transition: width 0.14s ease-out;
+      will-change: width;
+    }
+    .preloader-meta {
+      width: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: #71717a;
+    }
+    .preloader-label {
+      opacity: 0.65;
+    }
+    .preloader-num {
+      color: #a1a1aa;
+      font-variant-numeric: tabular-nums;
+    }
+    @keyframes preloaderSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes preloaderPulse {
+      0%, 100% { opacity: 0.35; transform: scale(0.95); }
+      50% { opacity: 0.85; transform: scale(1.06); }
+    }
+
     /* ── CURSOR SPOTLIGHT ── */
     .cursor-spotlight {
       position: fixed;
@@ -2279,6 +2388,75 @@
   </style>
 </head>
 <body>
+
+  <!-- SITE PRELOADER (Minimal, luxury glass loading) -->
+  <div class="site-preloader" id="sitePreloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <div class="preloader-mark-wrap">
+        <div class="preloader-ring"></div>
+        <div class="preloader-ring-glow"></div>
+        <span class="preloader-logo">AQ</span>
+      </div>
+      <div class="preloader-bar-wrap">
+        <div class="preloader-bar" id="preloaderBar"></div>
+      </div>
+      <div class="preloader-meta">
+        <span class="preloader-label">PORTFOLIO</span>
+        <span class="preloader-num" id="preloaderNum">00%</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      const p = document.getElementById('sitePreloader');
+      const b = document.getElementById('preloaderBar');
+      const n = document.getElementById('preloaderNum');
+      if (!p || !b) return;
+
+      let val = 12;
+      let done = false;
+
+      function updateProgress(v) {
+        val = Math.min(100, Math.max(val, v));
+        b.style.width = val + '%';
+        if (n) n.textContent = String(Math.floor(val)).padStart(2, '0') + '%';
+      }
+      updateProgress(val);
+
+      const timer = setInterval(() => {
+        if (done) return;
+        if (val < 85) {
+          const delta = Math.max(2, Math.floor((88 - val) * 0.18));
+          updateProgress(val + delta);
+        }
+      }, 40);
+
+      function hidePreloader() {
+        if (done) return;
+        done = true;
+        clearInterval(timer);
+        updateProgress(100);
+
+        setTimeout(() => {
+          p.classList.add('is-loaded');
+          setTimeout(() => {
+            p.remove();
+          }, 550);
+        }, 180);
+      }
+
+      if (document.readyState === 'complete') {
+        setTimeout(hidePreloader, 350);
+      } else {
+        window.addEventListener('load', () => {
+          setTimeout(hidePreloader, 250);
+        });
+      }
+
+      // Safeguard: never exceed 950ms so user is never blocked
+      setTimeout(hidePreloader, 950);
+    })();
+  </script>
 
   <!-- SVG Filters for Gooey Text Morphing -->
   <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg">
